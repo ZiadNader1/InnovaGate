@@ -1,6 +1,6 @@
 import { Component, HostListener, ElementRef, ViewChild, AfterViewInit, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { LanguageService } from '../../../core/services/language.service';
 import { AnnouncementService, AnnouncementItem } from '../../../core/services/announcement.service';
 
@@ -32,11 +32,20 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
   langService = inject(LanguageService);
   announcementService = inject(AnnouncementService);
+  private router = inject(Router);
 
   mouseX = 0;
   mouseY = 0;
   isDesktop = true;
   dbAnnouncements: AnnouncementItem[] = [];
+
+  navigateTo(path: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.router.navigateByUrl(path);
+  }
 
   get isAr(): boolean {
     return this.langService.currentLang() === 'ar';
