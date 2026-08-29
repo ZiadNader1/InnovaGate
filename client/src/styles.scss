@@ -218,48 +218,48 @@ body.light-mode {
   background-color: #F4F7FB !important;
   color: #080E1A !important;
 
-  /* Custom Light Scrollbar */
-  ::-webkit-scrollbar-track {
-    background: #F4F7FB !important;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #94A3B8 !important;
-    border: 2px solid #F4F7FB !important;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #1677FF !important;
-  }
-
-  /* Global Section Text Overrides */
-  .hero-section,
+  .hero-wrapper,
   .mission-section,
   .learning-paths-section,
   .mentors-section,
   .company-logos-section,
-  .contact-section {
+  .contact-section,
+  .about-section,
+  .courses-section,
+  .diplomas-section,
+  .admin-page-container {
+    background: #F4F7FB !important;
     color: #080E1A !important;
   }
 
-  /* Gradient Text in Light Mode */
-  .gradient-text-blue {
-    background: linear-gradient(135deg, #1677FF 0%, #0756D9 100%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
+  .glass-card,
+  .glass-nav-bar,
+  .feature-card,
+  .course-card,
+  .diploma-card,
+  .mentor-card,
+  .contact-info-card,
+  .stat-card,
+  .admin-header-card,
+  .admin-main-tabs,
+  .controls-bar,
+  .submissions-table-card,
+  .announcements-top-bar,
+  .announcement-card,
+  .modal-card {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+    color: #080E1A !important;
   }
 
-  /* Hero Video Overlay & Background Layer in Light Mode (Pure Light/White) */
-  .hero-section, .hero-wrapper {
-    background: #F4F7FB !important;
+  h1, h2, h3, h4, h5, h6, strong {
+    color: #080E1A !important;
+  }
 
-    .video-overlay, .hero-dark-overlay {
-      background: radial-gradient(
-        circle at center,
-        rgba(244, 247, 251, 0.78) 0%,
-        rgba(244, 247, 251, 0.88) 60%,
-        rgba(244, 247, 251, 0.96) 100%
-      ) !important;
+  .hero-wrapper .video-container {
+    .hero-dark-overlay {
+      background: rgba(244, 247, 251, 0.88) !important;
     }
 
     .hero-blue-glow {
@@ -279,7 +279,9 @@ body.light-mode {
         #F4F7FB 100%
       ) !important;
     }
+  }
 
+  .hero-wrapper {
     .hero-headline {
       color: #080E1A !important;
 
