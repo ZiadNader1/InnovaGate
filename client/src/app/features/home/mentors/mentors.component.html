@@ -1,0 +1,116 @@
+<section class="mentors-section">
+  <!-- Top Transition Blend from Previous Section -->
+  <div class="section-top-blend"></div>
+
+  <div class="container mentors-container">
+    <!-- Header Block -->
+    <div class="mentors-header-block">
+      <div class="section-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span>{{ isAr ? 'خبراء وموجهو الأكاديمية' : 'THE PEOPLE BEHIND THE SKILLS' }}</span>
+      </div>
+
+      <h2 class="section-headline">
+        {{ isAr ? 'تعرف على ' : 'Meet Your ' }}<span class="gradient-text-blue">{{ isAr ? 'خبراء التخصص.' : 'Mentors.' }}</span>
+      </h2>
+
+      <p class="section-subheadline">
+        {{ isAr ? 'تعلم المهارات البرمجية والتقنية من خبراء يطورون ويصممون ويكفلون حماية الأنظمة الرقمية كبرى الشركات.' : 'Learn from people who build, design, analyze, and secure real digital products.' }}
+      </p>
+    </div>
+
+    <!-- Main Editorial Mentor Showcase Viewport (Left Media, Right Info) -->
+    <div class="mentor-showcase-grid">
+      <!-- LEFT / CENTER: Large Immersive Cinematic Media Stage -->
+      <div class="mentor-media-col">
+        <div 
+          class="media-frame-card glass-card"
+          [class.is-changing]="isMediaChanging"
+        >
+          <!-- Cinematic Background Video / Portrait -->
+          <video
+            #mentorVideo
+            class="mentor-bg-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            [src]="mentors[activeMentorIndex].videoUrl"
+            [style.transform]="getMediaTransform()"
+          >
+          </video>
+
+          <!-- Vignette Gradient & Blue Atmospheric Overlay -->
+          <div class="media-vignette-overlay"></div>
+          <div class="media-blue-glow"></div>
+          <div class="media-border-glow"></div>
+
+          <!-- Bottom Media Caption -->
+          <div class="media-bottom-info">
+            <span class="mentor-name-tag">{{ mentors[activeMentorIndex].name }}</span>
+            <span class="mentor-category-tag">{{ mentors[activeMentorIndex].diplomaCategory }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Active Mentor Detailed Information -->
+      <div class="mentor-info-col" [class.is-changing]="isMediaChanging">
+        <div class="mentor-meta-badge">
+          <i class="fa-solid fa-user-check"></i>
+          <span>{{ mentors[activeMentorIndex].experience }}</span>
+        </div>
+
+        <h3 class="mentor-name">{{ mentors[activeMentorIndex].name }}</h3>
+        <p class="mentor-role">{{ mentors[activeMentorIndex].role }}</p>
+        <span class="mentor-company">{{ mentors[activeMentorIndex].company }}</span>
+
+        <p class="mentor-bio">{{ mentors[activeMentorIndex].bio }}</p>
+
+        <!-- Technologies & Skills -->
+        <div class="mentor-skills-block">
+          <span class="skills-label">{{ isAr ? 'التقنيات والمهارات المتقدمة:' : 'SPECIALIZED SKILLS & TECH:' }}</span>
+          <div class="skills-chips">
+            <span *ngFor="let skill of mentors[activeMentorIndex].skills" class="chip-item">
+              <i class="fa-solid fa-code-commit"></i> {{ skill }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Action / Profile Link -->
+        <div class="mentor-action-box">
+          <a [href]="mentors[activeMentorIndex].linkedinUrl" class="btn btn-primary btn-mentor-profile" target="_blank" rel="noopener">
+            <span>{{ isAr ? 'عرض الملف الشخصي والمهني' : 'View Industry Profile' }}</span>
+            <i class="fa-solid fa-arrow-right icon-arrow"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Mentor Navigation Selector List -->
+    <div class="mentors-nav-list">
+      <div 
+        *ngFor="let m of mentors; let i = index"
+        class="nav-item-row"
+        [class.active]="i === activeMentorIndex"
+        [class.dimmed]="activeMentorIndex !== null && i !== activeMentorIndex"
+        (click)="onMentorClick(i, $event)"
+      >
+        <div class="nav-item-content">
+          <span class="item-num">{{ m.number }}</span>
+          <div class="item-text-group">
+            <span class="item-name">{{ m.name }}</span>
+            <span class="item-category">{{ m.diplomaCategory }}</span>
+          </div>
+        </div>
+
+        <!-- Animated Hover Indicator Arrow & Line -->
+        <div class="nav-item-action">
+          <span class="active-line"></span>
+          <i class="fa-solid fa-arrow-right icon-nav-arrow"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

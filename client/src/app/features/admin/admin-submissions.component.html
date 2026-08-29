@@ -1,0 +1,472 @@
+<div class="admin-page-container">
+  <div class="container">
+    
+    <!-- Admin Header -->
+    <div class="admin-header-card glass-card">
+      <div class="header-main">
+        <div class="header-badge">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>{{ isAr ? 'لوحة إدارة أكاديمية InnovaGate' : 'INNOVAGATE ACADEMY ADMIN DASHBOARD' }}</span>
+        </div>
+        <h1 class="admin-title">
+          {{ activeAdminTab === 'submissions' ? (isAr ? 'طلبات التسجيل والاستفسارات الواردة' : 'Incoming Student Submissions') : (isAr ? 'إدارة إعلانات وعروض الهيرو البانر' : 'Hero Announcements & Offers Manager') }}
+        </h1>
+        <p class="admin-subtitle">
+          {{ isAr ? 'إدارة وحفظ كافة البيانات مباشرة على قاعدة بيانات MongoDB Atlas السحابية.' : 'Manage live submissions and announcement banners directly on MongoDB Atlas Cloud Database.' }}
+        </p>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-refresh" (click)="activeAdminTab === 'submissions' ? loadSubmissions() : loadAnnouncements()">
+          <i class="fa-solid fa-rotate-right" [class.fa-spin]="isLoading"></i>
+          <span>{{ isAr ? 'تحديث البيانات' : 'Refresh Data' }}</span>
+        </button>
+
+        <button class="btn btn-outline-danger btn-logout" (click)="logout()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>{{ isAr ? 'تسجيل الخروج' : 'Logout' }}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Admin Main Navigation Tabs -->
+    <div class="admin-main-tabs glass-card">
+      <button 
+        class="main-tab-btn" 
+        [class.active]="activeAdminTab === 'submissions'"
+        (click)="activeAdminTab = 'submissions'"
+      >
+        <i class="fa-solid fa-inbox"></i>
+        <span>{{ isAr ? 'طلبات التسجيل والتواصل' : 'Student Submissions' }}</span>
+        <span class="tab-badge">{{ submissions.length }}</span>
+      </button>
+
+      <button 
+        class="main-tab-btn" 
+        [class.active]="activeAdminTab === 'announcements'"
+        (click)="activeAdminTab = 'announcements'"
+      >
+        <i class="fa-solid fa-rectangle-ad"></i>
+        <span>{{ isAr ? 'إدارة الإعلانات وعروض الهيرو' : 'Announcements & Banners' }}</span>
+        <span class="tab-badge highlight">{{ announcements.length }}</span>
+      </button>
+    </div>
+
+    <!-- ================= TAB 1: SUBMISSIONS ================= -->
+    <ng-container *ngIf="activeAdminTab === 'submissions'">
+      
+      <!-- Stats Row -->
+      <div class="stats-grid">
+        <div class="stat-card glass-card">
+          <div class="stat-icon total"><i class="fa-solid fa-inbox"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">{{ isAr ? 'إجمالي الطلبات' : 'Total Submissions' }}</span>
+            <span class="stat-value">{{ submissions.length }}</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass-card">
+          <div class="stat-icon new"><i class="fa-solid fa-bell"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">{{ isAr ? 'طلبات جديدة' : 'New Requests' }}</span>
+            <span class="stat-value">{{ newCount }}</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass-card">
+          <div class="stat-icon contacted"><i class="fa-solid fa-user-check"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">{{ isAr ? 'تم التواصل معهم' : 'Contacted' }}</span>
+            <span class="stat-value">{{ contactedCount }}</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass-card">
+          <div class="stat-icon archived"><i class="fa-solid fa-box-archive"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">{{ isAr ? 'المؤرشفة' : 'Archived' }}</span>
+            <span class="stat-value">{{ archivedCount }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Bar (Search & Filter Tabs) -->
+      <div class="controls-bar glass-card">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input 
+            type="text" 
+            class="search-input" 
+            [placeholder]="isAr ? 'ابحث بالاسم، الإيميل، الهاتف، أو الدبلومة...' : 'Search by name, email, phone, diploma...'"
+            [(ngModel)]="searchQuery"
+          />
+          <button class="clear-search-btn" *ngIf="searchQuery" (click)="searchQuery = ''">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="filter-tabs">
+          <button 
+            class="filter-tab-btn" 
+            [class.active]="selectedFilter === 'all'"
+            (click)="selectedFilter = 'all'"
+          >
+            <span>{{ isAr ? 'الكل' : 'All' }} ({{ submissions.length }})</span>
+          </button>
+          <button 
+            class="filter-tab-btn new-tab" 
+            [class.active]="selectedFilter === 'new'"
+            (click)="selectedFilter = 'new'"
+          >
+            <span>{{ isAr ? 'جديد' : 'New' }} ({{ newCount }})</span>
+          </button>
+          <button 
+            class="filter-tab-btn" 
+            [class.active]="selectedFilter === 'contacted'"
+            (click)="selectedFilter = 'contacted'"
+          >
+            <span>{{ isAr ? 'تم التواصل' : 'Contacted' }} ({{ contactedCount }})</span>
+          </button>
+          <button 
+            class="filter-tab-btn" 
+            [class.active]="selectedFilter === 'archived'"
+            (click)="selectedFilter = 'archived'"
+          >
+            <span>{{ isAr ? 'مؤرشف' : 'Archived' }} ({{ archivedCount }})</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div class="state-card glass-card" *ngIf="isLoading">
+        <i class="fa-solid fa-spinner fa-spin state-icon"></i>
+        <p>{{ isAr ? 'جاري تحميل الطلبات من السيرفر ومونجو...' : 'Fetching submissions from MongoDB Atlas...' }}</p>
+      </div>
+
+      <!-- Error State -->
+      <div class="state-card glass-card error-card" *ngIf="!isLoading && errorMessage">
+        <i class="fa-solid fa-triangle-exclamation state-icon"></i>
+        <p>{{ errorMessage }}</p>
+        <button class="btn btn-primary" (click)="loadSubmissions()">{{ isAr ? 'إعادة المحاولة' : 'Try Again' }}</button>
+      </div>
+
+      <!-- Empty State -->
+      <div class="state-card glass-card" *ngIf="!isLoading && !errorMessage && filteredSubmissions.length === 0">
+        <i class="fa-solid fa-folder-open state-icon"></i>
+        <h3>{{ isAr ? 'لا توجد طلبات للعرض' : 'No submissions found' }}</h3>
+        <p>{{ isAr ? 'لم يتم إرسال أي طلبات بعد أو لا توجد نتائج تطابق فلتر البحث.' : 'No form submissions match your search filter.' }}</p>
+      </div>
+
+      <!-- Submissions Table Card -->
+      <div class="submissions-table-card glass-card" *ngIf="!isLoading && !errorMessage && filteredSubmissions.length > 0">
+        <div class="table-responsive">
+          <table class="submissions-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>{{ isAr ? 'الاسم' : 'Name' }}</th>
+                <th>{{ isAr ? 'الهاتف' : 'Phone' }}</th>
+                <th>{{ isAr ? 'الإيميل' : 'Email' }}</th>
+                <th>{{ isAr ? 'الدبلومة / التخصص' : 'Diploma' }}</th>
+                <th>{{ isAr ? 'التاريخ والوقت' : 'Date' }}</th>
+                <th>{{ isAr ? 'الحالة' : 'Status' }}</th>
+                <th class="actions-col">{{ isAr ? 'الإجراءات' : 'Actions' }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr 
+                *ngFor="let item of filteredSubmissions; let idx = index"
+                (click)="viewDetails(item)"
+                class="table-row-clickable"
+                [class.row-new]="item.status === 'new'"
+              >
+                <td class="row-num">{{ idx + 1 }}</td>
+                <td class="name-cell">
+                  <strong>{{ item.fullName }}</strong>
+                </td>
+                <td class="phone-cell" dir="ltr">
+                  <a [href]="'tel:' + item.phone" (click)="$event.stopPropagation()">{{ item.phone }}</a>
+                </td>
+                <td class="email-cell">
+                  <a [href]="'mailto:' + item.email" (click)="$event.stopPropagation()">{{ item.email }}</a>
+                </td>
+                <td class="diploma-cell">
+                  <span class="diploma-tag">{{ item.diploma }}</span>
+                </td>
+                <td class="date-cell">
+                  {{ formatDate(item.createdAt) }}
+                </td>
+                <td class="status-cell">
+                  <span class="status-badge" [class]="item.status">
+                    <i class="fa-solid" [ngClass]="{
+                      'fa-bell': item.status === 'new',
+                      'fa-check': item.status === 'contacted',
+                      'fa-box-archive': item.status === 'archived'
+                    }"></i>
+                    {{ item.status === 'new' ? (isAr ? 'جديد' : 'New') : item.status === 'contacted' ? (isAr ? 'تم التواصل' : 'Contacted') : (isAr ? 'مؤرشف' : 'Archived') }}
+                  </span>
+                </td>
+                <td class="actions-cell" (click)="$event.stopPropagation()">
+                  <div class="action-btns-group">
+                    <button 
+                      class="btn-icon view-btn" 
+                      (click)="viewDetails(item)"
+                      [title]="isAr ? 'عرض التفاصيل' : 'View Details'"
+                    >
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+
+                    <button 
+                      class="btn-icon status-btn" 
+                      *ngIf="item.status !== 'contacted'"
+                      (click)="updateStatus(item, 'contacted', $event)"
+                      [title]="isAr ? 'تعليم كتم التواصل' : 'Mark as Contacted'"
+                    >
+                      <i class="fa-solid fa-check"></i>
+                    </button>
+
+                    <button 
+                      class="btn-icon status-btn" 
+                      *ngIf="item.status !== 'archived'"
+                      (click)="updateStatus(item, 'archived', $event)"
+                      [title]="isAr ? 'أرشفة الطلب' : 'Archive'"
+                    >
+                      <i class="fa-solid fa-box-archive"></i>
+                    </button>
+
+                    <button 
+                      class="btn-icon delete-btn" 
+                      (click)="deleteSubmission(item, $event)"
+                      [title]="isAr ? 'حذف الطلب' : 'Delete Submission'"
+                    >
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <!-- ================= TAB 2: ANNOUNCEMENTS MANAGEMENT ================= -->
+    <ng-container *ngIf="activeAdminTab === 'announcements'">
+      <div class="announcements-top-bar glass-card">
+        <div class="bar-info">
+          <h3>{{ isAr ? 'إعلانات وعروض الهيرو البانر (Hero Carousel Banners)' : 'Hero Announcement Banners' }}</h3>
+          <p>{{ isAr ? 'أضف وعدّل إعلانات الورش والعروض والعداد التنازلي المباشر الظاهر في بداية الصفحة الرئيسية.' : 'Manage hero banner offers, workshop countdown timers, and active campaign links.' }}</p>
+        </div>
+
+        <button class="btn btn-primary btn-add-announcement" (click)="openNewAnnouncementModal()">
+          <i class="fa-solid fa-plus"></i>
+          <span>{{ isAr ? 'إضافة إعلان / عرض جديد' : 'Add New Announcement' }}</span>
+        </button>
+      </div>
+
+      <!-- Announcements Grid -->
+      <div class="announcements-grid">
+        <div class="announcement-card glass-card" *ngFor="let item of announcements" [class.inactive]="!item.isActive">
+          <div class="card-top">
+            <span class="badge-pill"><i class="fa-solid" [class]="item.icon || 'fa-tags'"></i> {{ item.badgeAr }} / {{ item.badgeEn }}</span>
+            <div class="status-toggle-wrapper">
+              <span class="status-indicator" [class.active]="item.isActive">
+                {{ item.isActive ? (isAr ? 'نشط' : 'Active') : (isAr ? 'معطل' : 'Inactive') }}
+              </span>
+              <button class="toggle-btn" (click)="toggleAnnouncementStatus(item)">
+                <i [class]="item.isActive ? 'fa-solid fa-toggle-on text-success' : 'fa-solid fa-toggle-off text-muted'"></i>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="announcement-title-ar">{{ item.titleAr }}</h3>
+          <h4 class="announcement-title-en">{{ item.titleEn }}</h4>
+          
+          <p class="announcement-subtext" *ngIf="item.subtextAr">{{ item.subtextAr }}</p>
+
+          <div class="announcement-meta-info">
+            <div class="meta-item">
+              <i class="fa-regular fa-clock"></i>
+              <span>{{ isAr ? 'ينتهي في:' : 'Ends At:' }} <strong>{{ formatDate(item.endDate) }}</strong></span>
+            </div>
+            <div class="meta-item">
+              <i class="fa-solid fa-link"></i>
+              <span>{{ isAr ? 'الزر:' : 'CTA:' }} <strong>{{ item.ctaTextAr }} ({{ item.ctaLink }})</strong></span>
+            </div>
+          </div>
+
+          <div class="card-actions-bar">
+            <button class="btn btn-sm btn-outline-primary" (click)="openEditAnnouncementModal(item)">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <span>{{ isAr ? 'تعديل' : 'Edit' }}</span>
+            </button>
+            <button class="btn btn-sm btn-outline-danger" (click)="deleteAnnouncement(item)">
+              <i class="fa-solid fa-trash-can"></i>
+              <span>{{ isAr ? 'حذف' : 'Delete' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+  <!-- Submission Details View Modal -->
+  <div class="modal-backdrop" *ngIf="selectedSubmission" (click)="closeModal()">
+    <div class="modal-card glass-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <span class="modal-badge">{{ selectedSubmission.diploma }}</span>
+          <h3>{{ selectedSubmission.fullName }}</h3>
+          <span class="modal-date"><i class="fa-regular fa-clock"></i> {{ formatDate(selectedSubmission.createdAt) }}</span>
+        </div>
+        <button class="modal-close-btn" (click)="closeModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="detail-info-grid">
+          <div class="info-block">
+            <span class="block-label"><i class="fa-solid fa-user"></i> {{ isAr ? 'الاسم بالكامل' : 'Full Name' }}</span>
+            <span class="block-value">{{ selectedSubmission.fullName }}</span>
+          </div>
+
+          <div class="info-block">
+            <span class="block-label"><i class="fa-solid fa-phone"></i> {{ isAr ? 'رقم الهاتف / الواتساب' : 'Phone / WhatsApp' }}</span>
+            <span class="block-value" dir="ltr">
+              <a [href]="'https://wa.me/' + selectedSubmission.phone.replace('+', '').replace(' ', '')" target="_blank" class="whatsapp-link">
+                <i class="fa-brands fa-whatsapp"></i> {{ selectedSubmission.phone }}
+              </a>
+            </span>
+          </div>
+
+          <div class="info-block">
+            <span class="block-label"><i class="fa-solid fa-envelope"></i> {{ isAr ? 'البريد الإلكتروني' : 'Email Address' }}</span>
+            <span class="block-value">
+              <a [href]="'mailto:' + selectedSubmission.email">{{ selectedSubmission.email }}</a>
+            </span>
+          </div>
+
+          <div class="info-block">
+            <span class="block-label"><i class="fa-solid fa-graduation-cap"></i> {{ isAr ? 'الدبلومة / التخصص' : 'Diploma Track' }}</span>
+            <span class="block-value highlight">{{ selectedSubmission.diploma }}</span>
+          </div>
+        </div>
+
+        <!-- Message Box -->
+        <div class="message-display-box">
+          <span class="message-label"><i class="fa-solid fa-message"></i> {{ isAr ? 'نص الرسالة والاستفسار:' : 'Submission Message / Inquiry:' }}</span>
+          <p class="message-text">{{ selectedSubmission.message }}</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="status-change-btns">
+          <button 
+            class="btn btn-sm" 
+            [class.btn-active]="selectedSubmission.status === 'new'"
+            (click)="updateStatus(selectedSubmission, 'new')"
+          >
+            {{ isAr ? 'جديد' : 'New' }}
+          </button>
+          <button 
+            class="btn btn-sm" 
+            [class.btn-active]="selectedSubmission.status === 'contacted'"
+            (click)="updateStatus(selectedSubmission, 'contacted')"
+          >
+            {{ isAr ? 'تم التواصل' : 'Contacted' }}
+          </button>
+          <button 
+            class="btn btn-sm" 
+            [class.btn-active]="selectedSubmission.status === 'archived'"
+            (click)="updateStatus(selectedSubmission, 'archived')"
+          >
+            {{ isAr ? 'أرشفة' : 'Archive' }}
+          </button>
+        </div>
+
+        <button class="btn btn-primary" (click)="closeModal()">
+          {{ isAr ? 'إغلاق' : 'Close' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Announcement Add/Edit Modal -->
+  <div class="modal-backdrop" *ngIf="showAnnouncementModal" (click)="closeAnnouncementModal()">
+    <div class="modal-card glass-card announcement-modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>{{ editingAnnouncement.id ? (isAr ? 'تعديل بيانات الإعلان' : 'Edit Announcement Banner') : (isAr ? 'إضافة إعلان وعرض جديد' : 'Add New Hero Banner') }}</h3>
+        <button class="modal-close-btn" (click)="closeAnnouncementModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="modal-body form-body">
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>{{ isAr ? 'البادج بالعربية (Badge AR)' : 'Badge AR' }}</label>
+            <input type="text" class="form-control" [(ngModel)]="editingAnnouncement.badgeAr" placeholder="🔥 ورشة عمل جديدة" />
+          </div>
+          <div class="form-group">
+            <label>{{ isAr ? 'البادج بالإنجليزية (Badge EN)' : 'Badge EN' }}</label>
+            <input type="text" class="form-control" [(ngModel)]="editingAnnouncement.badgeEn" placeholder="FREE LIVE WORKSHOP" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>{{ isAr ? 'العنوان الرئيسي بالعربية (Title AR)' : 'Title AR' }} *</label>
+            <input type="text" class="form-control" [(ngModel)]="editingAnnouncement.titleAr" placeholder="مثال: ماستركلاس Angular 18" required />
+          </div>
+          <div class="form-group">
+            <label>{{ isAr ? 'العنوان الرئيسي بالإنجليزية (Title EN)' : 'Title EN' }} *</label>
+            <input type="text" class="form-control" [(ngModel)]="editingAnnouncement.titleEn" placeholder="e.g. Live Angular 18 Masterclass" required />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>{{ isAr ? 'الوصف الفرعي بالعربية (Subtext AR)' : 'Subtext AR' }}</label>
+            <input type="text" class="form-control" [(ngModel)]="editingAnnouncement.subtextAr" placeholder="الوصف الذي يظهر أسفل العنوان" />
+          </div>
+          <div class="form-group">
+            <label>{{ isAr ? 'الوصف الفرعي بالإنجليزية (Subtext EN)' : 'Subtext EN' }}</label>
+            <input type="text" class="form-control" [(ngModel)]="editingAnnouncement.subtextEn" placeholder="Subtext underneath main title" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>{{ isAr ? 'نص الزر بالعربية (CTA AR)' : 'CTA Text AR' }}</label>
+            <input type="text" class="form-control" [(ngModel)]="editingAnnouncement.ctaTextAr" placeholder="احجز مقعدك الآن" />
+          </div>
+          <div class="form-group">
+            <label>{{ isAr ? 'نص الزر بالإنجليزية (CTA EN)' : 'CTA Text EN' }}</label>
+            <input type="text" class="form-control" [(ngModel)]="editingAnnouncement.ctaTextEn" placeholder="Reserve Seat" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>{{ isAr ? 'تاريخ ووقت انتهاء العرض (Countdown Timer)' : 'Offer Expiry Date' }} *</label>
+            <input type="datetime-local" class="form-control" [(ngModel)]="editingAnnouncement.endDate" required />
+          </div>
+          <div class="form-group">
+            <label>{{ isAr ? 'رابط التوجيه عند النقر (CTA Link)' : 'CTA Destination Link' }}</label>
+            <input type="text" class="form-control" [(ngModel)]="editingAnnouncement.ctaLink" placeholder="/contact" />
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeAnnouncementModal()">{{ isAr ? 'إلغاء' : 'Cancel' }}</button>
+        <button class="btn btn-primary" (click)="saveAnnouncement()" [disabled]="isSavingAnnouncement">
+          <i class="fa-solid fa-spinner fa-spin" *ngIf="isSavingAnnouncement"></i>
+          <span>{{ isAr ? 'حفظ في MongoDB Atlas' : 'Save to MongoDB Atlas' }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

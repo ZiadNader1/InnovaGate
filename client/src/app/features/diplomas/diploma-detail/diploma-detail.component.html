@@ -1,0 +1,264 @@
+<app-particle-bg></app-particle-bg>
+
+<div class="diploma-detail-page-wrapper" *ngIf="diploma">
+  <!-- 1. BREADCRUMBS & HERO TOP HEADER -->
+  <section class="detail-header-section">
+    <div class="container">
+      <!-- Breadcrumb Nav -->
+      <nav class="breadcrumb-nav">
+        <a routerLink="/">{{ langService.t().navbar.home }}</a>
+        <i class="fa-solid fa-chevron-right separator"></i>
+        <a routerLink="/diplomas">{{ langService.t().navbar.diplomas }}</a>
+        <i class="fa-solid fa-chevron-right separator"></i>
+        <span class="active-crumb">{{ langService.currentLang() === 'ar' ? diploma.titleAr : diploma.titleEn }}</span>
+      </nav>
+
+      <div class="hero-detail-grid">
+        <div class="detail-info-col">
+          <div class="meta-tags-bar">
+            <span class="category-pill">{{ langService.currentLang() === 'ar' ? diploma.categoryLabelAr : diploma.categoryLabelEn }}</span>
+            <span class="founding-pill" *ngIf="diploma.isFoundingBatch">
+              <i class="fa-solid fa-fire"></i>
+              <span>{{ langService.currentLang() === 'ar' ? diploma.foundingBatchBadgeAr : diploma.foundingBatchBadgeEn }}</span>
+            </span>
+          </div>
+
+          <h1 class="diploma-main-title">{{ langService.currentLang() === 'ar' ? diploma.titleAr : diploma.titleEn }}</h1>
+          <p class="diploma-tagline">{{ langService.currentLang() === 'ar' ? diploma.taglineAr : diploma.taglineEn }}</p>
+          <p class="diploma-full-desc">{{ langService.currentLang() === 'ar' ? diploma.descAr : diploma.descEn }}</p>
+
+          <!-- Spec Badges Grid -->
+          <div class="specs-bar">
+            <div class="spec-pill">
+              <i class="fa-regular fa-clock"></i>
+              <span>{{ langService.currentLang() === 'ar' ? diploma.durationAr : diploma.durationEn }}</span>
+            </div>
+            <div class="spec-pill" *ngIf="diploma.totalSessions">
+              <i class="fa-solid fa-chalkboard-user"></i>
+              <span>{{ diploma.totalSessions }} {{ langService.currentLang() === 'ar' ? 'جلسة' : 'Sessions' }} ({{ diploma.totalHours }}h)</span>
+            </div>
+            <div class="spec-pill">
+              <i class="fa-regular fa-calendar-check"></i>
+              <span>{{ langService.currentLang() === 'ar' ? diploma.sessionsPerWeekAr : diploma.sessionsPerWeekEn }}</span>
+            </div>
+            <div class="spec-pill" *ngIf="diploma.sessionDurationAr">
+              <i class="fa-solid fa-hourglass-half"></i>
+              <span>{{ langService.currentLang() === 'ar' ? diploma.sessionDurationAr : diploma.sessionDurationEn }}</span>
+            </div>
+            <div class="spec-pill">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>{{ langService.currentLang() === 'ar' ? diploma.levelAr : diploma.levelEn }}</span>
+            </div>
+            <div class="spec-pill project-highlight">
+              <i class="fa-solid fa-diagram-project"></i>
+              <span>{{ langService.currentLang() === 'ar' ? diploma.projectsCountAr : diploma.projectsCountEn }}</span>
+            </div>
+          </div>
+
+          <!-- Scheduling Note Alert Box (If present) -->
+          <div class="scheduling-note-box" *ngIf="diploma.schedulingNoteAr">
+            <div class="note-icon">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div class="note-content">
+              <h4>{{ langService.currentLang() === 'ar' ? 'ملاحظة وتوضيح الجدول الزمني' : 'Important Scheduling Note' }}</h4>
+              <p>{{ langService.currentLang() === 'ar' ? diploma.schedulingNoteAr : diploma.schedulingNoteEn }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Enrollment / Pricing Card -->
+        <div class="enrollment-card-col">
+          <div class="enrollment-sticky-card">
+            <!-- Featured Badge -->
+            <div class="offer-header-tag" *ngIf="diploma.earlyBirdPriceEgp">
+              <i class="fa-solid fa-bolt"></i>
+              <span>{{ langService.currentLang() === 'ar' ? 'عرض خصم التسجيل المبكر' : 'Early Bird Offer' }}</span>
+            </div>
+
+            <div class="price-header">
+              <div class="price-stack">
+                <span class="price-val" *ngIf="diploma.earlyBirdPriceEgp">{{ diploma.earlyBirdPriceEgp | number }} EGP</span>
+                <span class="price-val" *ngIf="!diploma.earlyBirdPriceEgp">{{ diploma.priceEgp | number }} EGP</span>
+
+                <span class="original-price" *ngIf="diploma.earlyBirdPriceEgp">
+                  <del>{{ diploma.priceEgp | number }} EGP</del>
+                </span>
+              </div>
+              <span class="price-note">{{ langService.t().diplomasPage.catalog.foundingBatch }}</span>
+            </div>
+
+            <ul class="key-perks-list">
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <span>{{ diploma.totalHours }} {{ langService.currentLang() === 'ar' ? 'ساعة تدريبية معتمدة' : 'Accredited Training Hours' }}</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <span>{{ diploma.totalSessions || 48 }} {{ langService.currentLang() === 'ar' ? 'جلسة تفاعلية مباشرة' : 'Live Mentorship Sessions' }}</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <span>{{ langService.currentLang() === 'ar' ? '12 مشروعاً عملياً متكاملاً' : '12 Practical Production Projects' }}</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <span>{{ langService.currentLang() === 'ar' ? 'إدارة النسخ بـ Git و GitHub Profile' : 'Git & GitHub Portfolio Building' }}</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <span>{{ langService.currentLang() === 'ar' ? 'إعداد الـ CV والتحضير للمقابلات' : 'CV Writing & Tech Interview Prep' }}</span>
+              </li>
+            </ul>
+
+            <a routerLink="/contact" class="btn btn-primary btn-block btn-lg">
+              <span>{{ langService.t().diplomasPage.catalog.applyNow }}</span>
+              <i class="fa-solid fa-arrow-right icon-arrow"></i>
+            </a>
+
+            <div class="card-footer-guarantee">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>{{ langService.currentLang() === 'ar' ? 'شهادة معتمدة وتطبيق عملي 100%' : 'Certified Program & 100% Practical' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. CURRICULUM MODULES BREAKDOWN -->
+  <section class="curriculum-section">
+    <div class="container">
+      <div class="section-title-box">
+        <span class="section-eyebrow">{{ langService.currentLang() === 'ar' ? 'المنهج الدراسي' : 'CURRICULUM BREAKDOWN' }}</span>
+        <h2 class="section-heading">{{ langService.currentLang() === 'ar' ? 'الخطة الدراسية والموديولات التعليمية' : 'Curriculum & Study Modules' }}</h2>
+        <p class="section-subtext">
+          {{ langService.currentLang() === 'ar' ? 
+            'منهج هرمي مقسم إلى ' + diploma.curriculumModules.length + ' موديولاً متدرجاً لنقلك من الأساسيات حتى احتراف حل المشكلات وبناء النظم' : 
+            'Structured progressive modules designed for career-ready technical mastery' }}
+        </p>
+      </div>
+
+      <div class="modules-grid">
+        <div 
+          *ngFor="let mod of diploma.curriculumModules" 
+          class="module-card" 
+          [class.expanded]="activeModuleNumber === mod.moduleNumber"
+          (click)="setActiveModule(mod.moduleNumber)"
+        >
+          <div class="mod-top-bar">
+            <div class="mod-badge-group">
+              <span class="mod-badge">MODULE {{ mod.moduleNumber < 10 ? '0' + mod.moduleNumber : mod.moduleNumber }}</span>
+              <span class="mod-timing" *ngIf="mod.sessionsCount">
+                <i class="fa-regular fa-clock"></i>
+                {{ mod.sessionsCount }} {{ langService.currentLang() === 'ar' ? 'جلسات' : 'Sessions' }} • {{ mod.hoursCount }} {{ langService.currentLang() === 'ar' ? 'ساعة' : 'Hours' }}
+              </span>
+            </div>
+            <i class="fa-solid fa-chevron-down expand-icon"></i>
+          </div>
+
+          <h3 class="mod-title">{{ langService.currentLang() === 'ar' ? mod.titleAr : mod.titleEn }}</h3>
+          <p class="mod-desc" *ngIf="mod.descAr">{{ langService.currentLang() === 'ar' ? mod.descAr : mod.descEn }}</p>
+
+          <!-- Key Topics Badges Grid -->
+          <div class="topics-chips-list">
+            <span class="topic-chip" *ngFor="let topic of mod.topics">
+              <i class="fa-solid fa-check"></i>
+              <span>{{ topic }}</span>
+            </span>
+          </div>
+
+          <!-- Module Project Outcome Badge -->
+          <div class="module-project-outcome" *ngIf="mod.projectTitleAr">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span class="outcome-label">{{ langService.currentLang() === 'ar' ? 'المشروع التطبيقي للموديول:' : 'Practical Module Project:' }}</span>
+            <strong class="outcome-title">{{ langService.currentLang() === 'ar' ? mod.projectTitleAr : mod.projectTitleEn }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PROJECT ROADMAP SECTION (12 PRACTICAL PROJECTS) -->
+  <section class="project-roadmap-section" *ngIf="diploma.projectRoadmap && diploma.projectRoadmap.length > 0">
+    <div class="container">
+      <div class="section-title-box text-center">
+        <span class="section-eyebrow">{{ langService.currentLang() === 'ar' ? 'المشاريع التطبيقية' : 'PRACTICAL PROJECTS' }}</span>
+        <h2 class="section-heading">{{ langService.currentLang() === 'ar' ? 'مسار المشاريع البرمجية (Project Roadmap)' : 'Hands-on Project Roadmap' }}</h2>
+        <p class="section-subtext">
+          {{ langService.currentLang() === 'ar' ? 
+            'خطة عمل مبنية على 12 مشروعاً واقعياً تتدرج من المستوى المبتدئ وحتى أنظمة التخرج المؤسسية' : 
+            '12 real-world production projects built step-by-step from beginner to capstone enterprise systems' }}
+        </p>
+      </div>
+
+      <div class="projects-roadmap-grid">
+        <div class="roadmap-card" *ngFor="let proj of diploma.projectRoadmap">
+          <div class="card-num-badge">#{{ proj.num }}</div>
+          <div class="card-body">
+            <span class="level-tag" [ngClass]="proj.levelEn.toLowerCase()">
+              {{ langService.currentLang() === 'ar' ? proj.levelAr : proj.levelEn }}
+            </span>
+            <h3 class="proj-title">{{ langService.currentLang() === 'ar' ? proj.titleAr : proj.titleEn }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CAREER OUTCOMES & TOOLS -->
+  <section class="outcomes-tools-section">
+    <div class="container">
+      <div class="two-col-grid">
+        <!-- Career Outcomes -->
+        <div class="outcomes-box">
+          <h3 class="box-title">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'المسميات الوظيفية المستهدفة لسوق العمل' : 'Target Career Roles' }}</span>
+          </h3>
+          <ul class="outcomes-list">
+            <li *ngFor="let role of (langService.currentLang() === 'ar' ? diploma.careerOutcomesAr : diploma.careerOutcomesEn)">
+              <i class="fa-solid fa-circle-check check-icon"></i>
+              <span>{{ role }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tools & Tech Stack -->
+        <div class="tools-box">
+          <h3 class="box-title">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'الأدوات والتقنيات المستخدمة' : 'Tools & Technologies' }}</span>
+          </h3>
+          <div class="tools-chips-grid">
+            <span class="tool-badge" *ngFor="let tool of diploma.tools">
+              <i class="fa-solid fa-microchip"></i>
+              <span bdi>{{ tool }}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. BOTTOM ENROLLMENT CTA -->
+  <section class="detail-final-cta-section">
+    <div class="container">
+      <div class="final-cta-banner">
+        <h2>{{ langService.t().diplomasPage.finalCta.heading }}</h2>
+        <p>{{ langService.t().diplomasPage.finalCta.subheading }}</p>
+
+        <div class="cta-btns">
+          <a routerLink="/contact" class="btn btn-primary btn-lg">
+            <span>{{ langService.t().diplomasPage.catalog.applyNow }}</span>
+            <i class="fa-solid fa-arrow-right icon-arrow"></i>
+          </a>
+          <a routerLink="/contact" class="btn btn-secondary btn-lg">
+            <span>{{ langService.t().diplomasPage.advisorCta }}</span>
+            <i class="fa-solid fa-headset"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

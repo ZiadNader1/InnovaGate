@@ -1,0 +1,131 @@
+<footer class="footer">
+  <div class="container footer-content">
+    
+    <!-- COLUMN 1: LOGO & DESCRIPTION & LEGAL REGISTRATION -->
+    <div class="footer-col footer-brand-col">
+      <a routerLink="/" class="footer-brand-logo" dir="ltr" (click)="scrollToTop()">
+        <img src="assets/images/e29dde23-566d-4a40-a3b2-03e6c0e91e84.png" alt="InnovaGate Academy Logo" class="footer-logo-img" />
+      </a>
+
+      <p class="footer-brand-desc">
+        {{ langService.currentLang() === 'ar' 
+          ? 'InnovaGate هي أكاديمية تكنولوجية رائدة متخصصة في تأهيل المبرمجين وتدريب الكوادر وبناء التطبيقات الحديثة بتقنيات الويب، الذكاء الاصطناعي، والموبايل.' 
+          : 'InnovaGate is a premier technology academy specializing in software engineering, modern web development, AI, and mobile app development.' }}
+      </p>
+
+      <!-- Legal Badges -->
+      <div class="footer-legal-badges">
+        <div class="legal-badge-pill">
+          <i class="fa-solid fa-file-contract"></i>
+          <span>{{ langService.currentLang() === 'ar' ? 'سجل تجاري:' : 'C.R:' }} <strong>12831</strong></span>
+        </div>
+        <div class="legal-badge-pill">
+          <i class="fa-solid fa-receipt"></i>
+          <span>{{ langService.currentLang() === 'ar' ? 'تسجيل ضريبي:' : 'Tax Reg:' }} <strong>489-301-177</strong></span>
+        </div>
+      </div>
+
+      <!-- Social Media Icons -->
+      <div class="footer-social-bar">
+        <a href="https://www.linkedin.com/company/innova-gate" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61593432778794" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/innovagate/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/201144180891" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <!-- COLUMN 2: QUICK LINKS -->
+    <div class="footer-col footer-links-col">
+      <h3 class="footer-col-title">{{ langService.currentLang() === 'ar' ? 'روابط سريعة' : 'QUICK LINKS' }}</h3>
+      <ul class="footer-nav-list">
+        <li>
+          <a routerLink="/" (click)="scrollToTop()">
+            <i class="fa-solid fa-chevron-right list-arrow"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'الرئيسية' : 'Home' }}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/courses" (click)="scrollToTop()">
+            <i class="fa-solid fa-chevron-right list-arrow"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'الكورسات والمناهج' : 'Courses Catalog' }}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/diplomas" (click)="scrollToTop()">
+            <i class="fa-solid fa-chevron-right list-arrow"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'الدبلومات المعتمدة' : 'Professional Diplomas' }}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/about" (click)="scrollToTop()">
+            <i class="fa-solid fa-chevron-right list-arrow"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'عن الأكاديمية' : 'About Academy' }}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/contact" (click)="scrollToTop()">
+            <i class="fa-solid fa-chevron-right list-arrow"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'تواصل معنا' : 'Contact Us' }}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/login" (click)="scrollToTop()">
+            <i class="fa-solid fa-lock list-arrow" style="color: #38bdf8;"></i>
+            <span style="color: #38bdf8; font-weight: 700;">{{ langService.currentLang() === 'ar' ? 'تسجيل دخول الإدارة' : 'Admin Portal Login' }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- COLUMN 3: CONTACT DETAILS & HQ -->
+    <div class="footer-col footer-contact-col">
+      <h3 class="footer-col-title">{{ langService.currentLang() === 'ar' ? 'المقر والتواصل' : 'CONTACT & HQ' }}</h3>
+      <ul class="footer-contact-list">
+        <li>
+          <i class="fa-solid fa-location-dot contact-icon"></i>
+          <div>
+            <strong>{{ langService.currentLang() === 'ar' ? 'العنوان' : 'Address' }}</strong>
+            <p>{{ langService.currentLang() === 'ar' ? 'دمنهور، محافظة البحيرة، مصر' : 'Damanhour, Beheira, Egypt' }}</p>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-phone contact-icon"></i>
+          <div>
+            <strong>{{ langService.currentLang() === 'ar' ? 'الهاتف / الواتساب' : 'Phone / WhatsApp' }}</strong>
+            <p dir="ltr"><a href="tel:+201144180891" style="color: inherit; text-decoration: none;">+20 114 418 0891</a></p>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-envelope contact-icon"></i>
+          <div>
+            <strong>{{ langService.currentLang() === 'ar' ? 'البريد الإلكتروني' : 'Email' }}</strong>
+            <p>info&#64;innovagate.io</p>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-clock contact-icon"></i>
+          <div>
+            <strong>{{ langService.currentLang() === 'ar' ? 'مواعيد العمل' : 'Working Hours' }}</strong>
+            <p>{{ langService.currentLang() === 'ar' ? 'الأحد - الخميس: 9:00 ص - 6:00 م' : 'Sun - Thu: 9:00 AM - 6:00 PM' }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- FOOTER BOTTOM BAR -->
+  <div class="footer-bottom-bar">
+    <div class="container bottom-bar-container">
+      <p class="copyright-text">
+        © {{ currentYear }} InnovaGate Academy. {{ langService.currentLang() === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.' }}
+      </p>
+
+      <div class="bottom-legal-pills">
+        <span><i class="fa-solid fa-building"></i> {{ langService.currentLang() === 'ar' ? 'سجل تجاري:' : 'C.R:' }} <strong>12831</strong></span>
+        <span class="dot-separator">•</span>
+        <span><i class="fa-solid fa-receipt"></i> {{ langService.currentLang() === 'ar' ? 'بطاقة ضريبية:' : 'Tax Reg:' }} <strong>489-301-177</strong></span>
+      </div>
+    </div>
+  </div>
+</footer>

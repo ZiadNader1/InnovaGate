@@ -1,0 +1,722 @@
+/* InnovaGate Coding Academy - Brand Color Tokens & Base Styles */
+
+:root {
+  /* Brand Blue + Gray Palette */
+  --primary-blue: #1769FF;
+  --primary-blue-hover: #1463F3;
+  --deep-blue: #0B3FA8;
+  --light-blue: #EAF2FF;
+  
+  --primary-gray: #5F6673;
+  --light-gray: #F4F6F8;
+  --dark-text: #111827;
+  --white: #FFFFFF;
+
+  /* Glassmorphism & Borders */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 20px 40px -15px rgba(23, 105, 255, 0.12), 0 0 1px rgba(0, 0, 0, 0.08);
+
+  --font-arabic: 'Cairo', sans-serif;
+  --font-english: 'Montserrat', sans-serif;
+  --font-main: 'Montserrat', 'Cairo', sans-serif;
+  --font-code: 'Fira Code', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Montserrat', 'Cairo', sans-serif;
+  background-color: #080e1a;
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ==========================================================================
+   HIGH-PERFORMANCE GPU SCROLL REVEAL ANIMATIONS SYSTEM & PERFORMANCE BOOSTS
+   ========================================================================== */
+
+/* GPU Hardware Acceleration & Rendering Optimizations */
+.gpu-accelerated,
+[data-reveal],
+.reveal-on-scroll,
+.glass-card,
+.btn {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Scroll Reveal Initial States */
+[data-reveal],
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.data-reveal-left {
+    transform: translate3d(-40px, 0, 0);
+  }
+
+  &.data-reveal-right {
+    transform: translate3d(40px, 0, 0);
+  }
+
+  &.data-reveal-scale {
+    transform: scale(0.93) translate3d(0, 20px, 0);
+  }
+
+  /* Triggered Active State */
+  &.revealed {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Stagger Delays for Cards & Grids */
+[data-reveal-delay="100"] { transition-delay: 0.1s; }
+[data-reveal-delay="150"] { transition-delay: 0.15s; }
+[data-reveal-delay="200"] { transition-delay: 0.2s; }
+[data-reveal-delay="250"] { transition-delay: 0.25s; }
+[data-reveal-delay="300"] { transition-delay: 0.3s; }
+[data-reveal-delay="400"] { transition-delay: 0.4s; }
+[data-reveal-delay="500"] { transition-delay: 0.5s; }
+
+html[dir="rtl"], [dir="rtl"] {
+  font-family: 'Cairo', sans-serif !important;
+
+  .icon-arrow, .fa-arrow-right, .fa-chevron-right {
+    transform: scaleX(-1);
+  }
+}
+
+html[dir="ltr"], [dir="ltr"] {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Force Brand Logos & Hero Headlines to maintain strict LTR order (INNOVA GATE) */
+.logo,
+.hero-headline,
+.logo-text,
+.brand-name {
+  direction: ltr !important;
+  flex-direction: row !important;
+  unicode-bidi: isolate !important;
+}
+
+/* Mixed Bidi Tech Terms Support */
+.tech-term, bdi, .en-badge {
+  font-family: 'Outfit', 'Montserrat', sans-serif;
+  direction: ltr;
+  display: inline-block;
+  unicode-bidi: isolate;
+  font-weight: 700;
+}
+
+/* Custom Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080e1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 6px;
+  border: 2px solid #080e1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1769ff;
+}
+
+/* Global Section Background Transparency for Particle Canvas Visibility */
+.hero-section,
+.mission-section,
+.learning-paths-section,
+.mentors-section,
+.company-logos-section,
+.contact-section {
+  background: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Text Gradient Utility */
+.gradient-text-blue {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--deep-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button Base Utilities */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 99px; /* Modern rounded pill buttons */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  text-decoration: none;
+  outline: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--deep-blue) 100%);
+  color: var(--white);
+  box-shadow: 0 10px 25px -5px rgba(23, 105, 255, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-blue-hover) 0%, #09348c 100%);
+  box-shadow: 0 14px 30px -4px rgba(23, 105, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--dark-text);
+  border: 1px solid rgba(95, 102, 115, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  background: var(--light-blue);
+  transform: translateY(-2px);
+}
+
+/* ==================================================
+   LIGHT MODE CUSTOM HARMONIOUS PALETTE
+   ================================================== */
+body.light-mode {
+  background-color: #F4F7FB !important;
+  color: #080E1A !important;
+
+  /* Custom Light Scrollbar */
+  ::-webkit-scrollbar-track {
+    background: #F4F7FB !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #94A3B8 !important;
+    border: 2px solid #F4F7FB !important;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1677FF !important;
+  }
+
+  /* Global Section Text Overrides */
+  .hero-section,
+  .mission-section,
+  .learning-paths-section,
+  .mentors-section,
+  .company-logos-section,
+  .contact-section {
+    color: #080E1A !important;
+  }
+
+  /* Gradient Text in Light Mode */
+  .gradient-text-blue {
+    background: linear-gradient(135deg, #1677FF 0%, #0756D9 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  /* Hero Video Overlay & Background Layer in Light Mode (Pure Light/White) */
+  .hero-section, .hero-wrapper {
+    background: #F4F7FB !important;
+
+    .video-overlay, .hero-dark-overlay {
+      background: radial-gradient(
+        circle at center,
+        rgba(244, 247, 251, 0.78) 0%,
+        rgba(244, 247, 251, 0.88) 60%,
+        rgba(244, 247, 251, 0.96) 100%
+      ) !important;
+    }
+
+    .hero-blue-glow {
+      background: radial-gradient(
+        circle at 50% 45%, 
+        rgba(22, 119, 255, 0.15) 0%, 
+        transparent 65%
+      ) !important;
+    }
+
+    .hero-bottom-gradient-fade {
+      background: linear-gradient(
+        to bottom,
+        rgba(244, 247, 251, 0) 0%,
+        rgba(244, 247, 251, 0.5) 35%,
+        rgba(244, 247, 251, 0.9) 75%,
+        #F4F7FB 100%
+      ) !important;
+    }
+
+    .hero-headline {
+      color: #080E1A !important;
+
+      .word-innova {
+        color: #080E1A !important;
+        text-shadow: none !important;
+      }
+
+      .word-gate {
+        background: linear-gradient(135deg, #1677FF 0%, #0756D9 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+      }
+    }
+
+    .hero-paragraph {
+      color: #080E1A !important;
+      font-weight: 600 !important;
+      text-shadow: none !important;
+    }
+
+    .btn-cta-primary {
+      background: linear-gradient(135deg, #1677FF 0%, #0756D9 100%) !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 10px 25px -5px rgba(22, 119, 255, 0.35) !important;
+    }
+
+    .btn-cta-secondary {
+      background: rgba(22, 119, 255, 0.1) !important;
+      color: #1677FF !important;
+      border: 1px solid #D8E2F0 !important;
+
+      &:hover {
+        background: #1677FF !important;
+        color: #FFFFFF !important;
+      }
+    }
+  }
+
+  /* Section Top Blends */
+  .section-top-blend {
+    background: linear-gradient(180deg, #F4F7FB 0%, rgba(244, 247, 251, 0.5) 60%, transparent 100%) !important;
+  }
+
+  /* Offer Carousel Banner & High-Contrast Navigation Dots in Light Mode */
+  .hero-offer-banner, .announcement-banner-capsule {
+    background: rgba(235, 242, 250, 0.95) !important;
+    border: 1px solid rgba(22, 119, 255, 0.25) !important;
+    box-shadow: 0 15px 35px rgba(22, 119, 255, 0.1) !important;
+
+    .offer-badge, .offer-tag-label {
+      color: #0756D9 !important;
+    }
+
+    .offer-title, .offer-main-text {
+      color: #080E1A !important;
+    }
+
+    .offer-subtext, .offer-sub-text {
+      color: #080E1A !important;
+      font-weight: 600 !important;
+    }
+
+    .timer-block, .countdown-block {
+      .timer-label, .label-timer {
+        color: #0756D9 !important;
+        font-weight: 800 !important;
+      }
+
+      .unit-box {
+        background: rgba(22, 119, 255, 0.08) !important;
+        border: 1px solid rgba(22, 119, 255, 0.2) !important;
+
+        .unit-num, .num-val {
+          color: #080E1A !important;
+          font-weight: 900 !important;
+          text-shadow: none !important;
+        }
+
+        .unit-text, .lbl-unit {
+          color: #080E1A !important;
+          font-weight: 800 !important;
+        }
+      }
+    }
+
+    /* Carousel Indicator Dots in Light Mode */
+    .offer-indicators {
+      .indicator-dot {
+        background: #94A3B8 !important; /* Visible Slate Gray for Inactive Dots */
+        opacity: 0.8 !important;
+
+        &.active {
+          background: #1677FF !important; /* Electric Blue for Active Dot */
+          opacity: 1 !important;
+          box-shadow: 0 0 10px rgba(22, 119, 255, 0.6) !important;
+        }
+      }
+    }
+  }
+
+  /* News Ticker Marquee Bar in Light Mode */
+  .ticker-floating-bar, .tv-news-marquee-bar {
+    background: rgba(235, 242, 250, 0.95) !important;
+    border: 1px solid rgba(22, 119, 255, 0.25) !important;
+    box-shadow: 0 10px 30px rgba(22, 119, 255, 0.1) !important;
+
+    .ticker-chip, .ticker-track-item {
+      background: rgba(255, 255, 255, 0.7) !important;
+      border: 1px solid #D8E2F0 !important;
+      color: #080E1A !important;
+
+      i, .icon-category {
+        color: #1677FF !important;
+      }
+
+      .chip-title, .ticker-title {
+        color: #080E1A !important;
+        font-weight: 800 !important;
+      }
+
+      .chip-sub, .ticker-sub {
+        color: #080E1A !important;
+        background: rgba(22, 119, 255, 0.1) !important;
+        font-weight: 700 !important;
+      }
+    }
+  }
+
+  /* Mission Section Text Overrides (Solid Black #080E1A) */
+  .mission-section {
+    .lead-copy {
+      color: #080E1A !important;
+      font-weight: 800 !important;
+    }
+
+    .body-copy {
+      color: #080E1A !important;
+      font-weight: 600 !important;
+    }
+
+    .metric-title {
+      color: #080E1A !important;
+      font-weight: 800 !important;
+    }
+
+    .metric-desc {
+      color: #080E1A !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  /* Headlines & Titles */
+  h1, h2, h3, h4, 
+  .section-headline, 
+  .hero-headline, 
+  .section-title,
+  .path-title, 
+  .mentor-name,
+  .metric-number,
+  .company-name,
+  .info-city,
+  .serve-card-title,
+  .step-title,
+  .stat-label {
+    color: #081B33 !important;
+  }
+
+  /* Subtitles & Descriptions */
+  .section-subheadline, 
+  .hero-description, 
+  .section-subtitle,
+  .path-subtitle, 
+  .path-description, 
+  .mentor-bio, 
+  .mentor-company,
+  .section-supporting-copy,
+  .info-address,
+  .serve-card-desc,
+  .step-desc,
+  .stat-desc,
+  .bio-paragraph {
+    color: #000000 !important;
+    font-weight: 600 !important;
+  }
+
+  /* Founder Section in Light Mode */
+  .founder-section {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+
+    .founder-name {
+      background: linear-gradient(135deg, #000000 0%, #1677FF 55%, #081B33 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+
+    .founder-role {
+      color: #1677FF !important;
+      font-weight: 800 !important;
+    }
+
+    .founder-divider {
+      background: linear-gradient(90deg, #1677FF 0%, #081B33 60%, transparent 100%) !important;
+    }
+
+    .founder-cta-btn {
+      background: linear-gradient(135deg, #081B33 0%, #1677FF 100%) !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 10px 25px -5px rgba(8, 27, 51, 0.3) !important;
+    }
+
+    .founder-badge {
+      background: rgba(8, 27, 51, 0.08) !important;
+      border-color: rgba(8, 27, 51, 0.18) !important;
+      color: #000000 !important;
+      font-weight: 800 !important;
+    }
+
+    .bio-paragraph {
+      color: #000000 !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  /* Final CTA Card in Light Mode */
+  .final-cta-card {
+    .cta-title {
+      color: #FFFFFF !important;
+    }
+    .cta-sub {
+      color: #E2E8F0 !important;
+    }
+  }
+
+  /* Contact Page Light Mode Overrides */
+  .contact-page-wrapper {
+    .hero-title {
+      color: #081B33 !important;
+    }
+    .hero-subtitle {
+      color: #334155 !important;
+      font-weight: 500 !important;
+    }
+    .contact-final-cta-section {
+      .cta-heading {
+        color: #FFFFFF !important;
+      }
+      .cta-subheading {
+        color: #E2E8F0 !important;
+      }
+    }
+  }
+
+  /* Diplomas Page Light Mode Overrides */
+  .diplomas-page-wrapper {
+    .hero-title {
+      color: #081B33 !important;
+    }
+    .hero-subtitle {
+      color: #334155 !important;
+      font-weight: 500 !important;
+    }
+    .final-cta-section {
+      .cta-title {
+        color: #FFFFFF !important;
+      }
+      .cta-subtitle {
+        color: #E2E8F0 !important;
+      }
+    }
+  }
+
+  /* Eyebrow Labels */
+  .section-eyebrow span, .career-badge span, .mentor-meta-badge span {
+    color: #1677FF !important;
+  }
+
+  /* Navbar in Light Mode (#EBF2FA Frosted Glass) */
+  .navbar {
+    .glass-nav-bar {
+      background: rgba(235, 242, 250, 0.92) !important;
+      border: 1px solid #D8E2F0 !important;
+      box-shadow: 0 10px 30px rgba(11, 18, 32, 0.08) !important;
+    }
+
+    .logo-text {
+      color: #080E1A !important;
+      .logo-accent {
+        color: #27B8F2 !important;
+      }
+    }
+
+    .nav-links .nav-item, .login-link {
+      color: #080E1A !important;
+      font-weight: 700 !important;
+
+      &:hover, &.active {
+        color: #1677FF !important;
+      }
+    }
+
+    .theme-toggle-btn {
+      background: #EAF0F8 !important;
+      border: 1px solid #D8E2F0 !important;
+      color: #080E1A !important;
+    }
+  }
+
+  /* Cards (#EBF2FA Glass Cards with #D8E2F0 borders) */
+  .glass-card,
+  .path-row-item.active,
+  .visual-wrapper,
+  .video-atmosphere-card,
+  .media-frame-card,
+  .map-stage-card,
+  .company-pill-card,
+  .location-under-form-box,
+  .nav-item-row.active,
+  .metrics-card,
+  .form-success-card {
+    background: rgba(235, 242, 250, 0.95) !important;
+    border: 1px solid #D8E2F0 !important;
+    box-shadow: 0 12px 35px rgba(11, 18, 32, 0.06) !important;
+    color: #080E1A !important;
+  }
+
+  /* Mission Section Silhouette Map */
+  .beheira-svg-path {
+    fill: rgba(22, 119, 255, 0.06) !important;
+    stroke: #1677FF !important;
+  }
+
+  .beheira-map-title-wrapper {
+    background: rgba(235, 242, 250, 0.92) !important;
+    border: 1px solid #D8E2F0 !important;
+    .map-title { color: #080E1A !important; }
+  }
+
+  /* Accordion Rows */
+  .path-row-item {
+    border-bottom-color: #D8E2F0 !important;
+
+    &:first-child {
+      border-top-color: #D8E2F0 !important;
+    }
+
+    .path-number-box .path-number {
+      color: #536174 !important;
+    }
+
+    &.dimmed {
+      opacity: 0.65;
+    }
+  }
+
+  .tag-chip, .chip-item {
+    background: #EAF0F8 !important;
+    border: 1px solid #D8E2F0 !important;
+    color: #080E1A !important;
+    font-weight: 700 !important;
+  }
+
+  /* Mentors Selector Items */
+  .nav-item-row {
+    background: #EAF0F8 !important;
+    border: 1px solid #D8E2F0 !important;
+
+    .item-name { color: #080E1A !important; }
+    .item-num { color: #536174 !important; }
+
+    &.active {
+      background: #EBF2FA !important;
+      border-color: #1677FF !important;
+    }
+  }
+
+  /* Inputs & Selectors */
+  .editorial-input, .custom-select-trigger {
+    border-bottom-color: #D8E2F0 !important;
+    color: #080E1A !important;
+    font-weight: 700 !important;
+
+    &::placeholder {
+      color: #536174 !important;
+    }
+  }
+
+  .custom-dropdown-menu {
+    background: #EBF2FA !important;
+    border: 1px solid #D8E2F0 !important;
+    box-shadow: 0 20px 40px rgba(11, 18, 32, 0.12) !important;
+
+    .dropdown-option {
+      color: #080E1A !important;
+      font-weight: 700 !important;
+      &:hover, &.selected {
+        background: #EAF0F8 !important;
+      }
+    }
+  }
+
+  /* Quick Contact Links */
+  .quick-link-item {
+    color: #080E1A !important;
+    font-weight: 700 !important;
+    &:hover { color: #1677FF !important; }
+  }
+
+  /* Main Footer in Light Mode */
+  .innovagate-main-footer {
+    background: #EAF0F8 !important;
+    border-top: 1px solid #D8E2F0 !important;
+
+    .footer-col {
+      .logo-white { color: #080E1A !important; }
+      .brand-desc, .contact-spec-item, .footer-nav-list li a { color: #080E1A !important; font-weight: 600 !important; }
+      .col-title { color: #080E1A !important; }
+    }
+
+    .social-btn {
+      background: #EBF2FA !important;
+      border: 1px solid #D8E2F0 !important;
+      color: #080E1A !important;
+
+      &:hover {
+        background: #1677FF !important;
+        color: #FFFFFF !important;
+      }
+    }
+
+    .footer-bottom-bar {
+      border-top-color: #D8E2F0 !important;
+      .copyright-text, .legal-links a { color: #080E1A !important; font-weight: 600 !important; }
+    }
+  }
+}

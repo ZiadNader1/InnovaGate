@@ -1,0 +1,374 @@
+.mission-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem 0;
+  margin-top: -80px;
+  background: linear-gradient(180deg, #080e1a 0%, #0b1222 50%, #080e1a 100%);
+  color: var(--white);
+  overflow: hidden;
+  z-index: 5;
+
+  /* Upward Bleeding Gradient Mask into Hero */
+  .section-top-blend {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(180deg, rgba(8, 14, 26, 0.95) 0%, rgba(8, 14, 26, 0.5) 60%, rgba(8, 14, 26, 0) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Interactive Particle Canvas Overlay Layer */
+  .interactive-particle-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Background Ambient Radial Glow */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 25%;
+    right: 5%;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(23, 105, 255, 0.16) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .mission-container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Left Side Editorial Content */
+  .mission-left {
+    .editorial-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      margin-bottom: 1.75rem;
+
+      .tag-line {
+        width: 32px;
+        height: 2px;
+        background: linear-gradient(90deg, #38bdf8, var(--primary-blue));
+        border-radius: 2px;
+      }
+    }
+
+    .editorial-headline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.6rem;
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -1px;
+      color: var(--white);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+
+      .gradient-text-blue {
+        background: linear-gradient(135deg, #38bdf8 0%, var(--primary-blue) 60%, var(--deep-blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .editorial-body {
+      margin-bottom: 2.75rem;
+
+      .paragraph-lead {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        line-height: 1.65;
+        margin-bottom: 1rem;
+      }
+
+      .paragraph-sub {
+        font-size: 1.05rem;
+        color: #9ca3af;
+        line-height: 1.6;
+      }
+    }
+
+    /* Small Brand Metrics */
+    .editorial-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+      .metric-item {
+        display: flex;
+        flex-direction: column;
+
+        .metric-num {
+          font-family: 'Montserrat', sans-serif;
+          font-size: 0.775rem;
+          font-weight: 800;
+          letter-spacing: 1px;
+          color: #38bdf8;
+          margin-bottom: 0.4rem;
+        }
+
+        .metric-desc {
+          font-size: 0.875rem;
+          color: #cbd5e1;
+          line-height: 1.45;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  /* Right Side Floating Real Beheira Map Silhouette */
+  .mission-right {
+    display: flex;
+    justify-content: center;
+
+    .floating-beheira-map {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      /* SVG Canvas Wrapper */
+      .svg-canvas-wrapper {
+        position: relative;
+        width: 100%;
+        height: 520px;
+
+        .beheira-exact-svg {
+          width: 100%;
+          height: 100%;
+          filter: drop-shadow(0 20px 40px rgba(23, 105, 255, 0.25));
+
+          /* Ray Lines Animation */
+          .animated-ray {
+            animation: dashRay 3s linear infinite;
+          }
+
+          /* City Nodes Hover Effects */
+          .city-node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            circle {
+              transition: transform 0.3s ease, fill 0.3s ease;
+            }
+
+            text {
+              fill: #cbd5e1;
+            }
+
+            &:hover {
+              circle {
+                transform: scale(1.5);
+                fill: #ffffff;
+              }
+              text {
+                fill: #38bdf8;
+                font-weight: 900;
+              }
+            }
+          }
+
+          /* Damanhour Glowing Beacon Pulsing Animations */
+          .pulse-ring-outer {
+            animation: beaconPulse 2.2s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform-origin: 290px 220px;
+          }
+
+          .pulse-ring-inner {
+            animation: beaconPulse 1.6s infinite cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s;
+            transform-origin: 290px 220px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Light Mode Overrides for Mission Section */
+:host-context(body.light-mode) {
+  .mission-section {
+    background: transparent !important;
+
+    .mission-left {
+      .editorial-tag {
+        color: #0756D9 !important;
+        .tag-line { background: linear-gradient(90deg, #1677FF, #0756D9) !important; }
+      }
+
+      .editorial-headline {
+        color: #080E1A !important;
+        .gradient-text-blue {
+          background: linear-gradient(135deg, #1677FF 0%, #0756D9 100%) !important;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+        }
+      }
+
+      .editorial-body {
+        .paragraph-lead {
+          color: #080E1A !important;
+          font-weight: 800 !important;
+        }
+
+        .paragraph-sub {
+          color: #080E1A !important;
+          font-weight: 700 !important;
+        }
+      }
+
+      .editorial-metrics {
+        border-top-color: #D8E2F0 !important;
+
+        .metric-item {
+          .metric-num { color: #0756D9 !important; font-weight: 800 !important; }
+          .metric-desc { color: #080E1A !important; font-weight: 700 !important; }
+        }
+      }
+    }
+
+    .mission-right .floating-beheira-map .svg-canvas-wrapper .beheira-exact-svg {
+      .city-node text {
+        fill: #080E1A !important;
+        font-weight: 800 !important;
+      }
+    }
+  }
+}
+
+/* Animations */
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes dashRay {
+  0% {
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Responsive Rules */
+.mission-left {
+  order: 1;
+}
+
+.mission-right {
+  order: 2;
+}
+
+@media (max-width: 1100px) {
+  .mission-section {
+    padding: 5rem 0;
+    margin-top: 0;
+  }
+
+  .mission-container {
+    grid-template-columns: 1fr !important;
+    gap: 3.5rem;
+  }
+
+  .mission-left {
+    order: 1 !important;
+    width: 100%;
+
+    .editorial-headline {
+      font-size: 2.8rem;
+    }
+
+    .editorial-metrics {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  .mission-right {
+    order: 2 !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .floating-beheira-map {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+
+      .svg-canvas-wrapper {
+        height: 440px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .mission-left {
+    .editorial-headline {
+      font-size: 2.3rem;
+    }
+
+    .editorial-metrics {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  .mission-right {
+    .floating-beheira-map {
+      max-width: 400px;
+
+      .svg-canvas-wrapper {
+        height: 370px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-left {
+    .editorial-headline {
+      font-size: 1.9rem;
+    }
+  }
+
+  .mission-right {
+    .floating-beheira-map {
+      max-width: 320px;
+
+      .svg-canvas-wrapper {
+        height: 310px;
+      }
+    }
+  }
+}

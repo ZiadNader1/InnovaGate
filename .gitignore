@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Production & Dev Environment Secrets
+.env
+server/.env
+.env.local
+.env.production
+
+# Build Outputs
+dist/
+**/dist/
+.angular/
+**/angular/
+
+# IDE & OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log

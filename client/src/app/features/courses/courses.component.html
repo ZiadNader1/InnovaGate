@@ -1,0 +1,426 @@
+<app-particle-bg></app-particle-bg>
+<div class="courses-page-wrapper">
+  <!-- 1. PAGE HEADER SECTION -->
+  <section class="courses-header-section">
+    <div class="container">
+      <div class="header-content-box">
+        <span class="section-eyebrow">{{ langService.t().coursesPage.eyebrow }}</span>
+        <h1 class="main-page-title">{{ langService.t().coursesPage.title }}</h1>
+        <p class="main-page-subtitle">{{ langService.t().coursesPage.subtitle }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LEARNING PATH CARDS SECTION -->
+  <section class="learning-paths-grid-section">
+    <div class="container">
+      <div class="paths-two-column-grid">
+        
+        <!-- CARD 01: KIDS & TEENS -->
+        <article 
+          class="learning-path-card card-kids" 
+          [class.active-card]="activeTrack === 'kids'"
+          (click)="selectTrack('kids')"
+        >
+          <div class="card-image-wrapper">
+            <img 
+              src="assets/images/kids_teens_courses.jpg" 
+              alt="Kids & Teens Coding Academy at Innova Gate" 
+              class="card-image"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="card-body">
+            <h2 class="card-title">{{ langService.t().coursesPage.kidsCard.title }}</h2>
+            <p class="card-description">{{ langService.t().coursesPage.kidsCard.desc }}</p>
+
+            <div class="focus-areas-container">
+              <span class="focus-title">{{ langService.t().coursesPage.kidsCard.focusTitle }}</span>
+              <ul class="focus-list">
+                <li *ngFor="let item of langService.t().coursesPage.kidsCard.focusAreas">
+                  <span class="check-icon"><i class="fa-solid fa-check"></i></span>
+                  <span class="focus-text" bdi>{{ item }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card-action-footer">
+              <button 
+                type="button"
+                class="path-cta-btn btn-kids-cta" 
+                (click)="selectTrack('kids', $event)"
+              >
+                <span>{{ langService.t().coursesPage.kidsCard.cta }}</span>
+                <i class="fa-solid fa-arrow-right icon-arrow"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 02: UNIVERSITY STUDENTS & GRADUATES -->
+        <article 
+          class="learning-path-card card-pro" 
+          [class.active-card]="activeTrack === 'pro'"
+          (click)="selectTrack('pro')"
+        >
+          <div class="card-image-wrapper">
+            <img 
+              src="assets/images/pro_courses.jpg" 
+              alt="University Students and Graduates Professional Software Engineering Track at Innova Gate" 
+              class="card-image"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="card-body">
+            <h2 class="card-title">{{ langService.t().coursesPage.proCard.title }}</h2>
+            <p class="card-description">{{ langService.t().coursesPage.proCard.desc }}</p>
+
+            <div class="focus-areas-container">
+              <span class="focus-title">{{ langService.t().coursesPage.proCard.focusTitle }}</span>
+              <ul class="focus-list">
+                <li *ngFor="let item of langService.t().coursesPage.proCard.focusAreas">
+                  <span class="check-icon"><i class="fa-solid fa-check"></i></span>
+                  <span class="focus-text" bdi>{{ item }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card-action-footer">
+              <button 
+                type="button"
+                class="path-cta-btn btn-pro-cta" 
+                (click)="selectTrack('pro', $event)"
+              >
+                <span>{{ langService.t().coursesPage.proCard.cta }}</span>
+                <i class="fa-solid fa-arrow-right icon-arrow"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. COURSE CATALOG PREVIEW SECTION -->
+  <section class="course-catalog-section" id="course-catalog" *ngIf="activeTrack !== null">
+    <div class="container">
+      
+      <!-- Catalog Section Header -->
+      <div class="catalog-header">
+        <span class="catalog-eyebrow">{{ langService.currentLang() === 'ar' ? 'المناهج المتاحة' : 'CURRICULUM CATALOG' }}</span>
+        <h2 class="catalog-heading">{{ langService.t().coursesPage.catalog.heading }}</h2>
+        <p class="catalog-subheading">{{ langService.t().coursesPage.catalog.subheading }}</p>
+      </div>
+
+      <!-- Segmented Navigation Bar -->
+      <div class="segmented-nav-wrapper">
+        <div class="segmented-nav-pill">
+          <button 
+            type="button"
+            class="segment-btn" 
+            [class.active]="activeTrack === 'kids'" 
+            (click)="selectTrack('kids')"
+          >
+            <i class="fa-solid fa-shapes"></i>
+            <span>{{ langService.t().coursesPage.catalog.tabKids }}</span>
+          </button>
+          <button 
+            type="button"
+            class="segment-btn" 
+            [class.active]="activeTrack === 'pro'" 
+            (click)="selectTrack('pro')"
+          >
+            <i class="fa-solid fa-laptop-code"></i>
+            <span>{{ langService.t().coursesPage.catalog.tabPro }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sub-Category Age Group Filters Bar for Kids & Teens -->
+      <div class="sub-filter-wrapper" *ngIf="activeTrack === 'kids'">
+        <div class="sub-filter-chips-container">
+          <button 
+            type="button"
+            *ngFor="let tab of kidsAgeFilterTabs" 
+            class="sub-filter-btn btn-kids-age" 
+            [class.active]="selectedKidsAgeFilter === tab.id"
+            (click)="setKidsAgeFilter(tab.id)"
+          >
+            <i [class]="tab.icon"></i>
+            <span>{{ langService.currentLang() === 'ar' ? tab.labelAr : tab.labelEn }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sub-Category Specialization Filters Bar for University & Graduates -->
+      <div class="sub-filter-wrapper" *ngIf="activeTrack === 'pro'">
+        <div class="sub-filter-chips-container">
+          <button 
+            type="button"
+            *ngFor="let tab of proFilterTabs" 
+            class="sub-filter-btn" 
+            [class.active]="selectedProFilter === tab.id"
+            (click)="setProFilter(tab.id)"
+          >
+            <i [class]="tab.icon"></i>
+            <span>{{ langService.currentLang() === 'ar' ? tab.labelAr : tab.labelEn }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Course Cards Grid -->
+      <div class="courses-catalog-grid">
+        <div 
+          class="course-item-card" 
+          *ngFor="let course of filteredCourses; trackBy: trackByCourseId"
+        >
+          <!-- Header Meta -->
+          <div class="course-item-header">
+            <div class="badges-left-group">
+              <span class="course-code-pill" *ngIf="course.code">{{ course.code }}</span>
+              <span class="course-badge" [class.badge-kids-tag]="course.category === 'kids'" [class.badge-pro-tag]="course.category === 'pro'">
+                {{ langService.currentLang() === 'ar' ? course.ageBadgeAr : course.ageBadgeEn }}
+              </span>
+            </div>
+            <span class="course-level-tag">
+              <i class="fa-solid fa-layer-group"></i>
+              {{ langService.currentLang() === 'ar' ? course.levelAr : course.levelEn }}
+            </span>
+          </div>
+
+          <!-- Title & Description -->
+          <h3 
+            class="course-item-title clickable-title"
+            (click)="openCourseModal(course, $event)"
+            [title]="langService.currentLang() === 'ar' ? 'انقر لرؤية تفاصيل المنهج كاملة' : 'Click to view full syllabus'"
+          >
+            {{ langService.currentLang() === 'ar' ? course.titleAr : course.titleEn }}
+          </h3>
+          
+          <p class="course-item-desc">
+            {{ langService.currentLang() === 'ar' ? course.descAr : course.descEn }}
+          </p>
+
+          <!-- Pro Course Specs Bar (Price & Hours & Sessions) -->
+          <div class="pro-specs-bar" *ngIf="course.priceEgp">
+            <div class="spec-pill duration-spec">
+              <i class="fa-regular fa-clock"></i>
+              <span>{{ langService.currentLang() === 'ar' ? course.durationAr : course.durationEn }}</span>
+            </div>
+            <div class="spec-pill price-spec">
+              <i class="fa-solid fa-tag"></i>
+              <span>{{ course.priceEgp | number }} EGP</span>
+            </div>
+          </div>
+
+          <!-- Prerequisite Bar -->
+          <div class="prerequisite-box" *ngIf="course.prerequisiteEn">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span><strong>{{ langService.currentLang() === 'ar' ? 'المتطلب السابق:' : 'Prerequisite:' }}</strong> {{ langService.currentLang() === 'ar' ? course.prerequisiteAr : course.prerequisiteEn }}</span>
+          </div>
+
+          <!-- Topics Pill List -->
+          <div class="course-topics-list">
+            <span class="topic-chip" *ngFor="let topic of course.topics" bdi>
+              {{ topic }}
+            </span>
+          </div>
+
+          <!-- Projects Preview List (if available) -->
+          <div class="projects-preview-container" *ngIf="course.projectsEn && course.projectsEn.length > 0">
+            <span class="projects-title">
+              <i class="fa-solid fa-diagram-project"></i>
+              {{ langService.currentLang() === 'ar' ? 'المشاريع والمخرجات العملية:' : 'Practical Projects & Outputs:' }}
+            </span>
+            <div class="project-chips-wrapper">
+              <span class="project-chip" *ngFor="let proj of (langService.currentLang() === 'ar' ? course.projectsAr : course.projectsEn)" bdi>
+                <i class="fa-solid fa-circle-check"></i>
+                {{ proj }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Detailed Syllabus & Completion Standard (ALWAYS VISIBLE DIRECTLY IN CARD) -->
+          <div class="accordion-details-body always-visible-syllabus" *ngIf="course.category === 'pro' || course.detailedContentEn">
+            
+            <!-- Structured Modules Syllabus Breakdown (If available) -->
+            <div class="modules-syllabus-wrapper" *ngIf="course.syllabusModulesEn && course.syllabusModulesEn.length > 0">
+              <h4 class="syllabus-heading">
+                <i class="fa-solid fa-layer-group"></i>
+                {{ langService.currentLang() === 'ar' ? 'محتوى المنهج والجلسات (Syllabus Modules):' : 'Structured Modules & Sessions Plan:' }}
+              </h4>
+              
+              <div class="module-card-item" *ngFor="let mod of course.syllabusModulesEn">
+                <div class="module-header">
+                  <span class="module-title">{{ langService.currentLang() === 'ar' ? mod.moduleTitleAr : mod.moduleTitleEn }}</span>
+                  <span class="module-sessions-badge">{{ langService.currentLang() === 'ar' ? mod.sessionsRangeAr : mod.sessionsRangeEn }}</span>
+                </div>
+                <ul class="module-topics-list">
+                  <li *ngFor="let topic of (langService.currentLang() === 'ar' ? mod.topicsAr : mod.topicsEn)">
+                    <i class="fa-solid fa-circle-check bullet-icon"></i>
+                    <span>{{ topic }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Fallback Simple Syllabus List (If syllabusModulesEn not defined) -->
+            <div class="syllabus-block" *ngIf="(!course.syllabusModulesEn || course.syllabusModulesEn.length === 0) && course.detailedContentEn">
+              <h4 class="syllabus-heading">
+                <i class="fa-solid fa-list-check"></i>
+                {{ langService.currentLang() === 'ar' ? 'المحتوى التفصيلي للمنهج:' : 'Detailed Syllabus Topics:' }}
+              </h4>
+              <ul class="syllabus-list">
+                <li *ngFor="let item of (langService.currentLang() === 'ar' ? course.detailedContentAr : course.detailedContentEn)">
+                  <i class="fa-solid fa-angle-right bullet-icon"></i>
+                  <span>{{ item }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Completion Standard -->
+            <div class="standard-block" *ngIf="course.completionStandardEn">
+              <h4 class="standard-heading">
+                <i class="fa-solid fa-award"></i>
+                {{ langService.currentLang() === 'ar' ? 'معيار إتمام الكورس:' : 'Course Completion Standard:' }}
+              </h4>
+              <p class="standard-text">{{ langService.currentLang() === 'ar' ? course.completionStandardAr : course.completionStandardEn }}</p>
+            </div>
+          </div>
+
+          <!-- Card Footer Action Buttons -->
+          <div class="course-item-footer">
+            <div class="footer-btn-group">
+              <button 
+                type="button"
+                class="btn-toggle-syllabus btn-open-modal-full" 
+                (click)="openCourseModal(course, $event)"
+              >
+                <i class="fa-solid fa-expand"></i>
+                <span>{{ langService.currentLang() === 'ar' ? 'عرض في نافذة مكبرة' : 'Open Full Popup' }}</span>
+              </button>
+            </div>
+
+            <div class="course-cta-box">
+              <a routerLink="/contact" class="btn-enroll">
+                <span>{{ langService.t().coursesPage.catalog.enrollNow }}</span>
+                <i class="fa-solid fa-chevron-right icon-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- 4. COURSE SYLLABUS MODAL OVERLAY (ROOT LEVEL OUTSIDE WRAPPER) -->
+<div class="course-modal-backdrop" *ngIf="selectedModalCourse" (click)="closeCourseModal($event)">
+  <div class="course-modal-card" (click)="$event.stopPropagation()">
+    <button type="button" class="modal-close-btn" (click)="closeCourseModal($event)">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="modal-header">
+      <div class="modal-badge-row">
+        <span class="modal-code-pill" *ngIf="selectedModalCourse.code">{{ selectedModalCourse.code }}</span>
+        <span class="modal-tag">{{ langService.currentLang() === 'ar' ? selectedModalCourse.ageBadgeAr : selectedModalCourse.ageBadgeEn }}</span>
+        <span class="modal-level">{{ langService.currentLang() === 'ar' ? selectedModalCourse.levelAr : selectedModalCourse.levelEn }}</span>
+      </div>
+      <h2 class="modal-title">{{ langService.currentLang() === 'ar' ? selectedModalCourse.titleAr : selectedModalCourse.titleEn }}</h2>
+      <p class="modal-desc">{{ langService.currentLang() === 'ar' ? selectedModalCourse.descAr : selectedModalCourse.descEn }}</p>
+    </div>
+
+    <div class="modal-body-content">
+      <!-- Specs bar -->
+      <div class="modal-specs-bar" *ngIf="selectedModalCourse.priceEgp">
+        <div class="m-spec">
+          <i class="fa-regular fa-clock"></i>
+          <span>{{ langService.currentLang() === 'ar' ? selectedModalCourse.durationAr : selectedModalCourse.durationEn }}</span>
+        </div>
+        <div class="m-spec price">
+          <i class="fa-solid fa-tag"></i>
+          <span>{{ selectedModalCourse.priceEgp | number }} EGP</span>
+        </div>
+      </div>
+
+      <!-- Prerequisite -->
+      <div class="modal-prereq-box" *ngIf="selectedModalCourse.prerequisiteEn">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span><strong>{{ langService.currentLang() === 'ar' ? 'المتطلب السابق:' : 'Prerequisite:' }}</strong> {{ langService.currentLang() === 'ar' ? selectedModalCourse.prerequisiteAr : selectedModalCourse.prerequisiteEn }}</span>
+      </div>
+
+      <!-- Structured Modules Syllabus Breakdown (If available) -->
+      <div class="modal-section-block" *ngIf="selectedModalCourse.syllabusModulesEn && selectedModalCourse.syllabusModulesEn.length > 0">
+        <h3 class="m-block-title">
+          <i class="fa-solid fa-layer-group"></i>
+          {{ langService.currentLang() === 'ar' ? 'الخطة التفصيلية للوحدات والجلسات (Syllabus Modules):' : 'Structured Modules & Sessions Plan:' }}
+        </h3>
+        
+        <div class="m-module-card-item" *ngFor="let mod of selectedModalCourse.syllabusModulesEn">
+          <div class="m-module-header">
+            <span class="m-module-title">{{ langService.currentLang() === 'ar' ? mod.moduleTitleAr : mod.moduleTitleEn }}</span>
+            <span class="m-module-sessions-badge">{{ langService.currentLang() === 'ar' ? mod.sessionsRangeAr : mod.sessionsRangeEn }}</span>
+          </div>
+          <ul class="m-module-topics-list">
+            <li *ngFor="let topic of (langService.currentLang() === 'ar' ? mod.topicsAr : mod.topicsEn)">
+              <i class="fa-solid fa-circle-check bullet-icon"></i>
+              <span>{{ topic }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Fallback Detailed Syllabus List (If syllabusModulesEn not defined) -->
+      <div class="modal-section-block" *ngIf="(!selectedModalCourse.syllabusModulesEn || selectedModalCourse.syllabusModulesEn.length === 0) && selectedModalCourse.detailedContentEn">
+        <h3 class="m-block-title">
+          <i class="fa-solid fa-list-check"></i>
+          {{ langService.currentLang() === 'ar' ? 'المحتوى التفصيلي للمنهج:' : 'Detailed Syllabus Topics:' }}
+        </h3>
+        <ul class="m-syllabus-list">
+          <li *ngFor="let bullet of (langService.currentLang() === 'ar' ? selectedModalCourse.detailedContentAr : selectedModalCourse.detailedContentEn)">
+            <i class="fa-solid fa-circle-check bullet-icon"></i>
+            <span>{{ bullet }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Practical Outputs / Projects -->
+      <div class="modal-section-block" *ngIf="selectedModalCourse.projectsEn && selectedModalCourse.projectsEn.length > 0">
+        <h3 class="m-block-title">
+          <i class="fa-solid fa-diagram-project"></i>
+          {{ langService.currentLang() === 'ar' ? 'المشاريع والمخرجات العملية:' : 'Practical Projects & Outputs:' }}
+        </h3>
+        <div class="m-projects-grid">
+          <div class="m-project-card" *ngFor="let proj of (langService.currentLang() === 'ar' ? selectedModalCourse.projectsAr : selectedModalCourse.projectsEn)">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span>{{ proj }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Completion Standard -->
+      <div class="modal-section-block standard-block" *ngIf="selectedModalCourse.completionStandardEn">
+        <h3 class="m-block-title">
+          <i class="fa-solid fa-award"></i>
+          {{ langService.currentLang() === 'ar' ? 'معيار إتمام الكورس:' : 'Course Completion Standard:' }}
+        </h3>
+        <p class="m-standard-text">{{ langService.currentLang() === 'ar' ? selectedModalCourse.completionStandardAr : selectedModalCourse.completionStandardEn }}</p>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-close" (click)="closeCourseModal($event)">
+        {{ langService.currentLang() === 'ar' ? 'إغلاق' : 'Close' }}
+      </button>
+      <a routerLink="/contact" class="btn-modal-enroll" (click)="closeCourseModal($event)">
+        <span>{{ langService.t().coursesPage.catalog.enrollNow }}</span>
+        <i class="fa-solid fa-arrow-right icon-arrow"></i>
+      </a>
+    </div>
+  </div>
+</div>

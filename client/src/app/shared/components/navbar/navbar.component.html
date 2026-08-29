@@ -1,0 +1,76 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="container navbar-container">
+    <div class="glass-nav-bar">
+      <!-- Brand Logo -->
+      <a routerLink="/" class="logo logo-brand-link" dir="ltr" (click)="closeMobileMenu()">
+        <img src="assets/images/e29dde23-566d-4a40-a3b2-03e6c0e91e84.png" alt="Innova Gate Academy" class="navbar-logo-img" />
+      </a>
+
+      <!-- Mobile Backdrop Blur Overlay -->
+      <div class="mobile-drawer-backdrop" *ngIf="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+
+      <!-- Nav Links Drawer -->
+      <div class="nav-links" [class.open]="isMobileMenuOpen">
+        <!-- Close button inside mobile menu drawer -->
+        <div class="drawer-header-mobile">
+          <a routerLink="/" class="logo logo-brand-link" dir="ltr" (click)="closeMobileMenu()">
+            <img src="assets/images/e29dde23-566d-4a40-a3b2-03e6c0e91e84.png" alt="Innova Gate Academy" class="navbar-logo-img" />
+          </a>
+          <button class="drawer-close-btn" (click)="closeMobileMenu()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item" (click)="closeMobileMenu()">{{ langService.t().navbar.home }}</a>
+        <a routerLink="/courses" routerLinkActive="active" class="nav-item" (click)="closeMobileMenu()">{{ langService.t().navbar.courses }}</a>
+        <a routerLink="/diplomas" routerLinkActive="active" class="nav-item" (click)="closeMobileMenu()">{{ langService.t().navbar.diplomas }}</a>
+        <a routerLink="/about" routerLinkActive="active" class="nav-item" (click)="closeMobileMenu()">{{ langService.t().navbar.about }}</a>
+        <a routerLink="/contact" routerLinkActive="active" class="nav-item" (click)="closeMobileMenu()">{{ langService.t().navbar.contact }}</a>
+        
+        <!-- Mobile Only Actions -->
+        <div class="mobile-actions">
+          <!-- Language Switcher Mobile -->
+          <button class="lang-toggle-btn-mobile" (click)="toggleLanguage()">
+            <i class="fa-solid fa-globe"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'English (EN)' : 'العربية (AR)' }}</span>
+          </button>
+
+          <!-- Theme Toggle Mobile -->
+          <button class="theme-toggle-btn-mobile" (click)="toggleTheme()">
+            <i [class]="isDarkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
+            <span>{{ isDarkMode ? langService.t().navbar.lightMode : langService.t().navbar.darkMode }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Actions (Desktop & Mobile Compact Toggle) -->
+      <div class="nav-actions">
+        <!-- Language Switcher Desktop Pill -->
+        <button 
+          class="lang-toggle-btn" 
+          (click)="toggleLanguage()" 
+          [title]="langService.currentLang() === 'ar' ? 'Switch to English' : 'التحويل إلى العربية'"
+          [attr.aria-label]="langService.currentLang() === 'ar' ? 'Switch to English' : 'التحويل إلى العربية'"
+        >
+          <i class="fa-solid fa-globe lang-icon"></i>
+          <span class="lang-text">{{ langService.currentLang() === 'ar' ? 'EN' : 'العربية' }}</span>
+        </button>
+
+        <!-- Theme Toggle Button -->
+        <button 
+          class="theme-toggle-btn" 
+          (click)="toggleTheme()" 
+          [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+          [attr.aria-label]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        >
+          <i [class]="isDarkMode ? 'fa-solid fa-sun icon-sun' : 'fa-solid fa-moon icon-moon'"></i>
+        </button>
+
+        <!-- Hamburger Toggle -->
+        <button class="mobile-toggle" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+          <i [class]="isMobileMenuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,397 @@
+<app-particle-bg></app-particle-bg>
+
+<div class="diplomas-page-wrapper">
+  <!-- 1. HERO SECTION -->
+  <section class="diplomas-hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text-col">
+          <span class="hero-eyebrow">{{ langService.t().diplomasPage.eyebrow }}</span>
+          <h1 class="hero-title">{{ langService.t().diplomasPage.heroTitle }}</h1>
+          <p class="hero-subtitle">{{ langService.t().diplomasPage.heroSubtitle }}</p>
+
+          <div class="hero-cta-group">
+            <button class="btn btn-primary btn-lg" (click)="scrollToCatalog($event)">
+              <span>{{ langService.t().diplomasPage.exploreCta }}</span>
+              <i class="fa-solid fa-arrow-down icon-arrow"></i>
+            </button>
+
+            <a routerLink="/contact" class="btn btn-secondary btn-lg">
+              <span>{{ langService.t().diplomasPage.advisorCta }}</span>
+              <i class="fa-solid fa-headset"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual-col">
+          <div class="tech-composition-card">
+            <div class="code-header">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="code-title">innovagate-diploma-path.ts</span>
+            </div>
+
+            <div class="code-content">
+              <span class="code-line keyword">const <span class="var">academyCareerPath</span> = &#123;</span>
+              <span class="code-line indent">level: <span class="str">'Zero to Career-Ready'</span>,</span>
+              <span class="code-line indent">hours: <span class="num">200</span>,</span>
+              <span class="code-line indent">projects: <span class="str">'35+ Real Production Apps'</span>,</span>
+              <span class="code-line indent">outcome: <span class="str">'Senior-Led Industry Mentorship'</span></span>
+              <span class="code-line">&#125;;</span>
+            </div>
+
+            <div class="floating-tech-badge badge-1">
+              <i class="fa-solid fa-code"></i>
+              <span>Production Code</span>
+            </div>
+            <div class="floating-tech-badge badge-2">
+              <i class="fa-solid fa-briefcase"></i>
+              <span>Job Market Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. TRUST / VALUE METRICS STRIP -->
+  <section class="trust-metrics-section">
+    <div class="container">
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-value">{{ langService.t().diplomasPage.metrics.hoursVal }}</div>
+          <div class="metric-label">{{ langService.t().diplomasPage.metrics.hoursLabel }}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">{{ langService.t().diplomasPage.metrics.sessionsVal }}</div>
+          <div class="metric-label">{{ langService.t().diplomasPage.metrics.sessionsLabel }}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">{{ langService.t().diplomasPage.metrics.projectsVal }}</div>
+          <div class="metric-label">{{ langService.t().diplomasPage.metrics.projectsLabel }}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">{{ langService.t().diplomasPage.metrics.careerVal }}</div>
+          <div class="metric-label">{{ langService.t().diplomasPage.metrics.careerLabel }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DIPLOMA DISCOVERY & CATEGORY FILTERS SECTION -->
+  <section class="diploma-catalog-section" id="diploma-catalog">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">{{ langService.currentLang() === 'ar' ? 'مسارات الدبلومات' : 'DIPLOMA CATALOG' }}</span>
+        <h2 class="section-title">{{ langService.t().diplomasPage.catalog.heading }}</h2>
+        <p class="section-subtitle">{{ langService.t().diplomasPage.catalog.subheading }}</p>
+      </div>
+
+      <!-- Interactive Category Filters Bar -->
+      <div class="category-filters-wrapper">
+        <div class="category-filters-scroll">
+          <button 
+            *ngFor="let opt of filterOptions" 
+            class="filter-chip-btn" 
+            [class.active]="selectedFilter === opt.id"
+            (click)="setFilter(opt.id)"
+          >
+            <i [class]="opt.icon"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 
+              (opt.id === 'all' ? langService.t().diplomasPage.catalog.filterAll :
+               opt.id === 'software' ? langService.t().diplomasPage.catalog.filterSoftware :
+               opt.id === 'data' ? langService.t().diplomasPage.catalog.filterData :
+               opt.id === 'design' ? langService.t().diplomasPage.catalog.filterDesign :
+               opt.id === 'cyber' ? langService.t().diplomasPage.catalog.filterCyber :
+               langService.t().diplomasPage.catalog.filterMobile) 
+              : 
+              (opt.id === 'all' ? langService.t().diplomasPage.catalog.filterAll :
+               opt.id === 'software' ? langService.t().diplomasPage.catalog.filterSoftware :
+               opt.id === 'data' ? langService.t().diplomasPage.catalog.filterData :
+               opt.id === 'design' ? langService.t().diplomasPage.catalog.filterDesign :
+               opt.id === 'cyber' ? langService.t().diplomasPage.catalog.filterCyber :
+               langService.t().diplomasPage.catalog.filterMobile) 
+            }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Responsive Diplomas Grid -->
+      <div class="diplomas-grid">
+        <article 
+          *ngFor="let item of filteredDiplomas" 
+          class="diploma-card" 
+          [class.featured-diploma]="item.isFeatured"
+        >
+          <!-- Featured Badge -->
+          <div class="featured-ribbon" *ngIf="item.isFeatured">
+            <i class="fa-solid fa-fire"></i>
+            <span>{{ langService.currentLang() === 'ar' ? item.featuredBadgeAr : item.featuredBadgeEn }}</span>
+          </div>
+
+          <div class="card-header-meta">
+            <span class="category-tag">{{ langService.currentLang() === 'ar' ? item.categoryLabelAr : item.categoryLabelEn }}</span>
+            <span class="founding-badge" *ngIf="item.isFoundingBatch">
+              {{ langService.currentLang() === 'ar' ? item.foundingBatchBadgeAr : item.foundingBatchBadgeEn }}
+            </span>
+          </div>
+
+          <h3 class="diploma-title">{{ langService.currentLang() === 'ar' ? item.titleAr : item.titleEn }}</h3>
+          <p class="diploma-description">{{ langService.currentLang() === 'ar' ? item.taglineAr : item.taglineEn }}</p>
+
+          <!-- Information Grid -->
+          <div class="info-metrics-box">
+            <div class="info-item">
+              <i class="fa-regular fa-clock"></i>
+              <span>{{ langService.currentLang() === 'ar' ? item.durationAr : item.durationEn }} ({{ item.totalHours }}h)</span>
+            </div>
+            <div class="info-item">
+              <i class="fa-regular fa-calendar-check"></i>
+              <span>{{ langService.currentLang() === 'ar' ? item.sessionsPerWeekAr : item.sessionsPerWeekEn }}</span>
+            </div>
+            <div class="info-item">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>{{ langService.currentLang() === 'ar' ? item.levelAr : item.levelEn }}</span>
+            </div>
+          </div>
+
+          <!-- Key Highlights Chips -->
+          <div class="highlights-container">
+            <span class="highlight-chip" *ngFor="let h of item.highlights" bdi>{{ h }}</span>
+          </div>
+
+          <!-- Project Indicator -->
+          <div class="project-indicator-bar">
+            <i class="fa-solid fa-diagram-project"></i>
+            <span>{{ langService.currentLang() === 'ar' ? item.projectsCountAr : item.projectsCountEn }}</span>
+          </div>
+
+          <!-- Price & Actions Footer -->
+          <div class="card-footer-box">
+            <div class="price-box">
+              <span class="price-val">{{ item.priceEgp | number }} EGP</span>
+              <span class="price-sub">{{ langService.t().diplomasPage.catalog.foundingBatch }}</span>
+            </div>
+
+            <div class="actions-group">
+              <a [routerLink]="['/diplomas', item.id]" class="btn btn-secondary btn-sm">
+                <span>{{ langService.t().diplomasPage.catalog.viewDiploma }}</span>
+              </a>
+              <a routerLink="/contact" class="btn btn-primary btn-sm">
+                <span>{{ langService.t().diplomasPage.catalog.applyNow }}</span>
+                <i class="fa-solid fa-arrow-right icon-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. WHAT YOU'LL GET SECTION -->
+  <section class="what-you-get-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">{{ langService.currentLang() === 'ar' ? 'القيمة المضافة' : 'PROGRAM VALUE' }}</span>
+        <h2 class="section-title">{{ langService.t().diplomasPage.whatYouGet.heading }}</h2>
+        <p class="section-subtitle">{{ langService.t().diplomasPage.whatYouGet.subheading }}</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3 class="feature-title">{{ langService.t().diplomasPage.whatYouGet.p1Title }}</h3>
+          <p class="feature-desc">{{ langService.t().diplomasPage.whatYouGet.p1Desc }}</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-folder-open"></i></div>
+          <h3 class="feature-title">{{ langService.t().diplomasPage.whatYouGet.p2Title }}</h3>
+          <p class="feature-desc">{{ langService.t().diplomasPage.whatYouGet.p2Desc }}</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+          <h3 class="feature-title">{{ langService.t().diplomasPage.whatYouGet.p3Title }}</h3>
+          <p class="feature-desc">{{ langService.t().diplomasPage.whatYouGet.p3Desc }}</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-brands fa-linkedin"></i></div>
+          <h3 class="feature-title">{{ langService.t().diplomasPage.whatYouGet.p4Title }}</h3>
+          <p class="feature-desc">{{ langService.t().diplomasPage.whatYouGet.p4Desc }}</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+          <h3 class="feature-title">{{ langService.t().diplomasPage.whatYouGet.p5Title }}</h3>
+          <p class="feature-desc">{{ langService.t().diplomasPage.whatYouGet.p5Desc }}</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-cubes"></i></div>
+          <h3 class="feature-title">{{ langService.t().diplomasPage.whatYouGet.p6Title }}</h3>
+          <p class="feature-desc">{{ langService.t().diplomasPage.whatYouGet.p6Desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. LEARNING JOURNEY PATHWAY -->
+  <section class="learning-journey-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">{{ langService.currentLang() === 'ar' ? 'خريطة الطريق' : 'LEARNING PATHWAY' }}</span>
+        <h2 class="section-title">{{ langService.t().diplomasPage.learningJourney.heading }}</h2>
+      </div>
+
+      <div class="journey-steps-wrapper">
+        <div class="journey-step">
+          <div class="step-num">01</div>
+          <h3 class="step-title">{{ langService.t().diplomasPage.learningJourney.step1Title }}</h3>
+          <p class="step-desc">{{ langService.t().diplomasPage.learningJourney.step1Desc }}</p>
+        </div>
+
+        <div class="journey-step">
+          <div class="step-num">02</div>
+          <h3 class="step-title">{{ langService.t().diplomasPage.learningJourney.step2Title }}</h3>
+          <p class="step-desc">{{ langService.t().diplomasPage.learningJourney.step2Desc }}</p>
+        </div>
+
+        <div class="journey-step">
+          <div class="step-num">03</div>
+          <h3 class="step-title">{{ langService.t().diplomasPage.learningJourney.step3Title }}</h3>
+          <p class="step-desc">{{ langService.t().diplomasPage.learningJourney.step3Desc }}</p>
+        </div>
+
+        <div class="journey-step">
+          <div class="step-num">04</div>
+          <h3 class="step-title">{{ langService.t().diplomasPage.learningJourney.step4Title }}</h3>
+          <p class="step-desc">{{ langService.t().diplomasPage.learningJourney.step4Desc }}</p>
+        </div>
+
+        <div class="journey-step">
+          <div class="step-num">05</div>
+          <h3 class="step-title">{{ langService.t().diplomasPage.learningJourney.step5Title }}</h3>
+          <p class="step-desc">{{ langService.t().diplomasPage.learningJourney.step5Desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. WHY INNOVA GATE SECTION -->
+  <section class="why-innova-section">
+    <div class="container">
+      <div class="why-innova-card">
+        <h2 class="why-title">{{ langService.t().diplomasPage.whyInnova.heading }}</h2>
+
+        <div class="benefits-grid">
+          <div class="benefit-item" *ngFor="let b of langService.t().diplomasPage.whyInnova.benefits">
+            <span class="check-box"><i class="fa-solid fa-check"></i></span>
+            <span class="benefit-text">{{ b }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. COMPARISON SECTION -->
+  <section class="comparison-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">{{ langService.currentLang() === 'ar' ? 'دليل الاختيار' : 'GUIDE' }}</span>
+        <h2 class="section-title">{{ langService.t().diplomasPage.comparison.heading }}</h2>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>{{ langService.t().diplomasPage.comparison.colGoal }}</th>
+              <th>{{ langService.t().diplomasPage.comparison.colDiploma }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of langService.t().diplomasPage.comparison.rows">
+              <td class="goal-td">
+                <div class="goal-icon-badge">
+                  <i [class]="row.icon || 'fa-regular fa-compass'"></i>
+                </div>
+                <span class="goal-text">{{ row.goal }}</span>
+              </td>
+              <td class="diploma-td">
+                <a [routerLink]="['/diplomas', row.id]" class="recommended-pill">
+                  <span>{{ row.diploma }}</span>
+                  <i class="fa-solid fa-arrow-right icon-arrow"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FAQ ACCORDION SECTION -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">FAQ</span>
+        <h2 class="section-title">{{ langService.t().diplomasPage.faq.heading }}</h2>
+      </div>
+
+      <div class="faq-accordion-container">
+        <div 
+          *ngFor="let item of langService.t().diplomasPage.faq.items; let i = index" 
+          class="faq-item" 
+          [class.open]="activeFaqIndex === i"
+        >
+          <button class="faq-question-btn" (click)="toggleFaq(i)">
+            <span class="q-text">{{ item.question }}</span>
+            <i class="fa-solid fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer-content" *ngIf="activeFaqIndex === i">
+            <p>{{ item.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FINAL CTA SECTION -->
+  <section class="final-cta-section">
+    <div class="container">
+      <div class="final-cta-box">
+        <h2 class="cta-title">{{ langService.t().diplomasPage.finalCta.heading }}</h2>
+        <p class="cta-subtitle">{{ langService.t().diplomasPage.finalCta.subheading }}</p>
+
+        <div class="cta-btns-group">
+          <button class="btn btn-primary btn-lg" (click)="scrollToCatalog($event)">
+            <span>{{ langService.t().diplomasPage.exploreCta }}</span>
+            <i class="fa-solid fa-arrow-right icon-arrow"></i>
+          </button>
+          <a routerLink="/contact" class="btn btn-secondary btn-lg">
+            <span>{{ langService.t().diplomasPage.advisorCta }}</span>
+            <i class="fa-solid fa-comments"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. MOBILE STICKY BOTTOM ACTION BAR -->
+  <div class="mobile-sticky-cta-bar">
+    <div class="sticky-container">
+      <button class="btn btn-primary btn-sm" (click)="scrollToCatalog($event)">
+        <span>{{ langService.t().diplomasPage.exploreCta }}</span>
+      </button>
+      <a routerLink="/contact" class="btn btn-secondary btn-sm">
+        <span>{{ langService.t().diplomasPage.advisorCta }}</span>
+      </a>
+    </div>
+  </div>
+</div>

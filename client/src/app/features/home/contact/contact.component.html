@@ -1,0 +1,208 @@
+<section class="contact-section">
+  <!-- Top Blend Gradient from Previous Section -->
+  <div class="section-top-blend"></div>
+
+  <div class="container contact-container">
+    <!-- Header Block -->
+    <div class="contact-header-block">
+      <div class="section-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span>{{ isAr ? 'تواصل معنا' : 'GET IN TOUCH' }}</span>
+      </div>
+
+      <h2 class="section-headline">
+        {{ isAr ? 'دعنا نبني ' : "LET'S BUILD " }}<span class="gradient-text-blue">{{ isAr ? 'مستقبلك المهني.' : 'YOUR FUTURE.' }}</span>
+      </h2>
+
+      <p class="section-subheadline">
+        {{ isAr ? 'لديك استفسار، ترغب بالانضمام لإحدى الدبلومات، أو تريد معرفة تفاصيل أكثر؟ نحن هنا لمساعدتك دائماً.' : "Have a question, want to join a diploma, or simply want to know more? We're here to help." }}
+      </p>
+    </div>
+
+    <!-- Main Editorial 2-Column Grid (Form Left, Stylized Map Right) -->
+    <div class="contact-grid">
+      
+      <!-- LEFT COLUMN: Minimal Editorial Contact Form -->
+      <div class="contact-form-col">
+        <!-- Active Form View -->
+        <form *ngIf="!isSubmittedSuccess" (ngSubmit)="onSubmit()" class="editorial-form" novalidate>
+          
+          <!-- Field 01: Full Name -->
+          <div class="form-group-item" [class.has-error]="formErrors.fullName">
+            <label class="field-label">{{ isAr ? 'الاسم بالكامل *' : 'FULL NAME *' }}</label>
+            <input 
+              type="text" 
+              class="editorial-input" 
+              [placeholder]="isAr ? 'مثال: أحمد محمد' : 'e.g. Ahmed Mohamed'"
+              [(ngModel)]="formData.fullName"
+              name="fullName"
+            />
+            <span *ngIf="formErrors.fullName" class="error-msg">{{ formErrors.fullName }}</span>
+          </div>
+
+          <!-- Field 02: Email Address -->
+          <div class="form-group-item" [class.has-error]="formErrors.email">
+            <label class="field-label">{{ isAr ? 'البريد الإلكتروني *' : 'EMAIL ADDRESS *' }}</label>
+            <input 
+              type="email" 
+              class="editorial-input" 
+              placeholder="e.g. ahmed@example.com"
+              [(ngModel)]="formData.email"
+              name="email"
+            />
+            <span *ngIf="formErrors.email" class="error-msg">{{ formErrors.email }}</span>
+          </div>
+
+          <!-- Field 03: Phone Number -->
+          <div class="form-group-item" [class.has-error]="formErrors.phone">
+            <label class="field-label">{{ isAr ? 'رقم الهاتف / الواتساب *' : 'PHONE NUMBER *' }}</label>
+            <input 
+              type="tel" 
+              class="editorial-input" 
+              placeholder="e.g. +20 100 000 0000"
+              [(ngModel)]="formData.phone"
+              name="phone"
+            />
+            <span *ngIf="formErrors.phone" class="error-msg">{{ formErrors.phone }}</span>
+          </div>
+
+          <!-- Field 04: Interested Diploma (Custom Interactive Selector) -->
+          <div class="form-group-item" [class.has-error]="formErrors.diploma">
+            <label class="field-label">{{ isAr ? 'الدبلومة أو التخصص المطلوب *' : 'INTERESTED DIPLOMA *' }}</label>
+            
+            <div class="custom-select-wrapper" [class.is-open]="isDropdownOpen">
+              <div class="custom-select-trigger" (click)="toggleDropdown()">
+                <span>{{ formData.diploma ? formData.diploma : (isAr ? 'اختر المسار البرمجي المناسب' : 'Select a Diploma Career Path') }}</span>
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+              </div>
+
+              <div class="custom-dropdown-menu" *ngIf="isDropdownOpen">
+                <div 
+                  *ngFor="let opt of diplomaOptions"
+                  class="dropdown-option"
+                  [class.selected]="opt === formData.diploma"
+                  (click)="selectDiploma(opt)"
+                >
+                  <i class="fa-solid fa-check option-check" *ngIf="opt === formData.diploma"></i>
+                  <span>{{ opt }}</span>
+                </div>
+              </div>
+            </div>
+
+            <span *ngIf="formErrors.diploma" class="error-msg">{{ formErrors.diploma }}</span>
+          </div>
+
+          <!-- Field 05: Message -->
+          <div class="form-group-item" [class.has-error]="formErrors.message">
+            <label class="field-label">{{ isAr ? 'رسالتك أو تفاصيل استفسارك *' : 'YOUR MESSAGE *' }}</label>
+            <textarea 
+              rows="3" 
+              class="editorial-input editorial-textarea" 
+              [placeholder]="isAr ? 'اكتب استفسارك أو أهدافك التي ترغب في تحقيقها...' : 'Tell us about your background or goals...'"
+              [(ngModel)]="formData.message"
+              name="message"
+            ></textarea>
+            <span *ngIf="formErrors.message" class="error-msg">{{ formErrors.message }}</span>
+          </div>
+
+          <!-- Primary Action CTA -->
+          <div class="form-action-box">
+            <button type="submit" class="btn btn-primary btn-submit-message" [disabled]="isSubmitting">
+              <span *ngIf="!isSubmitting">{{ isAr ? 'إرسال الرسالة' : 'SEND MESSAGE' }}</span>
+              <span *ngIf="isSubmitting"><i class="fa-solid fa-spinner fa-spin"></i> {{ isAr ? 'جاري الإرسال...' : 'SENDING...' }}</span>
+              <i *ngIf="!isSubmitting" class="fa-solid fa-arrow-right icon-arrow"></i>
+            </button>
+          </div>
+        </form>
+
+        <!-- Premium Success State View -->
+        <div *ngIf="isSubmittedSuccess" class="form-success-card glass-card">
+          <div class="success-icon-box">
+            <i class="fa-solid fa-circle-check icon-check"></i>
+          </div>
+          <h3 class="success-title">{{ isAr ? 'تم استلام رسالتك بنجاح.' : 'MESSAGE RECEIVED.' }}</h3>
+          <p class="success-sub">
+            {{ isAr ? 'شكراً لتواصلك معنا. سيقوم فريقنا بالتواصل معك قريباً للإجابة على جميع استفساراتك.' : 'Your message has been received. Our team will contact you shortly to guide your journey.' }}
+          </p>
+          <button type="button" class="btn btn-primary btn-reset" (click)="resetForm()">
+            <span>{{ isAr ? 'إرسال رسالة أخرى' : 'SEND ANOTHER MESSAGE' }}</span>
+            <i class="fa-solid fa-arrow-right icon-arrow"></i>
+          </button>
+        </div>
+
+        <!-- Location Information Block (Moved under the form) -->
+        <div class="location-under-form-box">
+          <div class="info-header">
+            <i class="fa-solid fa-location-dot icon-pin"></i>
+            <span class="info-city">{{ isAr ? 'محافظة البحيرة، مصر' : 'BEHEIRA, EGYPT' }}</span>
+          </div>
+          <p class="info-address">
+            {{ isAr ? 'دمنهور، محافظة البحيرة، مصر' : 'Damanhour, Beheira Governorate, Egypt' }}
+          </p>
+
+          <a 
+            href="https://maps.google.com/?q=31.0454386,30.4652445" 
+            target="_blank" 
+            rel="noopener" 
+            class="link-directions"
+          >
+            <span>{{ isAr ? 'الاتجاهات والموقع على الخريطة' : 'GET DIRECTIONS' }}</span>
+            <i class="fa-solid fa-arrow-up-right-from-square icon-ext"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Stylized Location & Interactive Map Stage -->
+      <div class="contact-location-col">
+        <div class="map-stage-card glass-card">
+          
+          <!-- Embedded Stylized Google Maps Iframe -->
+          <div class="map-iframe-container" [style.transform]="getMapTransform()">
+            <iframe 
+              [src]="mapEmbedUrl" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="InnovaGate Location Map"
+            ></iframe>
+          </div>
+
+          <!-- Atmospheric Vignette & Glow Overlay -->
+          <div class="map-vignette-overlay"></div>
+          <div class="map-blue-glow"></div>
+          <div class="map-border-glow"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Additional Contact Quick Links -->
+    <div class="contact-quick-links">
+      <a href="https://wa.me/201144180891" target="_blank" rel="noopener" class="quick-link-item">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>{{ isAr ? 'واتساب WhatsApp ←' : 'WhatsApp →' }}</span>
+      </a>
+
+      <a href="tel:+201144180891" class="quick-link-item">
+        <i class="fa-solid fa-phone"></i>
+        <span>{{ isAr ? 'الهاتف Phone ←' : 'Phone →' }}</span>
+      </a>
+
+      <a href="https://www.facebook.com/profile.php?id=61593432778794" target="_blank" rel="noopener" class="quick-link-item">
+        <i class="fa-brands fa-facebook-f"></i>
+        <span>{{ isAr ? 'فيسبوك Facebook ←' : 'Facebook →' }}</span>
+      </a>
+
+      <a href="https://www.instagram.com/innovagate/" target="_blank" rel="noopener" class="quick-link-item">
+        <i class="fa-brands fa-instagram"></i>
+        <span>{{ isAr ? 'إنستغرام Instagram ←' : 'Instagram →' }}</span>
+      </a>
+    </div>
+
+  </div>
+
+</section>

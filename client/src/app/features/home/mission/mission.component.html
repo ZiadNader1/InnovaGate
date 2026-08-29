@@ -1,0 +1,216 @@
+<section #missionSection class="mission-section">
+  <!-- Interactive Particle Background Canvas -->
+  <canvas #particleCanvas class="interactive-particle-canvas"></canvas>
+
+  <div class="container mission-container">
+    <!-- Left Side: Editorial Typography & Copy -->
+    <div class="mission-left">
+      <div class="editorial-tag">
+        <span class="tag-line"></span>
+        <span>{{ isAr ? 'الرؤية والرسالة' : 'CORE MISSION' }}</span>
+      </div>
+
+      <h2 class="editorial-headline" *ngIf="isAr">
+        المواهب في كل مكان..<br>
+        <span class="gradient-text-blue">والفرص يجب أن تصل للجميع.</span>
+      </h2>
+      <h2 class="editorial-headline" *ngIf="!isAr">
+        TALENT IS EVERYWHERE.<br>
+        <span class="gradient-text-blue">OPPORTUNITY SHOULD BE TOO.</span>
+      </h2>
+
+      <div class="editorial-body">
+        <p class="paragraph-lead">
+          {{ isAr ? 'لا ينبغي للعقول الطموحة أن تسافر بعيداً للوصول إلى تعليم برمجي وتقني عالي المستوى.' : "Ambitious minds shouldn't have to travel far to access world-class technology education." }}
+        </p>
+        <p class="paragraph-sub">
+          {{ isAr ? 'تسعى InnovaGate لنقل التعليم البرمجي والتقني التطبيقي الموجه لسوق العمل مباشرة إلى قلب محافظة البحيرة.' : 'Innovagate is bringing practical, industry-focused tech education closer to the people of Beheira.' }}
+        </p>
+      </div>
+
+      <!-- Small Brand Metrics -->
+      <div class="editorial-metrics">
+        <div class="metric-item">
+          <span class="metric-num">{{ isAr ? '01 — الوصول للجميع' : '01 — ACCESS' }}</span>
+          <span class="metric-desc">{{ isAr ? 'تعليم برمجيات عالي المستوى، بالقرب من مدينتك.' : 'World-class learning, closer to home.' }}</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num">{{ isAr ? '02 — المهارات العملية' : '02 — SKILLS' }}</span>
+          <span class="metric-desc">{{ isAr ? 'تعليم تقني وتطبيقي يناسب تطلعات سوق العمل.' : 'Practical technology education.' }}</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num">{{ isAr ? '03 — صناعة الفرص' : '03 — OPPORTUNITY' }}</span>
+          <span class="metric-desc">{{ isAr ? 'تحويل المواهب المحلية إلى كوادر متميزة في مجال البرمجة.' : 'Turning local talent into future careers.' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side: Exact Real Beheira Governorate Silhouette Map (Floating Without Card Box) -->
+    <div class="mission-right">
+      <div class="floating-beheira-map">
+        <!-- SVG Beheira Exact Vector Silhouette & Glowing Damanhour Beacon Node -->
+        <div class="svg-canvas-wrapper">
+          <svg 
+            class="beheira-exact-svg" 
+            viewBox="0 0 600 600" 
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <defs>
+              <!-- Primary Blue Glow Filter -->
+              <filter id="beheiraGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+
+              <!-- Damanhour Beacon Intense Glow Filter -->
+              <filter id="damanhourBeaconGlow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="14" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+
+              <linearGradient id="networkLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="1" />
+                <stop offset="100%" stop-color="#1769ff" stop-opacity="0.3" />
+              </linearGradient>
+            </defs>
+
+            <!-- Background Tech Grid Lines (Floating) -->
+            <g class="grid-backdrop" opacity="0.15">
+              <line x1="0" y1="120" x2="600" y2="120" stroke="#334155" stroke-dasharray="4 4" />
+              <line x1="0" y1="240" x2="600" y2="240" stroke="#334155" stroke-dasharray="4 4" />
+              <line x1="0" y1="360" x2="600" y2="360" stroke="#334155" stroke-dasharray="4 4" />
+
+              <line x1="150" y1="0" x2="150" y2="600" stroke="#334155" stroke-dasharray="4 4" />
+              <line x1="300" y1="0" x2="300" y2="600" stroke="#334155" stroke-dasharray="4 4" />
+              <line x1="450" y1="0" x2="450" y2="600" stroke="#334155" stroke-dasharray="4 4" />
+            </g>
+
+            <!-- 1. EXACT REAL BEHEIRA GOVERNORATE MAP SILHOUETTE -->
+            <g class="beheira-boundary-layer">
+              <!-- Dark Filled Backdrop with Neon Glowing Blue Stroke -->
+              <path 
+                d="M 326 42 
+                   C 328 55, 335 62, 342 70 
+                   C 350 82, 360 92, 372 104 
+                   C 388 120, 395 128, 412 142 
+                   C 426 154, 436 165, 428 178 
+                   C 420 190, 442 205, 448 215 
+                   C 455 226, 435 240, 442 252 
+                   C 450 265, 465 275, 458 290 
+                   C 450 305, 462 320, 452 335 
+                   C 442 350, 468 365, 460 380 
+                   L 472 396 
+                   L 320 540 
+                   L 120 420 
+                   L 135 345 
+                   L 240 280 
+                   L 180 230 
+                   L 205 185 
+                   L 190 180 
+                   L 200 160 
+                   L 260 140 
+                   L 290 125 
+                   L 280 115 
+                   C 250 120, 270 100, 320 40 
+                   Z" 
+                fill="rgba(23, 105, 255, 0.12)" 
+                stroke="#38bdf8" 
+                stroke-width="3"
+                filter="url(#beheiraGlow)"
+              />
+
+              <!-- Inner Digital Mesh Grid inside Beheira Silhouette -->
+              <path 
+                d="M 326 42 L 290 220 L 320 540 M 200 160 L 290 220 L 458 290 M 120 420 L 290 220 L 472 396" 
+                stroke="rgba(56, 189, 248, 0.22)" 
+                stroke-width="1.2" 
+                stroke-dasharray="4 4"
+                fill="none" 
+              />
+            </g>
+
+            <!-- 2. Tech Network Rays connecting Damanhour Center to Beheira Nodes -->
+            <g class="network-rays">
+              <line x1="290" y1="220" x2="230" y2="155" stroke="url(#networkLineGrad)" stroke-width="2" stroke-dasharray="6 4" class="animated-ray" />
+              <line x1="290" y1="220" x2="330" y2="105" stroke="url(#networkLineGrad)" stroke-width="2" stroke-dasharray="6 4" class="animated-ray" />
+              <line x1="290" y1="220" x2="215" y2="210" stroke="url(#networkLineGrad)" stroke-width="2" stroke-dasharray="6 4" class="animated-ray" />
+              <line x1="290" y1="220" x2="380" y2="245" stroke="url(#networkLineGrad)" stroke-width="2" stroke-dasharray="6 4" class="animated-ray" />
+              <line x1="290" y1="220" x2="410" y2="330" stroke="url(#networkLineGrad)" stroke-width="2" stroke-dasharray="6 4" class="animated-ray" />
+              <line x1="290" y1="220" x2="240" y2="400" stroke="url(#networkLineGrad)" stroke-width="2" stroke-dasharray="6 4" class="animated-ray" />
+            </g>
+
+            <!-- 3. Regional Beheira Cities Nodes -->
+            <g class="regional-cities">
+              <!-- Rosetta (Rashid) -->
+              <g class="city-node" (click)="selectNode('Rosetta')">
+                <circle cx="330" cy="105" r="5" fill="#38bdf8" />
+                <text x="342" y="108" fill="#cbd5e1" font-size="12" font-weight="700">{{ isAr ? 'رشيد' : 'Rosetta' }}</text>
+              </g>
+
+              <!-- Kafr El Dawwar -->
+              <g class="city-node" (click)="selectNode('Kafr El Dawwar')">
+                <circle cx="230" cy="155" r="5" fill="#38bdf8" />
+                <text x="130" y="158" fill="#cbd5e1" font-size="12" font-weight="700">{{ isAr ? 'كفر الدوار' : 'Kafr El Dawwar' }}</text>
+              </g>
+
+              <!-- Abu Hommos -->
+              <g class="city-node" (click)="selectNode('Abu Hommos')">
+                <circle cx="215" cy="210" r="4.5" fill="#38bdf8" />
+                <text x="135" y="213" fill="#cbd5e1" font-size="12" font-weight="700">{{ isAr ? 'أبو حمص' : 'Abu Hommos' }}</text>
+              </g>
+
+              <!-- Itay El Baroud -->
+              <g class="city-node" (click)="selectNode('Itay El Baroud')">
+                <circle cx="380" cy="245" r="4.5" fill="#38bdf8" />
+                <text x="392" y="248" fill="#cbd5e1" font-size="12" font-weight="700">{{ isAr ? 'إيتاي البارود' : 'Itay El Baroud' }}</text>
+              </g>
+
+              <!-- Kom Hamada -->
+              <g class="city-node" (click)="selectNode('Kom Hamada')">
+                <circle cx="410" cy="330" r="4.5" fill="#38bdf8" />
+                <text x="422" y="333" fill="#cbd5e1" font-size="12" font-weight="700">{{ isAr ? 'كوم حمادة' : 'Kom Hamada' }}</text>
+              </g>
+
+              <!-- Wadi El Natrun -->
+              <g class="city-node" (click)="selectNode('Wadi El Natrun')">
+                <circle cx="240" cy="400" r="4.5" fill="#38bdf8" />
+                <text x="135" y="403" fill="#cbd5e1" font-size="12" font-weight="700">{{ isAr ? 'وادي النطرون' : 'Wadi El Natrun' }}</text>
+              </g>
+            </g>
+
+            <!-- 4. DAMANHOUR (دمنهور) PRIMARY GLOWING BEACON NODE -->
+            <g class="damanhour-primary-beacon">
+              <!-- Outer Glowing Ripples -->
+              <circle cx="290" cy="220" r="36" fill="rgba(23, 105, 255, 0.2)" class="pulse-ring-outer" />
+              <circle cx="290" cy="220" r="20" fill="rgba(56, 189, 248, 0.4)" class="pulse-ring-inner" />
+              <!-- Core Solid Glowing Point -->
+              <circle cx="290" cy="220" r="8.5" fill="#ffffff" filter="url(#damanhourBeaconGlow)" />
+
+              <!-- DAMANHOUR Badge Tag -->
+              <g class="damanhour-badge-group">
+                <rect x="200" y="172" width="180" height="32" rx="16" fill="rgba(15, 23, 42, 0.94)" stroke="#38bdf8" stroke-width="1.8" filter="url(#beheiraGlow)" />
+                <text x="290" y="193" fill="#ffffff" font-size="12" font-weight="900" text-anchor="middle">
+                  {{ isAr ? 'دمنهور DAMANHOUR' : 'DAMANHOUR' }}
+                </text>
+              </g>
+
+              <!-- Innovagate Academy Sub-Badge -->
+              <g class="academy-subbadge">
+                <rect x="210" y="240" width="160" height="22" rx="11" fill="rgba(23, 105, 255, 0.9)" />
+                <text x="290" y="255" fill="#ffffff" font-size="9.5" font-weight="800" text-anchor="middle">
+                  {{ isAr ? 'أكاديمية INNOVA GATE' : 'INNOVAGATE ACADEMY' }}
+                </text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

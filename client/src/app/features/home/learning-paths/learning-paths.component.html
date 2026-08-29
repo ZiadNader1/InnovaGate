@@ -1,0 +1,205 @@
+<section class="learning-paths-section">
+  <!-- Top Atmospheric Gradient Transition from Mission Section -->
+  <div class="section-top-blend"></div>
+
+  <div class="container paths-container">
+    <!-- 1. Prominent Section Header Block -->
+    <div class="paths-header-block">
+      <div class="section-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span>{{ isAr ? 'استكشف مسارك التعليمي' : 'EXPLORE YOUR PATH' }}</span>
+      </div>
+
+      <h2 class="section-headline">
+        {{ isAr ? 'اختر ' : 'Choose ' }}<span class="gradient-text-blue">{{ isAr ? 'تخصصك المفضل.' : 'Your Path.' }}</span>
+      </h2>
+
+      <p class="section-subheadline">
+        {{ isAr ? 'بناء المهارات العملية التي تشكل مستقبلك في التكنولوجيا.' : 'Build the skills that shape your future.' }}
+      </p>
+
+      <p class="section-supporting-copy">
+        {{ isAr ? 'برامج وتخصصات تقنية عمليّة مصممة لمساعدتك على بناء مشاريع حقيقية والوصول لأهدافك المهنية بكل ثقة.' : 'Explore practical technology programs designed to help you build real skills, work on meaningful projects, and move toward your career goals.' }}
+      </p>
+    </div>
+
+    <!-- 2. Vertical Interactive Editorial List of 5 Learning Paths -->
+    <div class="paths-interactive-list">
+      <div 
+        *ngFor="let path of learningPaths; let i = index; trackBy: trackByPathId"
+        class="path-row-item"
+        [class.active]="i === activePathIndex"
+        [class.dimmed]="activePathIndex !== null && i !== activePathIndex"
+      >
+        <!-- Collapsed / Row Header View -->
+        <div class="path-row-header" (click)="setActivePath(i)">
+          <div class="path-number-box">
+            <span class="path-number">{{ path.number }}</span>
+          </div>
+
+          <div class="path-header-text">
+            <h3 class="path-title">{{ path.title }}</h3>
+            <p class="path-subtitle">{{ path.subtitle }}</p>
+          </div>
+
+          <!-- Minimal Clean Link in Collapsed View -->
+          <div class="path-header-action" *ngIf="i !== activePathIndex">
+            <span class="link-minimal">
+              <span>{{ isAr ? 'استكشف التخصص' : 'Explore Path' }}</span>
+              <i class="fa-solid fa-arrow-right icon-arrow"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Expanded View: 2-Column Side-by-Side Editorial Grid -->
+        <div class="path-expanded-wrapper" *ngIf="i === activePathIndex">
+          <div class="expanded-grid">
+            
+            <!-- LEFT COLUMN: Career Info & Skill Specs -->
+            <div class="expanded-left-col">
+              <p class="path-description">{{ path.description }}</p>
+
+              <!-- Skill Tags Chips -->
+              <div class="path-tags-list">
+                <span *ngFor="let tag of path.tags" class="tag-chip">
+                  <i class="fa-solid fa-check tag-check"></i> {{ tag }}
+                </span>
+              </div>
+
+              <!-- Meta Specs (Duration & Projects) -->
+              <div class="path-meta-specs">
+                <div class="spec-item">
+                  <i class="fa-regular fa-clock"></i>
+                  <span>{{ path.duration }}</span>
+                </div>
+                <div class="spec-divider">•</div>
+                <div class="spec-item">
+                  <i class="fa-solid fa-code-commit"></i>
+                  <span>{{ path.projects }}</span>
+                </div>
+              </div>
+
+              <!-- Active Explore CTA Button (Navigates directly to Diploma Detail Page) -->
+              <div class="active-cta-box">
+                <a [routerLink]="['/diplomas', path.id]" class="btn btn-primary btn-explore-path">
+                  <span>{{ isAr ? 'استكشف تفاصيل الدبلومة' : 'Explore Diploma Details' }}</span>
+                  <i class="fa-solid fa-arrow-right icon-arrow"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Immersive Cinematic Video Stage for Active Diploma -->
+            <div class="expanded-right-col">
+              <div 
+                class="video-atmosphere-card glass-card"
+                [class.is-changing]="isVideoChanging"
+              >
+                <!-- Full-bleed background video -->
+                <video
+                  #pathVideo
+                  class="diploma-bg-video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="auto"
+                  [src]="path.videoUrl"
+                  [style.transform]="getVisualTransform()"
+                >
+                </video>
+
+                <!-- Atmospheric Dark Overlay & Electric Blue Glow -->
+                <div class="video-dark-overlay"></div>
+                <div class="video-blue-glow"></div>
+                <div class="video-border-line"></div>
+
+                <!-- Bottom Floating Spec Card -->
+                <div class="video-bottom-spec">
+                  <div class="spec-icon">
+                    <i class="fa-solid" [ngClass]="path.icon"></i>
+                  </div>
+                  <div class="spec-info">
+                    <span class="spec-title">{{ path.title }}</span>
+                    <span class="spec-sub">{{ path.projects }} • {{ path.duration }}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Diploma Details Modal Dialog -->
+  <div class="diploma-modal-backdrop" *ngIf="selectedDiplomaForModal" (click)="closeDiplomaModal()">
+    <div class="diploma-modal-card glass-card" (click)="$event.stopPropagation()">
+      <!-- Close Button -->
+      <button class="modal-close-btn" (click)="closeDiplomaModal()" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-icon-badge">
+          <i class="fa-solid" [ngClass]="selectedDiplomaForModal.icon"></i>
+        </div>
+        <div class="modal-title-group">
+          <span class="modal-number-badge">DIPLOMA {{ selectedDiplomaForModal.number }}</span>
+          <h3 class="modal-title">{{ selectedDiplomaForModal.title }}</h3>
+          <p class="modal-subtitle">{{ selectedDiplomaForModal.careerHeading }}</p>
+        </div>
+      </div>
+
+      <!-- Modal Meta Badges -->
+      <div class="modal-meta-pills">
+        <span class="pill-item"><i class="fa-regular fa-clock"></i> {{ selectedDiplomaForModal.duration }}</span>
+        <span class="pill-item"><i class="fa-solid fa-code-commit"></i> {{ selectedDiplomaForModal.projects }}</span>
+        <span class="pill-item highlight"><i class="fa-solid fa-certificate"></i> {{ isAr ? 'شهادة معتمدة' : 'Certified Diploma' }}</span>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body-content">
+        <p class="modal-desc">{{ selectedDiplomaForModal.description }}</p>
+
+        <!-- Syllabus / Curriculum List -->
+        <div class="curriculum-section">
+          <h4 class="curriculum-title">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>{{ isAr ? 'المنهج والموديولات الدراسية:' : 'Curriculum & Course Modules:' }}</span>
+          </h4>
+          <ul class="curriculum-list">
+            <li *ngFor="let item of getCurriculum(selectedDiplomaForModal.id)" class="curriculum-item">
+              <i class="fa-solid fa-circle-check item-icon"></i>
+              <span>{{ item }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Skills Covered -->
+        <div class="modal-skills-section">
+          <span class="skills-heading">{{ isAr ? 'المهارات والتقنيات المكتسبة:' : 'Skills & Tech Stack Covered:' }}</span>
+          <div class="modal-tags">
+            <span *ngFor="let tag of selectedDiplomaForModal.tags" class="tag-chip">
+              <i class="fa-solid fa-check"></i> {{ tag }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer CTAs -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-modal-close" (click)="closeDiplomaModal()">
+          <span>{{ isAr ? 'إغلاق' : 'Close' }}</span>
+        </button>
+        <a [routerLink]="['/diplomas', selectedDiplomaForModal.id]" class="btn btn-primary btn-modal-enroll" (click)="closeDiplomaModal()">
+          <span>{{ isAr ? 'عرض المنهج الكامل والتسجيل' : 'View Full Diploma & Enroll' }}</span>
+          <i class="fa-solid fa-rocket icon-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

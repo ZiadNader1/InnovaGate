@@ -1,0 +1,1226 @@
+export interface SyllabusModule {
+  moduleTitleEn: string;
+  moduleTitleAr: string;
+  sessionsRangeEn: string;
+  sessionsRangeAr: string;
+  topicsEn: string[];
+  topicsAr: string[];
+}
+
+export interface ProCourseDetails {
+  id: string;
+  code: string;
+  category: 'pro';
+  subCategory: 'frontend' | 'backend' | 'mobile' | 'data' | 'uiux' | 'fundamentals';
+  titleEn: string;
+  titleAr: string;
+  descEn: string;
+  descAr: string;
+  durationEn: string;
+  durationAr: string;
+  sessionsCount: number;
+  weeksCount: number;
+  contactHours: number;
+  priceEgp: number;
+  prerequisiteEn: string;
+  prerequisiteAr: string;
+  levelEn: string;
+  levelAr: string;
+  ageBadgeEn: string;
+  ageBadgeAr: string;
+  topics: string[];
+  projectsEn: string[];
+  projectsAr: string[];
+  detailedContentEn: string[];
+  detailedContentAr: string[];
+  syllabusModulesEn?: SyllabusModule[];
+  completionStandardEn: string;
+  completionStandardAr: string;
+}
+
+export const PRO_COURSES_DATA: ProCourseDetails[] = [
+  // =========================================================================
+  // TRACK 1: PROFESSIONAL FRONT-END DEVELOPMENT (6 COURSES)
+  // =========================================================================
+  {
+    id: 'fe-01-web-foundations',
+    code: 'FE01',
+    category: 'pro',
+    subCategory: 'frontend',
+    titleEn: 'Web Foundations & Modern CSS',
+    titleAr: 'أساسيات الويب وتقنيات CSS الحديثة',
+    descEn: 'Master semantic HTML5, modern CSS layout systems (Flexbox & Grid), responsive design, web accessibility, and CSS animations.',
+    descAr: 'إتقان بناء هيكلية الويب باستعمال HTML5، أنظمة التنسيق الحديثة Flexbox & Grid، التصميم المتجاوب، وإمكانيات الوصول في الويب.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 1800,
+    prerequisiteEn: 'No prior knowledge required beyond basic computer literacy.',
+    prerequisiteAr: 'لا يتطلب معرفة سابقة سوى المهارات الأساسية لاستخدام الحاسوب.',
+    levelEn: 'Beginner',
+    levelAr: 'مبتدئ',
+    ageBadgeEn: 'Front-End Track 1/6',
+    ageBadgeAr: 'مسار الفرونت إند 1/6',
+    topics: ['HTML5 & Semantic Elements', 'CSS3 Selectors & Box Model', 'Flexbox & CSS Grid', 'Responsive Breakpoints', 'CSS Animations & BEM'],
+    projectsEn: ['Personal Portfolio Website', 'University Registration Page', 'Tech Conference Landing Page', 'FitCore Gym Responsive Website'],
+    projectsAr: ['معرض الأعمال الشخصي Portfolio', 'صفحة تسجيل الطلاب الجامعية', 'موقع مؤتمر تقني متكامل', 'صفحة هبوط متجاوبة لنادي FitCore'],
+    detailedContentEn: [
+      'How the Web Works, HTTP/HTTPS protocols, browsers and rendering engine lifecycle',
+      'Semantic HTML5, Web Forms, validation, multimedia, accessibility/ARIA and SEO structure',
+      'CSS selectors, specificity, box model, positioning, typography, colors and backgrounds',
+      'Flexbox, CSS Grid, responsive/mobile-first layouts, media queries and breakpoints',
+      'Pseudo-classes/elements, transitions, animations, CSS variables and cross-browser debugging'
+    ],
+    detailedContentAr: [
+      'آلية عمل الويب، بروتوكولات HTTP/HTTPS، وعمل المتصفحات ومحرك المعالجة',
+      'عناصر HTML5 الدلالية، النماذج، التحقق من البيانات، الوسائط، معايير ARIA وتهيئة محركات البحث',
+      'محددات CSS، نمط الصندوق Box Model، التموضع، الخطوط والألوان والخلفيات',
+      'أنظمة التنسيق الحديثة Flexbox و CSS Grid والتصميم المتجاوب للشاشات المختلفة',
+      'العناصر الزائفة، الانتقالات الشفافة، المؤثرات الحركية، متغيرات CSS ومعالجة الأخطاء'
+    ],
+    syllabusModulesEn: [
+      {
+        moduleTitleEn: 'Module 1: Web Architecture & Semantic HTML5',
+        moduleTitleAr: 'الوحدة 1: أساسيات الويب و HTML5 الدلالية',
+        sessionsRangeEn: 'Sessions 1–4 (12 Contact Hours)',
+        sessionsRangeAr: 'الجلسات 1–4 (12 ساعة تدريبية)',
+        topicsEn: [
+          'Session 1: How the Web Works, Client-Server Protocol, HTTP/HTTPS & Browsers Rendering Lifecycle.',
+          'Session 2: Semantic HTML5 Structure, ARIA Roles, SEO Best Practices & Accessibility Standards.',
+          'Session 3: Web Forms, Input Validation, Attributes, Audio/Video Integration & iFrames.',
+          'Session 4: Hands-on Lab: Building an accessible University Registration Portal with full validation.'
+        ],
+        topicsAr: [
+          'الجلسة 1: آلية عمل الشبكة العنكبوتية، بروتوكولات HTTP/HTTPS، ونظام العناوين DNS ومراحل معالجة الصفحة بالمتصفح.',
+          'الجلسة 2: بناء هيكلية HTML5 الدلالية، ترتيب الهيدرز، معايير إتاحة الوصول ARIA وتهيئة محركات البحث SEO.',
+          'الجلسة 3: نماذج الويب Web Forms، أنواع المدخلات المختلفة، أدوات التحقق من البيانات والوسائط المتعددة.',
+          'الجلسة 4: ورشة عمل تطبيقية: تصميم صفحة تسجيل الطلاب الجامعية مع التاكد من الوصول الشامل والاستجابة.'
+        ]
+      },
+      {
+        moduleTitleEn: 'Module 2: Modern CSS Layouts, Flexbox & CSS Grid',
+        moduleTitleAr: 'الوحدة 2: أنظمة التنسيق الحديثة Flexbox & CSS Grid',
+        sessionsRangeEn: 'Sessions 5–10 (18 Contact Hours)',
+        sessionsRangeAr: 'الجلسات 5–10 (18 ساعة تدريبية)',
+        topicsEn: [
+          'Session 5: Selectors, Specificity Rules, CSS Box Model, Margin Collapsing & Positioning (Static, Relative, Absolute, Fixed, Sticky).',
+          'Session 6: Web Typography, Font Pairing, HSL/RGB Colors, Backgrounds, Borders & Modern Glassmorphism Effects.',
+          'Session 7-8: Flexbox Masterclass: Flex Containers, Flex Items, Axes, Alignment, Justify, Flex-Grow/Shrink & Reusable Layouts.',
+          'Session 9-10: CSS Grid Deep Dive: Grid Template Columns/Rows, Fractional units, Grid Areas, Auto-fit/Auto-fill & Dashboards.'
+        ],
+        topicsAr: [
+          'الجلسة 5: محددات CSS، التمايز Specificity، نمط الصندوق Box Model، التموضع والمحاذاة الشاملة.',
+          'الجلسة 6: الخطوط البرمجية، تنسيق النصوص، أنظمة الألوان HSL/RGB، الخلفيات، والمؤثرات الزجاجية Glassmorphism.',
+          'الجلسة 7-8: احتراف نظام Flexbox: المحاور، التوزيع، محاذاة العناصر وتصميم شبكات مرنة قابلة لإعادة الاستخدام.',
+          'الجلسة 9-10: احتراف CSS Grid: توزيع الأعمدة والصفوف، الوحدات الكسرية fr، ومساحات الشبكة المعقدة.'
+        ]
+      },
+      {
+        moduleTitleEn: 'Module 3: Responsive Engineering, CSS Animations & BEM',
+        moduleTitleAr: 'الوحدة 3: التجاوب الشامل، التحرّك BEM والـ Animations',
+        sessionsRangeEn: 'Sessions 11–15 (15 Contact Hours)',
+        sessionsRangeAr: 'الجلسات 11–15 (15 ساعة تدريبية)',
+        topicsEn: [
+          'Session 11: Media Queries, Mobile-First vs Desktop-First Strategies, Breakpoint Standards & Device Testing.',
+          'Session 12: CSS Custom Properties (Variables), Dark Mode Tokens, Color Schemes & Dynamic Theme Switchers.',
+          'Session 13: CSS Keyframe Animations, Transitions, Cubic-Bezier Functions, Micro-Interactions & Acceleration.',
+          'Session 14: BEM Methodology (Block-Element-Modifier), Scalable CSS Architecture, Code Refactoring & Modular Styling.',
+          'Session 15: Capstone Lab: Building & Deploying FitCore Gym Responsive Landing Page & Personal Portfolio.'
+        ],
+        topicsAr: [
+          'الجلسة 11: تصميم الواجهات المتجاوبة Media Queries، استراتيجيات Mobile-First واختبار الأجهزة المختلفة.',
+          'الجلسة 12: متغيرات CSS، أنظمة الألوان للوضع الداكن (Dark Mode Tokens) والتبديل التفاعلي بين السيمات.',
+          'الجلسة 13: المؤثرات الحركية Keyframes، الانتقالات الشفافة Transitions والتفاعلات الدقيقة الملساء.',
+          'الجلسة 14: منهجية BEM لتنظيم الكود، معمارية التنسيقات القابلة للتوسع وإعادة الهيكلة النظيفة.',
+          'الجلسة 15: ورشة مشروع التخرج النهائي للكورس: إنجاز ونشر موقع FitCore Gym ومعرض الأعمال الشخصي.'
+        ]
+      }
+    ],
+    completionStandardEn: 'Complete all practical exercises, submit 4 project outputs, receive instructor review, and pass the course practical evaluation.',
+    completionStandardAr: 'إكمال جميع التمارين العملية، تسليم 4 مشاريع تطبيقية معتمدة، واجتياز التقييم العملي النهائي للكورس.'
+  },
+  {
+    id: 'fe-02-bootstrap-javascript',
+    code: 'FE02',
+    category: 'pro',
+    subCategory: 'frontend',
+    titleEn: 'Bootstrap, JavaScript Fundamentals & Browser Storage',
+    titleAr: 'تنسيقات Bootstrap، أساسيات JavaScript والتخزين المحلي',
+    descEn: 'Build UI components with Bootstrap 5, master JavaScript logic, data structures, ES6+ features, and local browser storage.',
+    descAr: 'بناء الواجهات السريعة بـ Bootstrap 5، إتقان البرمجة بـ JavaScript، هياكل البيانات، ميزات ES6+ والتخزين المحلي بالمتصفح.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2200,
+    prerequisiteEn: 'Completion of FE01 or equivalent practical CSS knowledge.',
+    prerequisiteAr: 'إتمام كورس FE01 أو معرفة عملية مكافئة بأساسيات الويب و CSS.',
+    levelEn: 'Beginner → Intermediate',
+    levelAr: 'مبتدئ ← متوسط',
+    ageBadgeEn: 'Front-End Track 2/6',
+    ageBadgeAr: 'مسار الفرونت إند 2/6',
+    topics: ['Bootstrap 5 Grid & UI Components', 'JavaScript Data Types & ES6+', 'Functions, Scope & Closures', 'Array & Object Manipulation', 'LocalStorage & SessionStorage'],
+    projectsEn: ['Games Arena Interactive Catalog', 'Travel Explorer Web App', 'JS Algorithms Challenge Set', 'Personal Expense Tracker', 'Interactive Quiz Application', 'Kanban Task Manager'],
+    projectsAr: ['منصة Games Arena التفاعلية', 'تطبيق استكشاف السفر Travel Explorer', 'مجموعة تحديات الخوارزميات بـ JS', 'تطبيق تتبع المصروفات الشخصية', 'تطبيق الاختبارات التفاعلي Quiz App', 'لوحة إدارة المهام Kanban Task Manager'],
+    detailedContentEn: [
+      'Bootstrap containers, grid system, responsive breakpoints, utilities and prebuilt UI components',
+      'JavaScript variables, data types, operators, conditional logic, and control flow loops',
+      'Functions, scope, closures, arrays, objects, and higher-order array methods (map, filter, reduce)',
+      'ES6+: destructuring, spread/rest operators, template literals, modules, and modular code architecture',
+      'Regex, Date & Math APIs, JSON format, LocalStorage, SessionStorage, error handling and clean code principles'
+    ],
+    detailedContentAr: [
+      'نظام شبكة Bootstrap وشاشات العرض المتجاوبة والأدوات ومكونات الواجهة الجاهزة',
+      'المتغيرات وأنواع البيانات والعمليات الرياضية والشرطية والحلقات التكرارية في JS',
+      'الدوال والـ Scope والـ Closures والمصفوفات والكائنات والدوال العليا للمصفوفات',
+      'ميزات ES6+ الحديثة: التفكيك Destructuring والمودولات والهيكلة المنظمة للكود',
+      'التعبير النمطي Regex ومعالجة التواريخ والتخزين المحلي LocalStorage والتعامل مع الأخطاء'
+    ],
+    completionStandardEn: 'Submit all 6 practical projects to GitHub, obtain code review, and achieve a passing score on the JavaScript logic assessment.',
+    completionStandardAr: 'رفع المشاريع الـ 6 على GitHub والحصول على مراجعة الكود واجتياز التقييم العملي لمنطق البرمجة.'
+  },
+  {
+    id: 'fe-03-advanced-js-dom-apis',
+    code: 'FE03',
+    category: 'pro',
+    subCategory: 'frontend',
+    titleEn: 'Advanced JavaScript, DOM & Web APIs',
+    titleAr: 'جافاسكريبت المتقدمة، التحكم بالـ DOM وربط الـ APIs',
+    descEn: 'Master DOM manipulation, event handling, asynchronous JavaScript, Promises, async/await, Fetch API, and REST API integration.',
+    descAr: 'احتراف التعامل مع شجرة الـ DOM، الأحداث، البرمجة غير المتزامنة Asynchronous JS، الـ Fetch API، والربط مع خدمات REST APIs.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2200,
+    prerequisiteEn: 'Completion of FE02 or solid core JavaScript foundation.',
+    prerequisiteAr: 'إتمام كورس FE02 أو امتلاك أساسيات قوية في جافاسكريبت.',
+    levelEn: 'Intermediate',
+    levelAr: 'متوسط',
+    ageBadgeEn: 'Front-End Track 3/6',
+    ageBadgeAr: 'مسار الفرونت إند 3/6',
+    topics: ['DOM Manipulation & Event Delegation', 'AJAX & Fetch API', 'Promises & Async/Await', 'Event Loop & Async Architecture', 'Dynamic UI Rendering'],
+    projectsEn: ['Cosmos Space Live Dashboard', 'Real-Time Weather Forecast App', 'Movie Explorer & Search Portal', 'GitHub Developer Profile Explorer', 'E-Commerce Product Catalog App'],
+    projectsAr: ['لوحة معلومات الفضاء Cosmos Space', 'تطبيق الطقس الحي Weather App', 'موقع استكشاف وبحث الأفلام Movie Explorer', 'تطبيق البحث عن مطوري GitHub', 'كتالوج منتجات التجارة الإلكترونية'],
+    detailedContentEn: [
+      'DOM tree manipulation, dynamic element creation, event handling, event delegation and form management',
+      'AJAX, Fetch API, HTTP request methods (GET, POST, PUT, DELETE), and RESTful API integration',
+      'Promises, async/await syntax, asynchronous execution workflows, and error handling',
+      'JavaScript Event Loop, Call Stack, Microtasks, Macrotasks, and memory execution understanding',
+      'Browser Web APIs, dynamic HTML rendering, pagination, search filtering, loading, error, and empty state handling'
+    ],
+    detailedContentAr: [
+      'التحكم بشجرة DOM وإنشاء العناصر ديناميكياً وإدارة الأحداث وتفويض الأحداث Event Delegation',
+      'التعامل مع AJAX و Fetch API وطرق طلبات HTTP والربط مع خدمات REST APIs',
+      'الوعود Promises، البرمجة غير المتزامنة Async/Await، ومعالجة حالات الفشل والشبكة',
+      'فهم الـ Event Loop والـ Call Stack والوظائف غير المتزامنة في الذاكرة',
+      'عرض البيانات الديناميكية، بناء الترقيم Pagination، الفلترة، وحالات التحميل والأخطاء'
+    ],
+    completionStandardEn: 'Successfully integrate live REST APIs into 5 functional web applications with complete error handling and asynchronous loading states.',
+    completionStandardAr: 'بناء 5 تطبيقات تفاعلية مرتبطة بـ REST APIs حقيقية مع معالجة كاملة لحالات التحميل والأخطاء.'
+  },
+  {
+    id: 'fe-04-typescript-sass-tooling',
+    code: 'FE04',
+    category: 'pro',
+    subCategory: 'frontend',
+    titleEn: 'TypeScript, Scalable CSS & Frontend Tooling',
+    titleAr: 'لغة TypeScript، هندسة CSS وأدوات التطوير الحديثة',
+    descEn: 'Build type-safe applications with TypeScript, master Sass preprocessors, Tailwind CSS workflows, BEM architecture, and Git/GitHub tools.',
+    descAr: 'بناء تطبيقات آمنة الأنواع بـ TypeScript، احتراف معالج Sass، إطار Tailwind CSS، معمارية BEM وأدوات Git/GitHub.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2200,
+    prerequisiteEn: 'Completion of FE03 or equivalent JavaScript experience.',
+    prerequisiteAr: 'إتمام كورس FE03 أو خبرة جافاسكريبت متقدمة.',
+    levelEn: 'Intermediate → Advanced',
+    levelAr: 'متوسط ← متقدم',
+    ageBadgeEn: 'Front-End Track 4/6',
+    ageBadgeAr: 'مسار الفرونت إند 4/6',
+    topics: ['TypeScript Types, Interfaces & Generics', 'Sass Mixins & SCSS Architecture', 'Tailwind CSS Utility Workflow', 'BEM Naming Methodology', 'Git Branching & GitHub Collaboration'],
+    projectsEn: ['TypeSafe Kanban Board', 'NutriPlan Health Tracker', 'Mini Design System Component Library', 'SaaS Analytics Dashboard UI', 'Team GitHub Workflow Exercise'],
+    projectsAr: ['لوحة Kanban بـ TypeScript آمن الأنواع', 'تطبيق التغذية الصحية NutriPlan', 'مكتبة مكونات نظام التصميم Mini Design System', 'لوحة تحليلات SaaS بـ Tailwind', 'تطبيق العمل الجماعي على Git & GitHub'],
+    detailedContentEn: [
+      'TypeScript setup, compiler options, primitive types, arrays, tuples, interfaces, and type aliases',
+      'Type narrowing, union/intersection types, classes, Object-Oriented Programming, generics, and utility types',
+      'Sass preprocessor: variables, nesting, mixins, functions, partials, modules, loops, and conditional logic',
+      'BEM naming convention, scalable CSS architecture, Tailwind CSS utility-first workflow, and responsive dashboards',
+      'Git command line, branching strategies, merge conflicts, GitHub Pull Requests, and code review practices'
+    ],
+    detailedContentAr: [
+      'إعداد بيئة TypeScript، المinterfaces، الـ Type Aliases، والأنواع الأولية والمتقدمة',
+      'الأنواع المركبة Union/Intersection، البرمجة كائنية التوجه OOP، والـ Generics والـ Utility Types',
+      'معالج التنسيق Sass: المتغيرات، التداخل، الـ Mixins، الدوال، والمودولات البرمجية',
+      'منهجية BEM لتسمية الكلاسات، بناء أنظمة التنسيق القابلة للتوسع، وتطبيق Tailwind CSS',
+      'أوامر Git الحقيقية، إدارة الفروع Branching، حل النزاعات Merge Conflicts، ورفض وطلب الدمج PRs'
+    ],
+    completionStandardEn: 'Develop 5 projects using strict TypeScript compilation and maintain clean Git commit histories for portfolio review.',
+    completionStandardAr: 'تطوير 5 مشاريع باستخدام TypeScript الصارم مع تقديم سجل Git محترف وجاهز للبورتفوليو.'
+  },
+  {
+    id: 'fe-05-react-state-management',
+    code: 'FE05',
+    category: 'pro',
+    subCategory: 'frontend',
+    titleEn: 'React Development & Modern State Management',
+    titleAr: 'تطوير تطبيقات React وإدارة الحالات الحديثة',
+    descEn: 'Build modern React 18+ Single Page Applications, master components, hooks, React Router, Redux Toolkit, TanStack Query, and shadcn/ui.',
+    descAr: 'بناء تطبيقات React 18+ الحديثة، احتراف المكونات، الـ Hooks، التوجيه React Router، Redux Toolkit، و TanStack Query.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2500,
+    prerequisiteEn: 'Completion of FE04 or solid JavaScript & TypeScript foundation.',
+    prerequisiteAr: 'إتمام كورس FE04 أو معرفة متقدمة بـ JavaScript و TypeScript.',
+    levelEn: 'Advanced / Professional',
+    levelAr: 'متقدم / احترافي',
+    ageBadgeEn: 'Front-End Track 5/6',
+    ageBadgeAr: 'مسار الفرونت إند 5/6',
+    topics: ['React 18+ & Vite Setup', 'Hooks (useState, useEffect, custom hooks)', 'React Router & Protected Routes', 'Redux Toolkit & Context API', 'TanStack Query & shadcn/ui'],
+    projectsEn: ['Adasa Photography Platform', 'Recipe Finder Web App', 'Task Management System', 'Route Posts Social Platform', 'Admin Dashboard Panel', 'Fresh Cart E-Commerce Application'],
+    projectsAr: ['منصة التصوير الفوتوغرافي Adasa', 'تطبيق الوصفات الغذائية Recipe Finder', 'نظام إدارة المهام المتكامل', 'منصة التواصل الاجتماعي Route Posts', 'لوحة تحكم المشرف Admin Dashboard', 'متجر Fresh Cart الإلكتروني الكامل'],
+    detailedContentEn: [
+      'React architecture, Vite environment, JSX syntax, component tree, props, state, and event handling',
+      'Conditional rendering, list rendering with keys, controlled vs uncontrolled form inputs, and custom hooks',
+      'Performance hooks (useMemo, useCallback, useRef), React Router v6, dynamic routes, and protected routes',
+      'Global state management: Context API, Redux Toolkit (slices, thunks, selectors), and RTK Query',
+      'Server state caching with TanStack Query (React Query), Tailwind CSS integration, and shadcn/ui component library'
+    ],
+    detailedContentAr: [
+      'معمارية React 18+، بيئة Vite، بناء المكونات، الـ Props، الـ State، وإدارة الأحداث',
+      'العرض الشرطي، معالجة القوائم والـ Keys، إدارة النماذج والـ Forms، وبناء Custom Hooks خاصة',
+      'تحسين الأداء بحسابات الـ Hooks (useMemo, useCallback)، التوجيه بـ React Router، والحماية',
+      'إدارة الحالة العامة بـ Redux Toolkit والـ Context API واستعلامات البيانات المعقدة',
+      'إدارة بيانات السيرفر بـ TanStack Query، وتنسيق المكونات الفخمة بـ Tailwind و shadcn/ui'
+    ],
+    completionStandardEn: 'Deliver 6 production-grade React web applications with robust state management, API integration, and clean component patterns.',
+    completionStandardAr: 'إنتاج 6 تطبيقات React احترافية متكاملة بصفحات متعددة وإدارة حالة موثوقة.'
+  },
+  {
+    id: 'fe-06-advanced-react-nextjs-capstone',
+    code: 'FE06',
+    category: 'pro',
+    subCategory: 'frontend',
+    titleEn: 'Advanced React, Production Engineering & Capstone',
+    titleAr: 'React المتقدم، Next.js وهندسة مشروع التخرج',
+    descEn: 'Master Next.js App Router, SSR/SSG/ISR, Vitest testing, performance optimization, CI/CD, and build a production-level graduation capstone.',
+    descAr: 'احتراف Next.js App Router، الرندر من السيرفر SSR/SSG، الاختبارات بـ Vitest، تحسين الأداء وإطلاق مشروع التخرج الجاهز لسوق العمل.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2500,
+    prerequisiteEn: 'Completion of FE05 or professional React proficiency.',
+    prerequisiteAr: 'إتمام كورس FE05 أو كفاءة عالية في تطوير تطبيقات React.',
+    levelEn: 'Professional / Career-Ready',
+    levelAr: 'احترافي / تجهيز لسوق العمل',
+    ageBadgeEn: 'Front-End Track 6/6',
+    ageBadgeAr: 'مسار الفرونت إند 6/6',
+    topics: ['Next.js App Router & SSR/SSG', 'Vitest & React Testing Library', 'Core Web Vitals Optimization', 'Production Security & Auth Tokens', 'Vercel Deployment & Graduation Capstone'],
+    projectsEn: ['Real-Time Chat Application', 'Project Management Platform', 'Booking Platform', 'SEO-Optimized Next.js Blog', 'Next.js E-Commerce Store', 'Production-Level Event Booking Capstone'],
+    projectsAr: ['تطبيق المحادثات اللحظية Real-Time Chat', 'منصة إدارة المشاريع والفرق', 'منصة الحجوزات المتكاملة Booking Platform', 'مدونة Next.js مهيأة لـ SEO', 'متجر إلكتروني متكامل بـ Next.js', 'مشروع التخرج النهائي: منصة حجز الفعاليات التفاعلية'],
+    detailedContentEn: [
+      'Feature-based modular architecture, reusable design patterns, error boundaries, and dynamic lazy loading',
+      'Next.js 14+ App Router, Server Components vs Client Components, SSR, SSG, ISR, and metadata SEO optimization',
+      'Frontend unit and integration testing using Vitest, Jest, and React Testing Library (RTL)',
+      'Performance tuning: Core Web Vitals, Lighthouse auditing, image optimization, code-splitting, and bundle size control',
+      'Production deployment on Vercel/Netlify, CI/CD pipelines, ATS CV optimization, GitHub portfolio case study defense'
+    ],
+    detailedContentAr: [
+      'معمارية التطبيقات القابلة للتوسع، أنماط التصميم المتقدمة، معالجة الأخطاء والـ Lazy Loading',
+      'إطار Next.js App Router، مكونات السيرفر والكلينت، تقنيات SSR, SSG, ISR والتهيئة لـ SEO',
+      'اختبار الواجهات البرمجية باستخدام Vitest و React Testing Library وتغطية الأكواد',
+      'تحسين مؤشرات أداء الويب Core Web Vitals، فحص Lighthouse، وضغط الصور وحزم الأكواد',
+      'نشر التطبيقات على Vercel و Netlify، إعداد خطوط CI/CD، وتجهيز السيرة الذاتية والبورتفوليو'
+    ],
+    completionStandardEn: 'Successfully build, test, optimize, and deploy the Production-Level Event Booking Platform capstone and pass the technical evaluation.',
+    completionStandardAr: 'بناء واختبار ونشر مشروع التخرج النهائي (منصة حجز الفعاليات) واجتياز التقييم التقني النهائي.'
+  },
+
+  // =========================================================================
+  // TRACK 2: PROFESSIONAL BACKEND ENGINEERING (6 COURSES)
+  // =========================================================================
+  {
+    id: 'be-01-node-foundations',
+    code: 'BE01',
+    category: 'pro',
+    subCategory: 'backend',
+    titleEn: 'Web, JavaScript & Node.js Foundations',
+    titleAr: 'أساسيات الويب والـ Backend بلغة Node.js',
+    descEn: 'Learn how backend servers work, master Node.js runtime environment, Event Loop, asynchronous workflows, and core modules.',
+    descAr: 'فهم كيفية عمل الخوادم والـ Backend، احتراف بيئة تشغيل Node.js، الـ Event Loop، والوحدات الأساسية للنظام.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 1800,
+    prerequisiteEn: 'No prior knowledge required beyond entry-level programming understanding.',
+    prerequisiteAr: 'لا يتطلب معرفة سابقة سوى الفهم الأساسي للبرمجة.',
+    levelEn: 'Beginner',
+    levelAr: 'مبتدئ',
+    ageBadgeEn: 'Backend Track 1/6',
+    ageBadgeAr: 'مسار الباك إند 1/6',
+    topics: ['Web Architecture (HTTP/DNS/TCP)', 'JavaScript Async & Promises', 'Node.js V8 & Event Loop', 'CommonJS & ES Modules', 'FS, Path, Streams & HTTP Modules'],
+    projectsEn: ['CLI Task Manager with File Persistence', 'HTTP Request Analyzer Tool'],
+    projectsAr: ['تطبيق إدارة المهام التفاعلي CLI بـ Node.js', 'أداة تحليل طلبات الويب HTTP Request Analyzer'],
+    detailedContentEn: [
+      'Web fundamentals, HTTP/HTTPS request-response lifecycle, DNS resolution, and TCP/IP protocol basics',
+      'JavaScript ES6+ features for backend development, Promises, and Async/Await execution control',
+      'Node.js architecture, Google V8 engine, single-threaded Event Loop, and libuv Thread Pool mechanics',
+      'CommonJS (require) vs ES Modules (import), module exports, and clean project directory structures',
+      'Node.js core modules: FS (file system), Path, OS, Events (EventEmitter), Buffers, Streams, and HTTP server'
+    ],
+    detailedContentAr: [
+      'أساسيات الويب، دورة طلبات واستجابات HTTP/HTTPS، ونظام العناوين DNS وتدفق TCP/IP',
+      'ميزات جافاسكريبت المتقدمة للـ Backend، الـ Promises والبرمجة غير المتزامنة Async/Await',
+      'معمارية Node.js، محرك V8، الـ Event Loop أحادي الخيط، وميكانيكية الـ Thread Pool',
+      'الفرق بين CommonJS و ES Modules وهيكلة ملفات المشروع بطريقة نظيفة',
+      'الوحدات الأساسية: التعامل مع الملفات FS، المسارات Path، الأحداث Events، والـ HTTP Server'
+    ],
+    completionStandardEn: 'Build 2 working Node.js applications using core native modules and pass the backend fundamentals technical check.',
+    completionStandardAr: 'بناء تطبيقين عمليين بـ Node.js باستخدام الوحدات الأساسية واجتياز الفحص التقني للأساسيات.'
+  },
+  {
+    id: 'be-02-express-rest-apis',
+    code: 'BE02',
+    category: 'pro',
+    subCategory: 'backend',
+    titleEn: 'Express.js, REST APIs & Backend Engineering',
+    titleAr: 'إطار Express.js وهندسة الـ REST APIs',
+    descEn: 'Build robust REST APIs with Express.js, master middleware, request validation, file uploads, global error handling, and Postman API documentation.',
+    descAr: 'بناء خدمات REST APIs قوية بـ Express.js، احتراف الـ Middleware، رفع الملفات، معالجة الأخطاء الشاملة والـ Documentation بـ Postman.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2300,
+    prerequisiteEn: 'Completion of BE01 or equivalent Node.js foundation.',
+    prerequisiteAr: 'إتمام كورس BE01 أو معرفة قوية بأساسيات Node.js.',
+    levelEn: 'Beginner → Intermediate',
+    levelAr: 'مبتدئ ← متوسط',
+    ageBadgeEn: 'Backend Track 2/6',
+    ageBadgeAr: 'مسار الباك إند 2/6',
+    topics: ['Express Routers & Controllers', 'RESTful API Design Standards', 'Middleware & Custom Error Handlers', 'Joi / Zod Input Validation', 'Swagger / OpenAPI Documentation'],
+    projectsEn: ['Blog Engine REST API', 'Cloud File Management API', 'URL Shortener Service', 'E-Commerce REST API (Part 1)', 'Event & Movie Booking REST API'],
+    projectsAr: ['تطبيق مدونة متكامل Blog REST API', 'نظام إدارة الملفات السحابي File Management API', 'خدمة اختصار الروابط URL Shortener', 'المركّب الأول لـ E-Commerce REST API', 'API حجز الفعاليات والسينما Event Booking'],
+    detailedContentEn: [
+      'Express framework architecture, modular routing, controllers, services layer, and middleware pipeline',
+      'Designing CRUD RESTful APIs, HTTP verbs (GET, POST, PUT, PATCH, DELETE), status codes, and standard responses',
+      'File upload/download handling with Multer, file streams, media metadata, and storage validation',
+      'Pagination, filtering, sorting, Regex search, input data sanitization and validation with Joi/Zod',
+      'Global centralized error handling middleware, API versioning strategies, Swagger/OpenAPI, and Postman testing'
+    ],
+    detailedContentAr: [
+      'معمارية Express.js، التوجيه المنظم Routers، الطبقات Controllers & Services والـ Middleware',
+      'بناء بروتوكولات REST APIs، حالات الاستجابة HTTP Status Codes والهيكلة الموحدة للإجابات',
+      'رفع وتحميل الملفات باستخدام Multer والمعالجة بالشعيرات Streams والتحقق من الأحجام',
+      'تقنيات الترقيم Pagination والفلترة والفرز والبحث والتحقق من صحة المدخلات بـ Joi/Zod',
+      'معالجة الأخطاء المركزية، توثيق الخدمات بـ Swagger/OpenAPI واختبار الكود بـ Postman'
+    ],
+    completionStandardEn: 'Develop and document 5 production-style RESTful APIs with input validation and comprehensive Postman collection suites.',
+    completionStandardAr: 'تطوير وتوثيق 5 خدمات REST APIs احترافية مع اختبارها بالكامل عبر مجموعة Postman.'
+  },
+  {
+    id: 'be-03-sql-mongodb-databases',
+    code: 'BE03',
+    category: 'pro',
+    subCategory: 'backend',
+    titleEn: 'SQL, MongoDB & Database Engineering',
+    titleAr: 'هندسة قواعد البيانات SQL و NoSQL MongoDB',
+    descEn: 'Master relational SQL databases (MySQL/PostgreSQL) and NoSQL document databases (MongoDB & Mongoose), schema design, ERDs, and ORM patterns.',
+    descAr: 'احتراف قواعد البيانات العلاقاتية SQL والـ NoSQL MongoDB، تصميم المخططات ERD، العلاقات، التجميع والـ ORMs.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2400,
+    prerequisiteEn: 'Completion of BE02 or solid Express.js API experience.',
+    prerequisiteAr: 'إتمام كورس BE02 أو خبرة جيدة في بناء الـ APIs بـ Express.',
+    levelEn: 'Intermediate',
+    levelAr: 'متوسط',
+    ageBadgeEn: 'Backend Track 3/6',
+    ageBadgeAr: 'مسار الباك إند 3/6',
+    topics: ['SQL (MySQL & PostgreSQL)', 'ERD Diagrams & 3NF Normalization', 'Sequelize ORM & Relations', 'MongoDB & Mongoose Schema Design', 'Mongoose Aggregation Pipelines'],
+    projectsEn: ['Inventory Management Database API', 'Digital Library Management System', 'Complex SQL E-Commerce Database Schema'],
+    projectsAr: ['نظام إدارة المخزون وقواعد البيانات Inventory API', 'نظام المكتبة الرقمية Library System', 'مخطط قاعدة بيانات E-Commerce المعقدة بـ SQL'],
+    detailedContentEn: [
+      'Relational database concepts, DDL/DML SQL queries, MySQL/PostgreSQL setup, and indexing strategies',
+      'Entity Relationship Diagrams (ERDs), database normalization (1NF to 3NF), JOINs, transactions, and ACID properties',
+      'Sequelize ORM integration: models, associations (One-to-One, One-to-Many, Many-to-Many), and migrations',
+      'NoSQL database architecture, MongoDB Atlas, document design, Mongoose schemas, hooks, and indexes',
+      'Mongoose aggregation pipelines (match, group, project, lookup), and decision criteria for SQL vs NoSQL'
+    ],
+    detailedContentAr: [
+      'مفاهيم قواعد البيانات العلاقاتية، استعلامات SQL، الفهارس Indexes، وترتيب الجداول',
+      'رسم مخططات الكيانات ERD، معايير التنسيق Normalization، الاستعلامات المركبة JOINs ومعاملات ACID',
+      'استخدام Sequelize ORM: النماذج Models، العلاقات وأنظمة الهجرة Migrations',
+      'معمارية NoSQL بـ MongoDB Atlas، تصميم المستندات، مخططات Mongoose، الخطافات Hooks والفهارس',
+      'استعلامات التجميع المتقدمة Aggregations في MongoDB والمعايير الدقيقة للاختيار بين SQL و NoSQL'
+    ],
+    completionStandardEn: 'Successfully design and deploy both SQL relational database schemas and MongoDB aggregation pipelines integrated into Express APIs.',
+    completionStandardAr: 'تصميم وبناء قواعد بيانات SQL و MongoDB حقيقية وربطها مع تطبيقات Express بكفاءة عاليّة.'
+  },
+  {
+    id: 'be-04-auth-security-advanced',
+    code: 'BE04',
+    category: 'pro',
+    subCategory: 'backend',
+    titleEn: 'Authentication, Security & Advanced Backend Features',
+    titleAr: 'المصادقة، أمان الـ APIs والخدمات المتقدمة',
+    descEn: 'Master JWT authentication, RBAC authorization, OWASP security protections, payment gateways, cloud file storage, CRON jobs, and PDF/QR generation.',
+    descAr: 'احتراف المصادقة بـ JWT، حماية OWASP Top 10، ربط بوابات الدفع، التخزين السحابي S3، المهام المجدولة CRON وتوليد ملفات PDF و QR.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2300,
+    prerequisiteEn: 'Completion of BE03 or database & Express proficiency.',
+    prerequisiteAr: 'إتمام كورس BE03 أو كفاءة في التعامل مع Express وقواعد البيانات.',
+    levelEn: 'Intermediate → Advanced',
+    levelAr: 'متوسط ← متقدم',
+    ageBadgeEn: 'Backend Track 4/6',
+    ageBadgeAr: 'مسار الباك إند 4/6',
+    topics: ['JWT Authentication & Refresh Tokens', 'RBAC Authorization & Security', 'OWASP Top 10 Protections (Helmet, Rate Limit)', 'Paymob / Stripe Payment Webhooks', 'Cloudinary / AWS S3 & Scheduled Jobs'],
+    projectsEn: ['Secure Banking REST API', 'Vulnerable API Security Defense Lab', 'Email Verification & OTP Auth System', 'Cloud File Storage API', 'Social Login OAuth Service', 'Payment Gateway Integration API', 'Scheduled CRON Jobs System', 'PDF & QR Ticket Generator System'],
+    projectsAr: ['API المصرفي الآمن Secure Banking', 'مختبر الحماية والدفاع ضد ثغرات OWASP', 'نظام تفعيل البريد الإلكتروني والـ OTP', 'API التخزين السحابي للملفات Cloud Storage', 'تسجيل الدخول بـ OAuth والحسابات الاجتماعية', 'نظام الدفع الإلكتروني والـ Webhooks', 'نظام المهام المجدولة تلقائياً CRON Jobs', 'نظام توليد التذاكر وملفات PDF وأكواد QR'],
+    detailedContentEn: [
+      'Authentication architecture: bcrypt password hashing, JWT access tokens, HTTP-Only refresh tokens, and logout flow',
+      'Role-Based Access Control (RBAC), permission middleware, security auditing, and password reset workflows',
+      'OWASP Top 10 security mitigations: SQL/NoSQL injection, XSS, CSRF, rate limiting, Helmet headers, and CORS control',
+      'Third-party integrations: Nodemailer email service, AWS S3/Cloudinary media storage, and Paymob/Stripe webhooks',
+      'Automated CRON scheduled tasks, Node Crypto module, digital signatures, dynamic PDF generation, and QR code ticketing'
+    ],
+    detailedContentAr: [
+      'أنظمة المصادقة: تشفير كلمة المرور بـ bcrypt، رمز JWT، الـ Refresh Tokens، وإدارة الجلسات',
+      'إدارة الصلاحيات RBAC، مراجعة الأمان والأنشطة، واستعادة كلمة المرور والتأكيد بـ OTP',
+      'الحماية من مخاطر OWASP: ثغرات الحقن Injection، الـ XSS، تحديد معدل الطلبات Rate Limiting و CORS',
+      'الدمج مع الخدمات الخارجية: Nodemailer للبريد الإلكتروني، AWS S3 للملفات، وبوابات الدفع Paymob',
+      'إدارة المهام المجدولة تلقائياً CRON Jobs، التشفير بـ Crypto، وتوليد تذاكر PDF وأكواد QR'
+    ],
+    completionStandardEn: 'Build 8 security-hardened backend features including payment processing, email verification, and OWASP vulnerability defense tests.',
+    completionStandardAr: 'تطوير 8 ميزات خلفية مؤمنة تشمل معالجة الدفع الإلكتروني وتأكيد البريد والحماية من الثغرات.'
+  },
+  {
+    id: 'be-05-realtime-redis-nestjs',
+    code: 'BE05',
+    category: 'pro',
+    subCategory: 'backend',
+    titleEn: 'Real-Time Systems, Redis & NestJS',
+    titleAr: 'الأنظمة اللحظية Real-Time والتخزين المؤقت Redis و NestJS',
+    descEn: 'Build real-time WebSockets applications with Socket.IO, optimize queries with Redis caching, and build enterprise backends with TypeScript & NestJS.',
+    descAr: 'بناء تطبيقات لحظية بـ WebSockets & Socket.IO، تسريع الأداء بـ Redis Caching، وبناء خوادم رئيسية بـ TypeScript و NestJS.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2300,
+    prerequisiteEn: 'Completion of BE04 or strong Express & database experience.',
+    prerequisiteAr: 'إتمام كورس BE04 أو خبرة متقدمة في Express وقواعد البيانات.',
+    levelEn: 'Advanced',
+    levelAr: 'متقدم',
+    ageBadgeEn: 'Backend Track 5/6',
+    ageBadgeAr: 'مسار الباك إند 5/6',
+    topics: ['WebSockets & Socket.IO Architecture', 'Redis Caching & TTL Strategies', 'TypeScript for Backend Engineering', 'NestJS Modules & Dependency Injection', 'NestJS Guards, Pipes & Interceptors'],
+    projectsEn: ['Real-Time Multi-Room Chat Application', 'Instant Notification Service', 'Redis Caching Optimization Challenge', 'TypeScript RESTful Backend API', 'Enterprise NestJS CRM System', 'NestJS Multi-User Blog API'],
+    projectsAr: ['تطبيق المحادثات اللحظية الغرف المتعددة', 'خدمة التنبيهات الفورية Real-Time Notifications', 'تحدي تحسين السرعة باستخدام Redis Cache', 'تطبيق REST API مكتوب بـ TypeScript', 'نظام إدارة العملاء Enterprise CRM بـ NestJS', 'تطبيق مدونة متكاملة بـ NestJS'],
+    detailedContentEn: [
+      'WebSockets protocol, Socket.IO architecture, rooms, namespaces, real-time events, and authenticated socket connections',
+      'Redis cache store: key-value operations, TTL cache invalidation, performance measurement, and database query caching',
+      'TypeScript for backend development: DTOs, interfaces, generics, utility types, and strict type checking',
+      'NestJS framework: modular architecture, Controllers, Providers, Dependency Injection, and TypeORM / Prisma ORM',
+      'NestJS pipeline features: Custom Pipes, Auth Guards, Interceptors, and Exception Filters for enterprise scalability'
+    ],
+    detailedContentAr: [
+      'بروتوكول WebSockets، معمارية Socket.IO، الغرف القنوات، الأحداث الفورية والاتصال المشفر',
+      'تخزين Redis المؤقت: مفاتيح البيانات، انتهاء الصلاحية TTL، وتحسين سرعة استعلامات قاعدة البيانات',
+      'لغة TypeScript للخوادم: كائنات نقل البيانات DTOs، المربعات البرمجية، والأنظمة الصارمة',
+      'إطار NestJS: معمارية المودولات Modular، التحكم Controllers، المزودات Providers وحقن التبعيات DI',
+      'أدوات NestJS: الفلاتر Pipes، الحراس Guards لحماية المسارات، والمعالجة المركزية Exception Filters'
+    ],
+    completionStandardEn: 'Develop a high-performance NestJS application with Redis caching layer and functional real-time WebSockets integration.',
+    completionStandardAr: 'تطوير تطبيق خلفي بـ NestJS عالي الأداء مزود بطبقة تخزين مؤقت بـ Redis واتصال لحظي بـ Socket.IO.'
+  },
+  {
+    id: 'be-06-architecture-microservices-docker',
+    code: 'BE06',
+    category: 'pro',
+    subCategory: 'backend',
+    titleEn: 'Architecture, Microservices, Docker, Testing & Career',
+    titleAr: 'معمارية البرمجيات، الخدمات المصغرة Microservices والـ Docker',
+    descEn: 'Master Clean Architecture, Microservices with RabbitMQ event-driven messaging, Docker containerization, Jest unit testing, and CI/CD pipelines.',
+    descAr: 'احتراف النمط المعماري Clean Architecture، الخدمات المصغرة بـ RabbitMQ، الحاويات بـ Docker، الاختبارات بـ Jest وإطلاق خطوط CI/CD.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2500,
+    prerequisiteEn: 'Completion of BE05 or advanced backend development proficiency.',
+    prerequisiteAr: 'إتمام كورس BE05 أو خبرة هندسية متقدمة في الـ Backend.',
+    levelEn: 'Professional / Career-Ready',
+    levelAr: 'احترافي / تجهيز لسوق العمل',
+    ageBadgeEn: 'Backend Track 6/6',
+    ageBadgeAr: 'مسار الباك إند 6/6',
+    topics: ['Clean Architecture & DDD Principles', 'Microservices & RabbitMQ Message Broker', 'Docker Containers & Docker Compose', 'Jest Unit & Integration Testing', 'GitHub Actions CI/CD Pipeline & AWS'],
+    projectsEn: ['Legacy Codebase Refactoring Challenge', 'Clean Architecture Domain-Driven API', 'Event-Driven Microservices E-Commerce System', 'Containerized Multi-Service Backend', 'GitHub Actions CI/CD Automated Pipeline', 'Backend Testing Suite Challenge', 'Professional Backend Engineering Portfolio'],
+    projectsAr: ['تحدي إعادة هيكلة الأكواد القديمة Refactoring', 'تطبيق Clean Architecture مبني على مجال العمل', 'نظام التجارة الإلكترونية بالخدمات المصغرة Microservices', 'تطبيق متعدد الخدمات مقسم بالحاويات Docker Compose', 'خط الإنتاج التلقائي GitHub Actions CI/CD', 'حزمة الاختبارات الشاملة بـ Jest & Supertest', 'معرض أعمال المهندس الخلفي المحترف Portfolio'],
+    detailedContentEn: [
+      'Software design patterns: Layered Architecture, MVC, Repository Pattern, and Clean Architecture (Domain, Use Cases, Infrastructure)',
+      'Microservices architecture: service boundaries, Database-per-Service pattern, API Gateway, and inter-service communication',
+      'Event-Driven Systems with RabbitMQ: Producer, Consumer, Exchanges, Queues, Routing Keys, and message acknowledgments',
+      'Docker containerization: Dockerfile creation, multi-stage builds, volumes, networks, and Docker Compose orchestration',
+      'Automated testing with Jest & Supertest, AWS EC2/S3 deployment, GitHub Actions CI/CD, and technical interview preparation'
+    ],
+    detailedContentAr: [
+      'أنماط التصميم البرمجي: المعمارية الطبقية، نمط Repository، والمعمارية النظيفة Clean Architecture',
+      'معمارية الخدمات المصغرة Microservices: حدود الخدمات، قاعدة بيانات لكل خدمة، والـ API Gateway',
+      'الأنظمة القائمة على الأحداث بـ RabbitMQ: المنتجين والمستهلكين والرسائل البرمجية الفورية',
+      'تقنية Docker: كتابة ملفات Dockerfile، الحاويات الحية، الشبكات وأداة Docker Compose',
+      'الاختبارات التلقائية بـ Jest & Supertest، إطلاق السيرفرات على AWS، وسيرة ذاتية معتمدة'
+    ],
+    completionStandardEn: 'Successfully build, containerize, test, and deploy an Event-Driven Microservices backend application with automated CI/CD.',
+    completionStandardAr: 'بناء واختبار ونشر نظام خدمات مصغرة Microservices كامل بـ Docker مع تفعيل خطوط CI/CD التلقائية.'
+  },
+
+  // =========================================================================
+  // TRACK 3: PROFESSIONAL MOBILE APPLICATION DEVELOPMENT (6 COURSES)
+  // =========================================================================
+  {
+    id: 'mo-01-dart-fundamentals',
+    code: 'MO01',
+    category: 'pro',
+    subCategory: 'mobile',
+    titleEn: 'Dart & Programming Fundamentals',
+    titleAr: 'لغة Dart وأساسيات البرمجة للموبايل',
+    descEn: 'Master the Dart programming language, object-oriented concepts, null safety, asynchronous programming, Futures, and Streams.',
+    descAr: 'إتقان لغة البرمجة Dart، المفاهيم كائنية التوجه OOP، الأمان ضد القيم الخالية Null Safety، والبرمجة غير المتزامنة Futures & Streams.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 1800,
+    prerequisiteEn: 'No prior programming experience required beyond basic tech literacy.',
+    prerequisiteAr: 'لا تتطلب خبرة برمجة سابقة سوى المهارات الأساسية في الحاسوب.',
+    levelEn: 'Beginner',
+    levelAr: 'مبتدئ',
+    ageBadgeEn: 'Mobile Track 1/6',
+    ageBadgeAr: 'مسار الموبايل 1/6',
+    topics: ['Dart Syntax & Core Data Types', 'Control Flow & Functions', 'Object-Oriented Programming (OOP)', 'Null Safety & Exception Handling', 'Futures, Streams & Async Dart'],
+    projectsEn: ['Console-Based Banking & Account System'],
+    projectsAr: ['نظام إدارة الحسابات والعمليات المصرفية التفاعلي بـ Dart'],
+    detailedContentEn: [
+      'Dart SDK setup, IDE configuration (VS Code / Android Studio), syntax, primitive data types, and operators',
+      'Control structures: conditional statements (if-else, switch), loops (for, while, do-while), and functional parameters',
+      'Object-Oriented Programming: classes, objects, constructors, encapsulation, inheritance, polymorphism, and abstract classes',
+      'Dart collections (Lists, Sets, Maps), Generics, sound Null Safety, and error handling mechanisms',
+      'Asynchronous Dart: Futures, async/await, Streams, StreamControllers, and reactive data programming concepts'
+    ],
+    detailedContentAr: [
+      'إعداد بيئة تطوير Dart، المتغيرات، أنواع البيانات الأساسية، والعمليات الحسابية والشرطية',
+      'الجمل الشرطية وحلقات التكرار والدوال البرمجية واستدعاء البيانات والمعاملات',
+      'البرمجة كائنية التوجه OOP: الكلاسات، الأجسام، التوريد، التجريد، والتعددية التشكيلية',
+      'مجموعات البيانات Lists & Maps والـ Generics والأمان الصارم ضد القيم الخالية Null Safety',
+      'البرمجة غير المتزامنة بـ Dart: الـ Futures، الـ Streams، والتعامل مع تدفق البيانات التفاعلي'
+    ],
+    completionStandardEn: 'Build a comprehensive console-based Dart application demonstrating OOP principles, generics, and clean async logic.',
+    completionStandardAr: 'بناء تطبيق متكامل بلغة Dart يعتمد على مفاهيم البرمجة كائنية التوجه والـ Async.'
+  },
+  {
+    id: 'mo-02-flutter-ui-navigation',
+    code: 'MO02',
+    category: 'pro',
+    subCategory: 'mobile',
+    titleEn: 'Flutter UI, Navigation & Responsive Mobile Design',
+    titleAr: 'تصميم واجهات الموبايل والتجاوب بـ Flutter',
+    descEn: 'Build mobile interfaces for iOS and Android using Flutter widgets, forms, responsive layouts, custom themes, and Figma conversions.',
+    descAr: 'بناء واجهات تطبيقات الهواتف لنظامي iOS و Android باستخدام عناصر Flutter، النماذج، والتنسيق المتجاوب وتحويل تصاميم Figma.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2200,
+    prerequisiteEn: 'Completion of MO01 or solid Dart programming foundation.',
+    prerequisiteAr: 'إتمام كورس MO01 أو امتلاك أساسيات قوية بلغة Dart.',
+    levelEn: 'Beginner → Intermediate',
+    levelAr: 'مبتدئ ← متوسط',
+    ageBadgeEn: 'Mobile Track 2/6',
+    ageBadgeAr: 'مسار الموبايل 2/6',
+    topics: ['Flutter Widget Tree & Layouts', 'Stateless vs Stateful Widgets', 'Forms, Inputs & Validation', 'Navigation & Named Routes', 'Responsive Mobile Layouts & Figma UI'],
+    projectsEn: ['Scientific Mobile Calculator App', 'Interactive XO Tic-Tac-Toe Game', 'Figma Design → Flutter Mobile App', 'Islamic Multi-Feature Mobile Application'],
+    projectsAr: ['تطبيق الحاسبة العلمية المتطورة', 'لعبة Tic-Tac-Toe التفاعلية XO Game', 'تحويل تصميم Figma إلى تطبيق Flutter حقيقي', 'تطبيق إسلامي متكامل الخصائص والواجهات'],
+    detailedContentEn: [
+      'Flutter framework architecture, Widget Tree, rendering engine, and project structure overview',
+      'Stateless vs Stateful Widgets, build lifecycle, and layout widgets (Row, Column, Stack, Expanded, Flexible)',
+      'Scrollable lists: ListView.builder, GridView.builder, SingleChildScrollView, CustomScrollView, and Slivers',
+      'User input: Form widgets, TextFormField, input validation, focus nodes, and keyboard handling',
+      'App navigation: Navigator 1.0/2.0, named routes, screen transitions, themes, assets, custom fonts, and Figma-to-Flutter translation'
+    ],
+    detailedContentAr: [
+      'معمارية إطار Flutter، شجرة المكونات Widget Tree ومكونات المشروع الهيكلية',
+      'المكونات الثابتة والحركية Stateless & Stateful ودورة حياة الودجت وأنظمة الرصف Column/Row/Stack',
+      'القوائم القابلة للتمرير ListView.builder و GridView والتعامل مع الشاشات الطويلة',
+      'استقبال مدخلات المستخدم: النماذج Forms، التحقق من الصحة Validation، والتحكم بلوحة المفاتيح',
+      'التنقل بين الشاشات Routes، التأثيرات الحركية، تحويل تصاميم Figma إلى كود Flutter مطابق'
+    ],
+    completionStandardEn: 'Convert complex Figma mobile designs into 4 pixel-perfect, responsive Flutter applications supporting both Android & iOS layouts.',
+    completionStandardAr: 'تحويل تصاميم Figma المعقدة إلى 4 تطبيقات Flutter تفاعلية ومطابقة تماماً على الهواتف.'
+  },
+  {
+    id: 'mo-03-state-management-rest-api',
+    code: 'MO03',
+    category: 'pro',
+    subCategory: 'mobile',
+    titleEn: 'State Management, Architecture & REST APIs',
+    titleAr: 'إدارة الحالات المعمارية والربط بالـ REST APIs',
+    descEn: 'Master professional Flutter state management (BLoC / Cubit / Provider), Clean Architecture, MVVM, and REST API integration with Dio.',
+    descAr: 'احتراف إدارة الحالات في Flutter بـ (BLoC / Cubit)، المعمارية النظيفة Clean Architecture، وربط الـ APIs بحزمة Dio.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2400,
+    prerequisiteEn: 'Completion of MO02 or intermediate Flutter UI proficiency.',
+    prerequisiteAr: 'إتمام كورس MO02 أو كفاءة متوسطة في بناء الواجهات بـ Flutter.',
+    levelEn: 'Intermediate',
+    levelAr: 'متوسط',
+    ageBadgeEn: 'Mobile Track 3/6',
+    ageBadgeAr: 'مسار الموبايل 3/6',
+    topics: ['setState & Provider State Management', 'BLoC & Cubit Architecture Pattern', 'Clean Architecture & Repository Pattern', 'Dio HTTP Client & REST APIs', 'JSON Serialization & JWT Storage'],
+    projectsEn: ['Global News Mobile Application', 'Production-Grade Multi-Category News App'],
+    projectsAr: ['تطبيق الأخبار العالمي News App', 'تطبيق أخبار احترافي متعدد التصنيفات ومربوط بـ REST API'],
+    detailedContentEn: [
+      'State management evolution: setState limitations, ChangeNotifier, Provider, and Dependency Injection with GetIt',
+      'BLoC / Cubit pattern: Events, States, BlocBuilder, BlocListener, BlocConsumer, and state decision architecture',
+      'Architectural patterns: MVVM, Clean Architecture (Data, Domain, Presentation layers), and Repository Pattern',
+      'Client-server networking: Dio HTTP package, interceptors, request headers, query parameters, and REST API calls',
+      'Data handling: JSON serialization with retrofit/json_serializable, JWT token handling, error handling, and pagination'
+    ],
+    detailedContentAr: [
+      'تطور إدارة الحالات: الـ Provider وتمرير الخدمات بـ GetIt وتجاوز حدود setState',
+      'نمط BLoC & Cubit: الأحداث Events، الحالات States، والتحكم بعرض الواجهات BlocConsumer',
+      'النمط المعماري النظيف Clean Architecture: طبقات البيانات، المجال، والواجهات والـ Repository',
+      'الربط بالخوادم: حزمة Dio، القواطع Interceptors، وترويسات الطلبات وطرق REST APIs',
+      'معالجة البيانات: تحويل مصفوفات JSON، حفظ رموز JWT، معالجة انقطاع الشبكة والترقيم'
+    ],
+    completionStandardEn: 'Build 2 production-ready mobile apps using BLoC Clean Architecture and full live REST API integration.',
+    completionStandardAr: 'تطوير تطبيقين متكاملين بنمط BLoC المعماري النظيف والربط التام مع خدمات REST APIs.'
+  },
+  {
+    id: 'mo-04-firebase-storage-maps-payments',
+    code: 'MO04',
+    category: 'pro',
+    subCategory: 'mobile',
+    titleEn: 'Firebase, Local Storage, Maps, Payments & Notifications',
+    titleAr: 'الخدمات السحابية Firebase، الدفع والخرائط',
+    descEn: 'Integrate Firebase suite, local database caching (Hive/SQLite), Google Maps geolocation, push notifications (FCM), and payment gateways.',
+    descAr: 'ربط خدمات Firebase السحابية، التخزين المحلي بـ Hive/SQLite، خدمات الخرائط والموقع، التنبيهات وبوابات الدفع الإلكتروني.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2300,
+    prerequisiteEn: 'Completion of MO03 or Flutter BLoC & API experience.',
+    prerequisiteAr: 'إتمام كورس MO03 أو خبرة في التعامل مع BLoC والـ APIs.',
+    levelEn: 'Intermediate → Advanced',
+    levelAr: 'متوسط ← متقدم',
+    ageBadgeEn: 'Mobile Track 4/6',
+    ageBadgeAr: 'مسار الموبايل 4/6',
+    topics: ['Firebase Auth & Firestore Realtime DB', 'Hive & SQLite Local Caching', 'Google Maps API & Geolocation', 'Firebase Cloud Messaging (FCM)', 'Paymob & Stripe Mobile Integration'],
+    projectsEn: ['Event Discovery & Ticket Booking App', 'Offline Caching Task Application', 'Location-Based Mobile Service App', 'Events & Social Gathering App'],
+    projectsAr: ['تطبيق استكشاف وحجز الفعاليات Event Booking', 'تطبيق إدارة المهام مع التخزين الداخلي Offline-First', 'تطبيق خدمات التوصيل والموقع الجغرافي Maps Service', 'تطبيق الأنشطة والفعاليات الاجتماعية'],
+    detailedContentEn: [
+      'Firebase suite: Firebase Authentication (Email/Password, Social Google Auth), Cloud Firestore, and Firebase Storage',
+      'Security Rules, FCM Push Notifications, Firebase Analytics, Crashlytics, and real-time streams',
+      'Local database storage: SharedPreferences, Hive NoSQL database, SQLite, and offline-first architecture',
+      'Location services: Google Maps SDK integration, GPS location tracking, markers, polylines, and geocoding',
+      'Mobile payments: Paymob / Stripe SDK integration, webviews, payment verification, and deep linking'
+    ],
+    detailedContentAr: [
+      'خدمات Firebase: المصادقة وحسابات جوجل، قاعدة البيانات التفاعلية Firestore والملفات Storage',
+      'إرشادات الأمان، التنبيهات الفورية FCM، تتبع الأخطاء Crashlytics والبيانات اللحظية',
+      'التخزين الداخلي والهاتف مغلق: قاعدة بيانات Hive وقواعد SQLite وبناء تطبيق يعمل بدون إنترنت',
+      'خدمات موقع المستخدم: تطبيق خرائط جوجل Maps SDK، تتبع الـ GPS، والتعلامات الجغرافية',
+      'الدفع الإلكتروني بالموبايل: ربط بوابة Paymob و Stripe وتحقيق المعاملات المالية الآمنة'
+    ],
+    completionStandardEn: 'Deliver 4 feature-rich mobile applications supporting real-time Firebase DB, offline caching, maps, and electronic payment.',
+    completionStandardAr: 'إنجاز 4 تطبيقات موبايل كاملة تدعم قواعد البيانات اللحظية والتخزين المحلي والدفع الإلكتروني.'
+  },
+  {
+    id: 'mo-05-ai-testing-production',
+    code: 'MO05',
+    category: 'pro',
+    subCategory: 'mobile',
+    titleEn: 'AI-Powered Mobile Development, Testing & Production',
+    titleAr: 'تطبيقات الموبايل المدعومة بالذكاء الاصطناعي والنشر',
+    descEn: 'Leverage AI development tools for Flutter, master automated testing (unit, widget, integration), performance tuning, and App Store publishing.',
+    descAr: 'استخدام أدوات الذكاء الاصطناعي لتطوير Flutter، احتراف الاختبارات التلقائية، تحسين الأداء وإطلاق التطبيقات على المتاجر.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2500,
+    prerequisiteEn: 'Completion of MO04 or advanced Flutter experience.',
+    prerequisiteAr: 'إتمام كورس MO04 أو خبرة عملية متقدمة في Flutter.',
+    levelEn: 'Advanced / Professional',
+    levelAr: 'متقدم / احترافي',
+    ageBadgeEn: 'Mobile Track 5/6',
+    ageBadgeAr: 'مسار الموبايل 5/6',
+    topics: ['AI Workflows for Flutter Developers', 'Widget Rebuild & Performance Tuning', 'Unit, Widget & Integration Testing', 'App Store & Google Play Release', 'Mobile Security & App Signing'],
+    projectsEn: ['AI-Powered Smart Flutter Feature', 'Production-Ready E-Commerce App', 'Store Publishing & CI/CD Task'],
+    projectsAr: ['ميزة ذكية مدمجة بالذكاء الاصطناعي في Flutter', 'تطبيق المتجر الإلكتروني الجاهز للإنتاج E-Commerce', 'مهمة التجهيز والنشر السحابي على المتاجر'],
+    detailedContentEn: [
+      'AI-assisted development: ChatGPT / Claude / Gemini workflows for Flutter refactoring, debugging, and code generation',
+      'Flutter performance optimization: profiling tools, widget rebuild reduction, memory leak detection, and image caching',
+      'Automated testing pipeline: Unit testing (mocktail/mockito), Widget testing, and Integration testing',
+      'Mobile app security: obfuscation, secure storage, certificate pinning, and environment flavor configurations',
+      'Release engineering: app signing (Keystore/Certificates), Google Play Console, Apple App Store Connect, and Codemagic CI/CD'
+    ],
+    detailedContentAr: [
+      'الذكاء الاصطناعي للمطورين: استخدام ChatGPT & Claude في تسريع التطوير وحل المشاكل التقنية',
+      'تحسين الأداء: تقليل إعادة البناء المفرطة الـ Rebuilds، معالجة التسريب بالذاكرة، وضغط الصورة',
+      'حزمة الاختبارات التلقائية: اختبار المنطق Unit Tests، الواجهات Widget Tests والاختبار الشامل Integration',
+      'تأمين التطبيقات: التشفير، توقيع التطبيقات App Signing، وحماية المفاتيح الحساسة',
+      'النشر على المتاجر: رفع التطبيق على Google Play Console و Apple App Store وربط خطوط CI/CD'
+    ],
+    completionStandardEn: 'Successfully pass testing suites and prepare a release-ready production app build for both Google Play & Apple App Store.',
+    completionStandardAr: 'تجهيز حزمة تطبيق حقيقي مجرب ومعد للنشر المباشر على متجري Google Play و App Store.'
+  },
+  {
+    id: 'mo-06-mobile-graduation-capstone',
+    code: 'MO06',
+    category: 'pro',
+    subCategory: 'mobile',
+    titleEn: 'Mobile Graduation Project',
+    titleAr: 'مشروع التخرج لتطبيقات الموبايل',
+    descEn: 'Design, engineer, test, and deploy a comprehensive dual-store mobile application capstone with professional mentor defense.',
+    descAr: 'تصميم وتنفيذ واختبار ونشر مشروع التخرج المكتمل على المتاجر بـ Flutter وتصدير ملف الأعمال الاحترافي.',
+    durationEn: '36h / 4 Weeks / 12 Sessions',
+    durationAr: '36 ساعة / 4 أسابيع / 12 جلسة',
+    sessionsCount: 12,
+    weeksCount: 4,
+    contactHours: 36,
+    priceEgp: 2200,
+    prerequisiteEn: 'Completion of MO05 or full Mobile Track sequence.',
+    prerequisiteAr: 'إتمام كورس MO05 أو إنهاء كافة المسارات التدريبية السابقة.',
+    levelEn: 'Professional / Career-Ready',
+    levelAr: 'احترافي / تجهيز لسوق العمل',
+    ageBadgeEn: 'Mobile Track 6/6',
+    ageBadgeAr: 'مسار الموبايل 6/6',
+    topics: ['Full App Architecture & Repository Design', 'Complete Authentication & Payment Flow', 'BLoC & Local Database Synchronization', 'Store Build & CI/CD Pipeline', 'Portfolio Case Study & Technical Defense'],
+    projectsEn: ['Production-Level Event Booking / E-Commerce / Food Delivery Graduation App'],
+    projectsAr: ['مشروع التخرج المتكامل: تطبيق حجز التذاكر والفعاليات / متجر إلكتروني / تطبيق طلب الطعام وشبكات التوصيل'],
+    detailedContentEn: [
+      'Product scoping, requirement specification, app wireframing, and Git repository setup',
+      'End-to-end architecture implementation: BLoC state management, Dio REST client, and Firebase/SQL backend',
+      'Local storage caching, real-time push notifications, payment integration, and location services',
+      'Automated testing coverage, error boundaries, security auditing, and production store builds',
+      'Portfolio defense presentation, GitHub code demonstration, case study documentation, and career mentorship'
+    ],
+    detailedContentAr: [
+      'تحديد متطلبات المنتج، رسم معمارية الواجهات، وإعداد المستودع الرقمي بـ Git',
+      'بناء التطبيق المتكامل: استخدام BLoC، الربط بـ REST API السحابي، وخدمات Firebase',
+      'التخزين الداخلي المحفوظ، الإشعارات الفورية، تفعيل الدفع الإلكتروني وخرائط التوصيل',
+      'اختبار الجودة، التفتيش على الثغرات والأمان، وإنتاج النسخة النهائية المكتملة',
+      'تقديم عرض مشروع التخرج ودفاع الكود أمام لجنة التقييم وتجهيز البورتفوليو والسيرة الذاتية'
+    ],
+    completionStandardEn: 'Successfully defend the graduation project before the technical evaluation committee and deploy the application build.',
+    completionStandardAr: 'تقديم ودفاع مشروع التخرج بنجاح أمام لجنة التقييم التقنية واجتياز المعايير الحرفية.'
+  },
+
+  // =========================================================================
+  // TRACK 4: UI/UX & PRODUCT DESIGN (4 COURSES)
+  // =========================================================================
+  {
+    id: 'ux-01-foundations-figma',
+    code: 'UX01',
+    category: 'pro',
+    subCategory: 'uiux',
+    titleEn: 'UX Foundations, Design Psychology & Figma',
+    titleAr: 'أساسيات UX، علم نفس التصميم واحتراف Figma',
+    descEn: 'Master UI vs UX principles, design thinking, UX psychology laws, and professional Figma tools (Auto Layout, Components, Variants).',
+    descAr: 'إتقان مفاهيم UI/UX، التفكير التصميمي، قوانين علم نفس التصميم، واحتراف برنامج Figma (Auto Layout, Components, Variants).',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2000,
+    prerequisiteEn: 'No prior UI/UX experience required beyond basic computer operation.',
+    prerequisiteAr: 'لا تتطلب خبرة سابقة في التصميم سوى استخدام الحاسوب.',
+    levelEn: 'Beginner',
+    levelAr: 'مبتدئ',
+    ageBadgeEn: 'UI/UX Track 1/4',
+    ageBadgeAr: 'مسار UI/UX 1/4',
+    topics: ['UI vs UX vs Product Design', 'Design Thinking & UX Process', 'UX Psychology (Fitts, Hick, Jakob Laws)', 'Figma Auto Layout & Constraints', 'Component Libraries & Variants'],
+    projectsEn: ['UX Audit of Existing App', 'Before/After UX Redesign Case', 'Design Thinking Mini Study', 'Figma UI Component Kit', 'Interactive Reusable Library'],
+    projectsAr: ['مراجعة وتقييم UX Audit لتطبيق شهير', 'دراسة إعادة تصميم واجهة Before/After', 'دراسة حالة مصغرة لنظام التفكير التصميمي', 'مكتبة عناصر Figma الكرتونية UI Kit', 'مكتبة المكونات التفاعلية القابلة للاستخدام'],
+    detailedContentEn: [
+      'Understanding UI vs UX, UX vs Product Design, designer roles, and product design lifecycle',
+      'Design Thinking framework, Human-Centered Design, and problem-framing methodology',
+      'Psychology laws of UX: Hick’s Law, Fitts’s Law, Jakob’s Law, Miller’s Law, and Gestalt principles',
+      'Figma mastery: frames, layers, shapes, text styles, auto layout, constraints, and variables',
+      'Component system: component variants, properties, interactive states, and design libraries'
+    ],
+    detailedContentAr: [
+      'فهم الفروق بين UI و UX وتصميم المنتجات الأدوار الوظيفية لدورة حياة المنتج الرقمي',
+      'منهجية التفكير التصميمي Design Thinking والتصميم الممركز حول الإنسان HCD',
+      'قوانين علم نفس التصميم: قانون هييك، فِتس، ياكوب، ومبادئ جشتالت للتصميم البصري',
+      'احتراف Figma: الإطارات Frames، أنظمة Auto Layout، القيود Constraints المتغيرات',
+      'بناء المكونات: المتغيرات Component Variants، الحالات التفاعلية والمكتبات الموحدة'
+    ],
+    completionStandardEn: 'Create a complete reusable Figma UI Library using Auto Layout, variants, and interactive states.',
+    completionStandardAr: 'إنشاء مكتبة مكونات Figma تفاعلية بالكامل تعتمد على Auto Layout والمتغيرات المتقدمة.'
+  },
+  {
+    id: 'ux-02-visual-design-research',
+    code: 'UX02',
+    category: 'pro',
+    subCategory: 'uiux',
+    titleEn: 'Visual Design, UX Research & Research Synthesis',
+    titleAr: 'التصميم البصري، أبحاث المستخدمين وتحليل النتائج',
+    descEn: 'Master typography systems, Arabic UI fonts, color theory, dark mode, user interviews, competitive analysis, and affinity mapping.',
+    descAr: 'إتقان التنسيق البصري، الخطوط العربية للواجهات، نظرية الألوان، الوضع الداكن، أبحاث المستخدمين والمقارنات التنافسية.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2200,
+    prerequisiteEn: 'Completion of UX01 or basic Figma design skills.',
+    prerequisiteAr: 'إتمام كورس UX01 أو امتلاك مهارات Figma الأساسية.',
+    levelEn: 'Beginner → Intermediate',
+    levelAr: 'مبتدئ ← متوسط',
+    ageBadgeEn: 'UI/UX Track 2/4',
+    ageBadgeAr: 'مسار UI/UX 2/4',
+    topics: ['Visual Hierarchy & Grid Systems', 'Typography & Arabic UI Fonts', 'Color Theory & Dark Mode', 'User Interviews & Surveys', 'Affinity Mapping & Competitive Matrix'],
+    projectsEn: ['UI Cleanup & Alignment Challenge', 'Typography Scale System', 'Color System & Light/Dark Themes', 'UX Research Plan & Interview Study', 'Competitive Analysis & Research Report'],
+    projectsAr: ['تحدي تحسين محاذاة وشكل الواجهات UI Cleanup', 'نظام أحجام الخطوط التفاعلية Typography Scale', 'لوحة الألوان والوضع الفاتح/الداكن Theme System', 'خطة أبحاث المستخدمين وتطبيق مقابلات حية', 'تقرير الأبحاث والتحليل التنافسي الشامل'],
+    detailedContentEn: [
+      'Visual design fundamentals: grid systems, spacing rules, visual hierarchy, contrast, and balance',
+      'Typography design: type scale, readability, font pairing, Arabic UI typography, and responsive type',
+      'Color theory: color psychology, semantic functional colors, accessibility contrast, and dark mode themes',
+      'UX research methods: qualitative vs quantitative research, user interviews, surveys, and research plans',
+      'Research synthesis: affinity mapping, competitive matrix analysis, pain point identification, and insight reporting'
+    ],
+    detailedContentAr: [
+      'أساسيات التصميم البصري: الشبكات Grids، المسافات، الهرمية البصرية، والتباين',
+      'أنظمة الخطوط: اختيار وأحجام الخطوط، القراءة المريحة، والخطوط العربية في الواجهات',
+      'نظرية الألوان: السيكولوجيا، الألوان الوظيفية، اختبار التباين معايير الوصول، والوضع الداكن',
+      'طرق أبحاث المستهلك: المقابلات الشفهية، الاستبيانات، وتصميم خطط الأبحاث الميدانية',
+      'تحليل النتائج: التجميع التقاربي Affinity Mapping، مصفوفة المنافسين وتحديد نقاط الألم Pain Points'
+    ],
+    completionStandardEn: 'Execute a full UX research study with real user interviews and deliver a comprehensive UX Research Synthesis Report.',
+    completionStandardAr: 'تنفيذ دراسة أبحاث مستخدمين كاملة وتصدير تقرير النتائج والتوصيات التصميمية المكتمل.'
+  },
+  {
+    id: 'ux-03-personas-ia-wireframing',
+    code: 'UX03',
+    category: 'pro',
+    subCategory: 'uiux',
+    titleEn: 'Personas, Information Architecture, User Flows & Wireframing',
+    titleAr: 'شخصيات المستخدمين، معمارية المعلومات والنماذج الأولية',
+    descEn: 'Build user personas, empathy maps, sitemaps, user journey maps, complex user flows, paper sketches, and mid-fidelity wireframes.',
+    descAr: 'بناء شخصيات المستخدمين Personas، الخرائط الذهنية، معمارية المعلومات، تدفق المستخدم User Flows والنماذج الأولى Wireframes.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2400,
+    prerequisiteEn: 'Completion of UX02 or UX research understanding.',
+    prerequisiteAr: 'إتمام كورس UX02 أو فهم آليات أبحاث وتصميم تجربة المستخدم.',
+    levelEn: 'Intermediate',
+    levelAr: 'متوسط',
+    ageBadgeEn: 'UI/UX Track 3/4',
+    ageBadgeAr: 'مسار UI/UX 3/4',
+    topics: ['User Personas & Empathy Maps', 'User Journey Mapping', 'Information Architecture & Sitemaps', 'User Flows & Task Diagrams', 'Paper & Mid-Fidelity Wireframing'],
+    projectsEn: ['Research-Based Persona Set', 'User Journey Map & Empathy Matrix', 'App Information Architecture & Sitemap', 'Complex User Flow Diagram Set', 'Paper Sketches & Low-Fi Wireframe Set', 'Complete App Wireframes'],
+    projectsAr: ['نموذج شخصيات المستخدمين البحثية Personas', 'خريطة رحلة المستخدم والتعاطف User Journey', 'معمارية معلومات التطبيق وسلسلة Sitemap', 'مخططات تدفق المهام المعقدة User Flows', 'الرسومات الورقية والنماذج الأولية Low-Fi', 'مخطط الهياكل الكاملة للتطبيق Wireframes'],
+    detailedContentEn: [
+      'Creating research-backed Personas, Empathy Maps, and identifying user goals, needs, and pain points',
+      'User Journey Mapping: mapping user stages, touchpoints, emotional curves, and opportunity zones',
+      'Information Architecture (IA): content organization, sitemaps, navigation patterns, and taxonomy',
+      'User flows & task flows: entry/exit points, decision trees, happy paths, and edge-case handling',
+      'Wireframing discipline: paper sketching, Crazy 8s, low-fi wireframes, mid-fi wireframes, and layout testing'
+    ],
+    detailedContentAr: [
+      'إنشاء شخصيات المستخدمين البحثية Personas وخريطة التعاطف Empathy Maps',
+      'رسم رحلة المستخدم User Journey: المراحل، نقاط التفاعل، والانفعالات النفسية',
+      'معمارية المعلومات IA: تنظيم المحتوى، خرائط الموقع Sitemaps، وأنماط التنقل',
+      'مخططات تدفق المهمة User Flows: نقاط البداية والنهاية، اتخاذ القرار، وحالات الأخطاء',
+      'بناء الهياكل Wireframes: الرسومات الورقية، النماذج منخفضة ومتوسطة الدقة'
+    ],
+    completionStandardEn: 'Produce a validated Information Architecture, full sitemap, and complete mid-fidelity mobile application wireframe suite.',
+    completionStandardAr: 'إنهاء هيكلة معلومات كاملة معتمدة، ورسم الهياكل الأولية المتكاملة لتطبيق موبايل.'
+  },
+  {
+    id: 'ux-04-systems-prototyping-handoff',
+    code: 'UX04',
+    category: 'pro',
+    subCategory: 'uiux',
+    titleEn: 'UI Systems, Prototyping, Testing, Handoff & Career',
+    titleAr: 'أنظمة التصميم، البروتوتايب التفاعلي وتجهيز البورتفوليو',
+    descEn: 'Design high-fidelity UI screens, interactive Figma prototypes, conduct usability testing, deliver developer handoffs, and write Behance case studies.',
+    descAr: 'تصميم الواجهات عالية الدقة High-Fi، البروتوتايب التفاعلي بـ Figma، إجراء فحص الاستخدام Handoff وتجهيز معرض الأعمال Behance.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2500,
+    prerequisiteEn: 'Completion of UX03 or complete wireframing experience.',
+    prerequisiteAr: 'إتمام كورس UX03 أو خبرة متكاملة في رسم الهياكل سابقة.',
+    levelEn: 'Professional / Career-Ready',
+    levelAr: 'احترافي / تجهيز لسوق العمل',
+    ageBadgeEn: 'UI/UX Track 4/4',
+    ageBadgeAr: 'مسار UI/UX 4/4',
+    topics: ['High-Fidelity Mobile & Web UI', 'Professional Design Systems & Tokens', 'Interactive Prototyping & Micro-interactions', 'Usability Testing & Accessibility Audit', 'Developer Handoff & Behance Case Study'],
+    projectsEn: ['10–15 Screen High-Fi Mobile UI', 'Responsive Web Design Layout', 'Scalable Design System Library', 'Interactive Figma Prototype', 'Usability Testing & Iteration Report', 'Developer Handoff Spec Package', 'Final Portfolio UX Case Study Presentation'],
+    projectsAr: ['واجهات تطبيق موبايل مكتملة 10-15 شاشة High-Fi', 'تنسيق موقع ويب متجاوب Responsive Web UI', 'مكتبة نظام تصميم متكاملة Design System', 'نموذج تفاعلي متقدم Interactive Prototype', 'تقرير اختبارات الاستخدام والتحسينات الربط', 'حزمة تسليم الملف للمبرمجين Developer Handoff', 'دراسة الحالة النهائية ومعرض الأعمال بـ Behance'],
+    detailedContentEn: [
+      'High-fidelity UI creation: responsive mobile screens, web dashboards, forms, and component states',
+      'Design systems engineering: design tokens, typography scales, color primitives, reusable UI components, and specs',
+      'Interactive prototyping: smart animate, micro-interactions, page transitions, overlays, and device testing',
+      'Usability testing & accessibility: conducting user tests, recording metrics, fixing UX bottlenecks, and ARIA compliance',
+      'Developer handoff & portfolio: redlining specs, asset export, Behance case-study presentation, CV, and interview prep'
+    ],
+    detailedContentAr: [
+      'تصميم الواجهات فائقة الدقة: شاشات الموبايل المتجاوبة، لوحات التحكم، وحالات الكروت',
+      'أنظمة التصميم القابلة للتوسع: المتغيرات Tokens، درجات الألوان، ومكونات الواجهات',
+      'البروتوتايب التفاعلي: الحركة الذكية Smart Animate، الميكرو-انترأكشن، والتجربة المباشرة',
+      'اختبارات الاستخدام وإمكانية الوصول: إجراء الاختبارات الحية ومعالجة الصعوبات',
+      'تسليم المبرمجين والبورتفوليو: تصدير الأصول، كتابة دراسة الحالة على Behance، وتجهيز الـ CV'
+    ],
+    completionStandardEn: 'Complete and present a professional UI/UX Case Study on Behance/personal portfolio with interactive Figma prototype and developer handoff.',
+    completionStandardAr: 'تجهيز ونشر دراسة حالة احترافية (UX Case Study) على Behance تحتوي على بروتوتايب تفاعلي وملف تسليم المبرمجين.'
+  },
+
+  // =========================================================================
+  // TRACK 5: PROFESSIONAL DATA ANALYSIS & BI (5 COURSES)
+  // =========================================================================
+  {
+    id: 'da-01-excel-power-query',
+    code: 'DA01',
+    category: 'pro',
+    subCategory: 'data',
+    titleEn: 'Excel, Power Query & Business Analytics Foundations',
+    titleAr: 'أساسيات تحليل البيانات بـ Excel و Power Query',
+    descEn: 'Master business math, data cleaning in Excel, XLOOKUP, dynamic arrays, Pivot Tables, Power Query ETL, and executive KPI dashboard design.',
+    descAr: 'إتقان رياضيات الأعمال، تنظيف البيانات في Excel، الدوار المتقدمة XLOOKUP، الجداول المحورية، أتمتة Power Query ولوحات الـ KPIs.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2200,
+    prerequisiteEn: 'No prior data experience required beyond basic computer operation.',
+    prerequisiteAr: 'لا تتطلب خبرة بيانات سابقة سوى استخدام الحاسوب.',
+    levelEn: 'Beginner',
+    levelAr: 'مبتدئ',
+    ageBadgeEn: 'Data Track 1/5',
+    ageBadgeAr: 'مسار البيانات 1/5',
+    topics: ['Business Analytics Metrics & Framing', 'Excel Data Profiling & Validation', 'XLOOKUP & Dynamic Array Formulas', 'Pivot Tables, Charts & Slicers', 'Power Query Automated ETL & Cleaning'],
+    projectsEn: ['Excel Raw Data Cleaning Challenge', 'Sales & Profitability Analytics Model', 'Interactive Executive KPI Dashboard', 'VBA & Scenario Automation Model'],
+    projectsAr: ['تحدي تنظيف البيانات المعقدة في Excel', 'نموذج تحليل المبيعات والربحية التجاري', 'لوحة تحكم تفاعلية لمؤشرات الأداء KPIs', 'نموذج الأتمتة والسيناريوهات المتقدمة بـ Excel'],
+    detailedContentEn: [
+      'Role of data analyst, data lifecycle, business problem framing, metrics vs dimensions, and stakeholder communication',
+      'Excel data profiling: structured tables, handling missing values, deduplication, data validation, and text/logic functions',
+      'Advanced formulas: VLOOKUP, XLOOKUP, INDEX-MATCH, nested IF logic, and dynamic arrays (FILTER, SORT, UNIQUE)',
+      'Pivot Tables & Charts: calculated fields, grouping, slicers, timelines, visual hierarchy, and dashboard design',
+      'Power Query ETL: importing data from multiple files, unpivoting, merging, appending, and automated refresh pipelines'
+    ],
+    detailedContentAr: [
+      'دور محلل البيانات، دورة حياة البيانات، صياغة المشاكل التجارية، والمؤشرات مقابل الأبعاد',
+      'تنظيف وتجهيز البيانات: الجداول الهيكلية، معالجة القيم المفقودة، إزالة التكرار، والتحقق',
+      'الدوال المتقدمة: XLOOKUP، INDEX-MATCH، الدوال الشرطية، ومصفوفات الدوال الديناميكية',
+      'الجداول المحورية Pivot Tables: الحقول المحسوبة، التجميع، الشرائح Slicers، وتصميم اللوحات',
+      'أداة Power Query: استيراد وتجميع البيانات من ملفات متعددة وتطبيق الأتمتة المباشرة'
+    ],
+    completionStandardEn: 'Build an automated, refreshable Excel KPI Dashboard using Power Query ETL and dynamic data models.',
+    completionStandardAr: 'إنشاء لوحة مؤشرات أداء تفاعلية بـ Excel تعتمد على Power Query والربط التلقائي.'
+  },
+  {
+    id: 'da-02-databases-sql-advanced',
+    code: 'DA02',
+    category: 'pro',
+    subCategory: 'data',
+    titleEn: 'Databases, SQL & Advanced SQL',
+    titleAr: 'قواعد البيانات والاحتراف في لغة SQL',
+    descEn: 'Master relational database querying, SELECT logic, complex JOINs, GROUP BY aggregations, CTEs, Subqueries, and Window Functions for analytics.',
+    descAr: 'احتراف استعلامات قواعد البيانات العلاقاتية SQL، الاستعلامات المركبة JOINs، التجميعات، الاستعلامات الفرعية CTEs، والدوال النافذة Window Functions.',
+    durationEn: '45h / 5 Weeks / 15 Sessions',
+    durationAr: '45 ساعة / 5 أسابيع / 15 جلسة',
+    sessionsCount: 15,
+    weeksCount: 5,
+    contactHours: 45,
+    priceEgp: 2200,
+    prerequisiteEn: 'Completion of DA01 or basic spreadsheet/analytics understanding.',
+    prerequisiteAr: 'إتمام كورس DA01 أو فهم أساسيات التحليل والجداول.',
+    levelEn: 'Beginner → Intermediate',
+    levelAr: 'مبتدئ ← متوسط',
+    ageBadgeEn: 'Data Track 2/5',
+    ageBadgeAr: 'مسار البيانات 2/5',
+    topics: ['RDBMS Schemas & Normalization', 'SELECT, WHERE, GROUP BY & HAVING', 'INNER, LEFT, RIGHT & FULL JOINs', 'Subqueries & Common Table Expressions (CTEs)', 'Window Functions (RANK, DENSE_RANK, LAG/LEAD)'],
+    projectsEn: ['E-Commerce Business Database Analytics Suite', 'Advanced SQL Customer Segmentation & RFM Analysis'],
+    projectsAr: ['حزمة استعلامات تحليلات التجارة الإلكترونية بـ SQL', 'تقسيم العملاء المتقدم وتحليل سلوك الشراء بـ CTEs & Window Functions'],
+    detailedContentEn: [
+      'Relational database concepts: tables, primary/foreign keys, ERDs, schema design, and normalization (1NF-3NF)',
+      'SQL querying basics: SELECT, WHERE, ORDER BY, CASE WHEN logic, text functions, date math, and aggregation (COUNT, SUM, AVG)',
+      'Multi-table relational queries: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN, and handling null joins',
+      'Advanced SQL analytics: Subqueries, Common Table Expressions (CTEs), and recursive CTE logic',
+      'Window functions: ROW_NUMBER, RANK, DENSE_RANK, NTILE, LAG, LEAD, running totals, and partitioning optimization'
+    ],
+    detailedContentAr: [
+      'مفاهيم قواعد البيانات: الجداول، المفاتيح الأساسية والخارجية، مخططات ERD ومعايير التنظيم',
+      'أساسيات استعلامات SQL: الشرطية، الترتيب، التجميعات (SUM, AVG)، ومعالجة التواريخ والنصوص',
+      'ربط الجداول المتعددة: جميع أنواع الـ JOINs ومعالجة الاستعلامات بدون تطابق',
+      'استعلامات SQL المتقدمة: الاستعلامات الفرعية Subqueries والتعبير الموحد CTEs',
+      'الدوال النافذة Window Functions: حساب الترتيب، الترتيب المتراكم، وقيم التغير LAG & LEAD'
+    ],
+    completionStandardEn: 'Pass the advanced SQL analytics test and deliver 2 analytical query suites answering complex business intelligence questions.',
+    completionStandardAr: 'اجتياز اختبار استعلامات SQL المتقدم وإنجاز حزمتين من الاستعلامات التحليلية المعقدة.'
+  },
+  {
+    id: 'da-03-data-warehousing-power-bi-dax',
+    code: 'DA03',
+    category: 'pro',
+    subCategory: 'data',
+    titleEn: 'Data Warehousing, Power BI & DAX',
+    titleAr: 'مستودعات البيانات، Power BI ولغة DAX',
+    descEn: 'Master dimensional data modeling (Star Schema), Power BI desktop, data transformations, DAX measures (CALCULATE, Time Intelligence), and interactive BI reports.',
+    descAr: 'احتراف تصميم مستودعات البيانات (Star Schema)، أداة Power BI، صيغ DAX المتقدمة، تحليلات الزمن، وإنشاء التقارير التفاعلية.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2400,
+    prerequisiteEn: 'Completion of DA02 or SQL database knowledge.',
+    prerequisiteAr: 'إتمام كورس DA02 أو معرفة سابقة بشرائح SQL وقواعد البيانات.',
+    levelEn: 'Intermediate',
+    levelAr: 'متوسط',
+    ageBadgeEn: 'Data Track 3/5',
+    ageBadgeAr: 'مسار البيانات 3/5',
+    topics: ['Star Schema & Dimensional Modeling', 'Power Query in Power BI & Relationships', 'DAX Measures & CALCULATE Function', 'Time Intelligence (YoY, YTD, MTD)', 'Interactive Power BI Dashboard Storytelling'],
+    projectsEn: ['HR & Retail Data Warehouse Star Schema', 'Power BI Regional Operations Dashboard', 'Executive C-Suite Power BI Dashboard'],
+    projectsAr: ['مخطط نجمي Star Schema لمستودع بيانات التجزئة', 'لوحة تحكم العمليات والإدارات بـ Power BI', 'لوحة القيادة التنفيذية للرؤساء التنفيذيين C-Suite BI'],
+    detailedContentEn: [
+      'Data Warehousing fundamentals: OLTP vs OLAP, Fact vs Dimension tables, Star Schema vs Snowflake Schema',
+      'Power BI data modeling: Power Query integration, relationships, cardinality, filter direction, and Date table setup',
+      'DAX calculated columns vs measures, evaluation context (Row Context vs Filter Context), and CALCULATE function',
+      'DAX Time Intelligence: YTD, MTD, QTD, YoY growth, SAMEPERIODLASTYEAR, and rolling averages',
+      'Power BI visualization: visual hierarchy, bookmarks, page navigation, drill-through, tooltips, and Power BI Service publishing'
+    ],
+    detailedContentAr: [
+      'أساسيات مستودعات البيانات: الفرق بين OLTP و OLAP، جداول الحقائق والأبعاد، والمخطط النجمي',
+      'نمذجة البيانات في Power BI: ربط العلاقات، تحديد الاتجاهات، وإنشاء جدول التواريخ الرئيسي',
+      'صيغ DAX: الفرق بين الأعمدة والمقاييس، سياق الصف والفلتر، واحتراف دالة CALCULATE',
+      'تحليلات الزمن في DAX: تتبع النمو السنوي YoY ومقارنة الفترات المتشابهة والمتوسط المتحرك',
+      'تصميم لوحات Power BI: التنقل التفاعلي، الإشارات المرجعية Bookmarks، والنشر السحابي'
+    ],
+    completionStandardEn: 'Build 3 interactive, production-ready Power BI dashboards using custom Star Schema data models and complex DAX measures.',
+    completionStandardAr: 'بناء 3 لوحات تحكم تفاعلية بـ Power BI تعتمد على المخطط النجمي ومقاييس DAX المعقدة.'
+  },
+  {
+    id: 'da-04-python-statistics-tableau',
+    code: 'DA04',
+    category: 'pro',
+    subCategory: 'data',
+    titleEn: 'Python, Statistics, Applied Analytics & Tableau',
+    titleAr: 'تحليل البيانات بـ Python، الإحصاء التطبيقي و Tableau',
+    descEn: 'Master Python (Pandas, NumPy, Seaborn), exploratory data analysis (EDA), applied statistics, A/B testing, cohort analytics, and Tableau dashboards.',
+    descAr: 'احتراف تحليل البيانات بـ Python (Pandas, NumPy)، الاستكشاف الإحصائي EDA، الإحصاء التطبيقي، اختبارات A/B، وتصور البيانات بـ Tableau.',
+    durationEn: '54h / 6 Weeks / 18 Sessions',
+    durationAr: '54 ساعة / 6 أسابيع / 18 جلسة',
+    sessionsCount: 18,
+    weeksCount: 6,
+    contactHours: 54,
+    priceEgp: 2500,
+    prerequisiteEn: 'Completion of DA03 or solid analytics foundation.',
+    prerequisiteAr: 'إتمام كورس DA03 أو امتلاك خلفية تحليلية ممتازة.',
+    levelEn: 'Intermediate → Advanced',
+    levelAr: 'متوسط ← متقدم',
+    ageBadgeEn: 'Data Track 4/5',
+    ageBadgeAr: 'مسار البيانات 4/5',
+    topics: ['Python Pandas & NumPy Data Wrangling', 'Exploratory Data Analysis (EDA) & Seaborn', 'Hypothesis Testing & A/B Testing', 'Cohort & RFM Customer Analytics', 'Tableau Dashboards & Visual Storytelling'],
+    projectsEn: ['Python Raw Data Cleaning & Profiling Suite', 'Python EDA & Hypothesis Testing Study', 'A/B Test Experiment & Cohort Analysis Report', 'Interactive Tableau Business Dashboard'],
+    projectsAr: ['حزمة تنظيف وتجهيز البيانات الضخمة بـ Python', 'دراسة الاستكشاف الإحصائي واختبار الفروض EDA', 'تقرير نتائج اختبار A/B وتحليل المجموعات Cohort', 'لوحة تحكم تفاعلية لرواية القصص الرقمية بـ Tableau'],
+    detailedContentEn: [
+      'Python programming for analytics: DataFrames, Series, NumPy arrays, indexing, filtering, merging, and reshaping',
+      'Exploratory Data Analysis (EDA): distribution analysis, outlier detection, correlation matrices, and Seaborn visualizations',
+      'Applied statistics: descriptive vs inferential statistics, probability distributions, confidence intervals, and p-values',
+      'Hypothesis testing & experiments: A/B testing methodology, t-tests, chi-square tests, and cohort / RFM segmentation',
+      'Tableau Desktop: calculated fields, LOD expressions, interactive parameters, map visualizations, and story points'
+    ],
+    detailedContentAr: [
+      'البرمجة بـ Python للتحليل: التعامل مع DataFrames في Pandas ومصفوفات NumPy وإعادة الهيكلة',
+      'الاستكشاف الإحصائي EDA: كشف القيم الشاذة Outliers، مصفوفة الارتباط، والرسوم بـ Seaborn',
+      'الإحصاء التطبيقي: الإحصاء الوصفي والاستدلالي، التوزيعات الاحتمالية، وهامش الثقة p-values',
+      'اختبارات الفروض والتجارب: منهجية A/B Testing، اختبارات t-test، وتحليل سلوك العملاء RFM',
+      'برنامج Tableau: الحقول المحسوبة، تعبيرات LOD، المؤشرات التفاعلية، ورواية القصص بالبيانات'
+    ],
+    completionStandardEn: 'Deliver a complete Python EDA study with statistical hypothesis testing readout and an interactive Tableau story dashboard.',
+    completionStandardAr: 'تقديم دراسة تحليل إحصائي كاملة بـ Python مصحوبة بلوحة تحكم تفاعلية بـ Tableau.'
+  },
+  {
+    id: 'da-05-genai-portfolio-capstone',
+    code: 'DA05',
+    category: 'pro',
+    subCategory: 'data',
+    titleEn: 'GenAI for Analysts, Portfolio, Career & Capstone',
+    titleAr: 'الذكاء الاصطناعي التوليدي للمحللين ومشروع التخرج',
+    descEn: 'Leverage Generative AI (ChatGPT/Claude) for SQL/DAX/Python code acceleration, build a GitHub/Medium data portfolio, and defend your graduation capstone.',
+    descAr: 'استخدام الذكاء الاصطناعي التوليدي لتسريع كتابة أكواد SQL/DAX/Python، بناء معرض أعمال متكامل على GitHub، والدفاع عن مشروع التخرج.',
+    durationEn: '36h / 4 Weeks / 12 Sessions',
+    durationAr: '36 ساعة / 4 أسابيع / 12 جلسة',
+    sessionsCount: 12,
+    weeksCount: 4,
+    contactHours: 36,
+    priceEgp: 2200,
+    prerequisiteEn: 'Completion of DA04 or full Data Analysis track sequence.',
+    prerequisiteAr: 'إتمام كورس DA04 أو إنهاء كافة المسارات التدريبية السابقة.',
+    levelEn: 'Professional / Career-Ready',
+    levelAr: 'احترافي / تجهيز لسوق العمل',
+    ageBadgeEn: 'Data Track 5/5',
+    ageBadgeAr: 'مسار البيانات 5/5',
+    topics: ['GenAI Prompting for Data Analysts (SQL/DAX/Python)', 'Responsible AI Code Verification & Auditing', 'GitHub Portfolio & Technical Case Study Writing', 'ATS Resume Optimization & Data Interviews', 'End-to-End Business Intelligence Graduation Capstone'],
+    projectsEn: ['GenAI-Assisted Business Analytics Mini-Project', 'Complete End-to-End Business Intelligence Graduation Capstone'],
+    projectsAr: ['مشروع مصغر معزز بأدوات الذكاء الاصطناعي GenAI', 'مشروع التخرج المتكامل: حل مشكلة تجارية من استخراج البيانات حتى لوحة القيادة والتوصيات'],
+    detailedContentEn: [
+      'GenAI workflows: using ChatGPT/Claude for SQL query drafting, DAX optimization, Python debugging, and formula explanation',
+      'Verification discipline: auditing AI-generated output, data privacy, preventing hallucinations, and documentation',
+      'Portfolio engineering: Git/GitHub repository structure, Markdown case study writing, and Tableau Public portfolio',
+      'Career preparation: ATS resume tailoring for Data Analyst roles, LinkedIn profile, and STAR-method data interview prep',
+      'Graduation Capstone: business problem framing → SQL extraction → Python EDA → Power BI dashboard → stakeholder presentation'
+    ],
+    detailedContentAr: [
+      'تطبيقات GenAI: صياغة استعلامات SQL، تسريع معادلات DAX، وتصحيح أكواد Python',
+      'التحقق المسؤول: مراجعة نتائج الذكاء الاصطناعي، حماية خصوصية البيانات، وتوثيق المشاريع',
+      'بناء معرض الأعمال: تنظيم مستودعات GitHub، كتابة دراسات الحالة بصيغة Markdown، ونشر Tableau',
+      'التأهيل المهني: السيرة الذاتية المهيأة لـ ATS، تحسين حساب LinkedIn، واستراتيجية المقابلات',
+      'مشروع التخرج النهائي: صياغة المشكلة التجارية ← استخراج البيانات ← تحليل Python ← لوحة Power BI'
+    ],
+    completionStandardEn: 'Successfully defend the end-to-end Data Analysis Capstone before the evaluation board and publish a complete technical case study.',
+    completionStandardAr: 'تقديم ودفاع مشروع التخرج النهائي أمام لجنة التقييم ونشر دراسة الحالة التقنية المكتملة.'
+  }
+];

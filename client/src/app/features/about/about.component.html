@@ -1,0 +1,295 @@
+<!-- Particle Background Layer -->
+<app-particle-bg></app-particle-bg>
+
+<div class="about-page-wrapper">
+  
+  <!-- ==================================================
+       1. FOUNDER SECTION — MAIN VISUAL FEATURE
+       ================================================== -->
+  <section id="founder-section" class="founder-section section-padding">
+    <div class="founder-bg-backdrop"></div>
+    <div class="container">
+      <div class="founder-card-wrapper">
+        
+        <!-- Left Side: Founder Info -->
+        <div class="founder-info-side">
+          <div class="founder-text-block">
+            <h2 class="founder-name">{{ langService.t().aboutPage.founderName }}</h2>
+            <span class="founder-role">{{ langService.t().aboutPage.founderRole }}</span>
+            
+            <div class="founder-divider"></div>
+
+            <div class="founder-bio">
+              <p *ngFor="let paragraph of langService.t().aboutPage.founderDesc" class="bio-paragraph">
+                {{ paragraph }}
+              </p>
+            </div>
+          </div>
+
+          <div class="founder-actions">
+            <a routerLink="/contact" class="btn btn-primary founder-cta-btn">
+              <span>{{ langService.t().aboutPage.meetLeadershipCta }}</span>
+              <i class="fa-solid fa-envelope icon-arrow"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: Founder Image with Outer Black Background Removed -->
+        <div class="founder-visual-side">
+          <div class="splash-composition-container">
+            <img 
+              src="assets/founder-clean-cutout.png" 
+              alt="Nour Eldin Ibrahim - Founder & CEO Innova Gate" 
+              class="founder-raw-img" 
+              loading="eager"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       4. OUR MISSION
+       ================================================== -->
+  <section class="mission-section section-padding">
+    <div class="container">
+      <div class="mission-header-grid">
+        <div class="mission-header-left">
+          <span class="section-eyebrow">
+            <i class="fa-solid fa-compass"></i>
+            <span>CORE PURPOSE</span>
+          </span>
+          <h2 class="section-title">{{ langService.t().aboutPage.missionTitle }}</h2>
+        </div>
+        <div class="mission-header-right">
+          <p class="mission-lead-text">
+            "{{ langService.t().aboutPage.missionText }}"
+          </p>
+        </div>
+      </div>
+
+      <div class="mission-pillars-grid">
+        <div *ngFor="let pillar of langService.t().aboutPage.missionPillars" class="pillar-card">
+          <div class="pillar-top">
+            <span class="pillar-number">{{ pillar.num }}</span>
+            <div class="pillar-icon-box">
+              <i *ngIf="pillar.num === '01'" class="fa-solid fa-book-bookmark"></i>
+              <i *ngIf="pillar.num === '02'" class="fa-solid fa-laptop-code"></i>
+              <i *ngIf="pillar.num === '03'" class="fa-solid fa-chart-line"></i>
+            </div>
+          </div>
+          <h3 class="pillar-title">{{ pillar.title }} <span class="pillar-sub">/ {{ pillar.sub }}</span></h3>
+          <p class="pillar-desc">{{ pillar.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       4.B OUR VISION (MOVED BELOW MISSION)
+       ================================================== -->
+  <section class="vision-section section-padding">
+    <div class="container vision-container text-center">
+      <div class="vision-badge">
+        <i class="fa-solid fa-eye text-yellow"></i>
+        <span>LOOKING FORWARD</span>
+      </div>
+
+      <h2 class="vision-headline">{{ langService.t().aboutPage.visionTitle }}</h2>
+      
+      <div class="vision-divider"></div>
+
+      <p class="vision-quote">
+        "{{ langService.t().aboutPage.visionText }}"
+      </p>
+
+      <div class="vision-symbols">
+        <span class="symbol-chip"><i class="fa-solid fa-microchip"></i> Modern Stack</span>
+        <span class="symbol-chip"><i class="fa-solid fa-handshake"></i> Practical Industry</span>
+        <span class="symbol-chip"><i class="fa-solid fa-shield-halved"></i> Excellence</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       5. WHO WE SERVE
+       ================================================== -->
+  <section class="serve-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">
+          <i class="fa-solid fa-users"></i>
+          <span>TARGET LEARNERS</span>
+        </span>
+        <h2 class="section-title">{{ langService.t().aboutPage.serveTitle }}</h2>
+        <p class="section-subtitle">{{ langService.t().aboutPage.serveSubtitle }}</p>
+      </div>
+
+      <div class="serve-cards-grid">
+        <div *ngFor="let card of langService.t().aboutPage.serveCards; let idx = index" class="serve-card">
+          <div class="serve-card-badge">{{ card.subtitle }}</div>
+          
+          <div class="serve-icon-wrapper">
+            <i *ngIf="idx === 0" class="fa-solid fa-child-reaching"></i>
+            <i *ngIf="idx === 1" class="fa-solid fa-user-graduate"></i>
+            <i *ngIf="idx === 2" class="fa-solid fa-briefcase"></i>
+          </div>
+
+          <h3 class="serve-card-title">{{ card.title }}</h3>
+          <p class="serve-card-desc">{{ card.desc }}</p>
+
+          <a routerLink="/courses" class="serve-card-link">
+            <span>{{ card.linkText }}</span>
+            <i class="fa-solid fa-arrow-right icon-arrow"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       6. OUR APPROACH
+       ================================================== -->
+  <section class="approach-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>OUR METHODOLOGY</span>
+        </span>
+        <h2 class="section-title">{{ langService.t().aboutPage.approachTitle }}</h2>
+        <p class="section-subtitle">{{ langService.t().aboutPage.approachSubtitle }}</p>
+      </div>
+
+      <div class="approach-steps-list">
+        <div 
+          *ngFor="let step of langService.t().aboutPage.approachSteps; let idx = index" 
+          class="approach-step-card"
+          [class.expanded]="activeStepIndex === idx"
+          (click)="toggleStep(idx)"
+          role="button"
+          tabindex="0"
+        >
+          <div class="approach-step-header">
+            <div class="step-num-badge">{{ step.num }}</div>
+            <div class="step-content">
+              <h3 class="step-title">{{ step.title }}</h3>
+              <p class="step-desc">{{ step.desc }}</p>
+            </div>
+            <div class="step-toggle-icon">
+              <i class="fa-solid" [class.fa-chevron-down]="activeStepIndex === idx" [class.fa-chevron-left]="activeStepIndex !== idx && langService.currentLang() === 'ar'" [class.fa-chevron-right]="activeStepIndex !== idx && langService.currentLang() !== 'ar'"></i>
+            </div>
+          </div>
+
+          <!-- Expandable Details Accordion -->
+          <div *ngIf="activeStepIndex === idx" class="step-expand-details">
+            <div class="details-inner">
+              <i class="fa-solid fa-circle-info details-icon"></i>
+              <p class="details-text">{{ step.details }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       7. WHY INNOVA GATE (STATS & HIGHLIGHTS)
+       ================================================== -->
+  <section #statsContainer class="stats-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>BY THE NUMBERS</span>
+        </span>
+        <h2 class="section-title">{{ langService.t().aboutPage.statsTitle }}</h2>
+        <p class="section-subtitle">{{ langService.t().aboutPage.statsSubtitle }}</p>
+      </div>
+
+      <div class="stats-grid">
+        <!-- Animated Counter 1 -->
+        <div class="stat-box">
+          <div class="stat-value">
+            <span class="num">{{ counters[0] }}</span><span class="plus">+</span>
+          </div>
+          <h3 class="stat-label">{{ langService.t().aboutPage.statsList[0].label }}</h3>
+          <p class="stat-desc">{{ langService.t().aboutPage.statsList[0].desc }}</p>
+        </div>
+
+        <!-- Animated Counter 2 -->
+        <div class="stat-box">
+          <div class="stat-value">
+            <span class="num">{{ counters[1] }}</span><span class="plus">+</span>
+          </div>
+          <h3 class="stat-label">{{ langService.t().aboutPage.statsList[1].label }}</h3>
+          <p class="stat-desc">{{ langService.t().aboutPage.statsList[1].desc }}</p>
+        </div>
+
+        <!-- Animated Counter 3 -->
+        <div class="stat-box">
+          <div class="stat-value">
+            <span class="num">{{ counters[2] }}</span><span class="plus">+</span>
+          </div>
+          <h3 class="stat-label">{{ langService.t().aboutPage.statsList[2].label }}</h3>
+          <p class="stat-desc">{{ langService.t().aboutPage.statsList[2].desc }}</p>
+        </div>
+
+        <!-- Stat Highlight 4 -->
+        <div class="stat-box">
+          <div class="stat-value text-badge">
+            <i class="fa-solid fa-users-viewfinder"></i>
+          </div>
+          <h3 class="stat-label">{{ langService.t().aboutPage.statsList[3].label }}</h3>
+          <p class="stat-desc">{{ langService.t().aboutPage.statsList[3].desc }}</p>
+        </div>
+
+        <!-- Stat Highlight 5 -->
+        <div class="stat-box">
+          <div class="stat-value text-badge">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <h3 class="stat-label">{{ langService.t().aboutPage.statsList[4].label }}</h3>
+          <p class="stat-desc">{{ langService.t().aboutPage.statsList[4].desc }}</p>
+        </div>
+
+        <!-- Stat Highlight 6 -->
+        <div class="stat-box">
+          <div class="stat-value text-badge">
+            <i class="fa-solid fa-laptop-house"></i>
+          </div>
+          <h3 class="stat-label">{{ langService.t().aboutPage.statsList[5].label }}</h3>
+          <p class="stat-desc">{{ langService.t().aboutPage.statsList[5].desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================================================
+       9. FINAL CTA SECTION
+       ================================================== -->
+  <section class="final-cta-section section-padding">
+    <div class="container">
+      <div class="final-cta-card">
+        <div class="cta-content">
+          <h2 class="cta-title">{{ langService.t().aboutPage.finalCtaTitle }}</h2>
+          <p class="cta-sub">{{ langService.t().aboutPage.finalCtaSub }}</p>
+          
+          <div class="cta-actions">
+            <a routerLink="/courses" class="btn btn-primary cta-btn-main">
+              <span>{{ langService.t().aboutPage.exploreCoursesBtn }}</span>
+              <i class="fa-solid fa-arrow-right icon-arrow"></i>
+            </a>
+            <a routerLink="/contact" class="btn btn-secondary cta-btn-sub">
+              <span>{{ langService.t().aboutPage.contactUsBtn }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

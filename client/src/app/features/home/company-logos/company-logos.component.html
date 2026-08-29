@@ -1,0 +1,58 @@
+<section class="company-logos-section">
+  <!-- Top Atmospheric Blend from Mentors Section -->
+  <div class="section-top-blend"></div>
+
+  <!-- Header Block (Inside Container) -->
+  <div class="container logos-container">
+    <div class="logos-header-block text-center">
+      <div class="section-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span>{{ isAr ? 'خبرة عملية من كبرى الشركات العالمية' : 'PROVEN INDUSTRY EXPERIENCE' }}</span>
+        <span class="eyebrow-line"></span>
+      </div>
+
+      <h2 class="section-headline">
+        {{ isAr ? 'خبراؤنا وموجهونا ' : 'OUR INSTRUCTORS ' }}<span class="gradient-text-blue">{{ isAr ? 'عملوا في' : 'WORKED AT' }}</span>
+      </h2>
+
+      <p class="section-subheadline">
+        {{ isAr ? 'ينقل موجهونا خبرات حقيقية في الهندسة والتصميم والأمان تم اكتسابها في كبرى الشركات التكنولوجية الرائدة عالمياً.' : 'Our mentors bring real-world engineering, design, and security experience from leading global tech pioneers.' }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Full-Width Edge-to-Edge Marquee Track (Outside Container Box) -->
+  <div class="logos-fullwidth-marquee">
+    <div class="logos-track-viewport">
+      <div class="logos-track">
+        <!-- First Set of Companies -->
+        <ng-container *ngFor="let comp of companies">
+          <div class="company-pill-card">
+            <div class="company-icon-box">
+              <i [class]="comp.iconClass"></i>
+            </div>
+            <div class="company-details">
+              <span class="company-name">{{ comp.name }}</span>
+              <span class="company-tag">{{ comp.tag }}</span>
+            </div>
+          </div>
+          <span class="company-separator">✦</span>
+        </ng-container>
+
+        <!-- Duplicated Set for Seamless Infinite 100% Loop -->
+        <ng-container *ngFor="let comp of companies">
+          <div class="company-pill-card">
+            <div class="company-icon-box">
+              <i [class]="comp.iconClass"></i>
+            </div>
+            <div class="company-details">
+              <span class="company-name">{{ comp.name }}</span>
+              <span class="company-tag">{{ comp.tag }}</span>
+            </div>
+          </div>
+          <span class="company-separator">✦</span>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>

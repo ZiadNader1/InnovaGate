@@ -1,0 +1,149 @@
+<section class="hero-wrapper">
+  <!-- Fullscreen Video Background -->
+  <div class="video-container">
+    <video
+      #bgVideo
+      class="hero-video-bg"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="/assets/images/hero_tech_student.png"
+      [style.transform]="getVideoTransform()"
+    >
+      <source src="/assets/videos/hero_background.mp4" type="video/mp4">
+      <source src="/5483085-uhd_4096_2160_25fps.mp4" type="video/mp4">
+    </video>
+
+    <!-- Dark Directional Overlay, Subtle Blue Glow & Bottom Gradient Fade -->
+    <div class="hero-dark-overlay"></div>
+    <div class="hero-blue-glow"></div>
+    <div class="hero-bottom-gradient-fade"></div>
+  </div>
+
+  <!-- Main Hero Centered Content Viewport -->
+  <div class="container hero-container">
+    <div class="hero-center-content" [style.transform]="getContentTransform()">
+      <!-- Main Headline: INNOVA GATE -->
+      <h1 class="hero-headline animate-slide-up" dir="ltr">
+        <span class="word-innova">INNOVA</span>
+        <span class="word-gate">&nbsp;GATE</span>
+      </h1>
+
+      <!-- Simple Centered Description -->
+      <p class="hero-paragraph animate-fade-in-delayed">
+        {{ langService.t().hero.paragraph }}
+      </p>
+
+      <!-- 2 Colored CTA Buttons -->
+      <div class="hero-cta-group animate-slide-up-delayed">
+        <a routerLink="/courses" class="btn btn-cta-primary btn-hero">
+          <span>{{ langService.t().hero.btnStart }}</span>
+          <i class="fa-solid fa-rocket icon-arrow"></i>
+        </a>
+
+        <a routerLink="/learning-paths" class="btn btn-cta-secondary btn-hero">
+          <span>{{ langService.t().hero.btnPaths }}</span>
+          <i class="fa-solid fa-layer-group icon-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Announcement Offer Auto-Carousel Banner (Positioned above Live Ticker) -->
+  <div class="hero-offer-banner-container container">
+    <div 
+      class="hero-offer-banner glass-card"
+      [class.is-transitioning]="isOfferTransitioning"
+      (mouseenter)="pauseOfferScroll()"
+      (mouseleave)="resumeOfferScroll()"
+    >
+      <!-- Left Tag Icon & Glowing Accent -->
+      <div class="offer-left-visual">
+        <div class="offer-tag-icon">
+          <i class="fa-solid" [ngClass]="offers[currentOfferIndex].icon"></i>
+        </div>
+      </div>
+
+      <!-- Middle Offer Title & Subtext -->
+      <div class="offer-body">
+        <span class="offer-badge">{{ offers[currentOfferIndex].badge }}</span>
+        <h3 class="offer-title">
+          {{ offers[currentOfferIndex].title }}
+        </h3>
+        <p class="offer-subtext">{{ offers[currentOfferIndex].subtext }}</p>
+      </div>
+
+      <!-- Right Countdown Timer & Claim CTA Button -->
+      <div class="offer-right-group">
+        <div class="timer-block">
+          <div class="timer-label">{{ langService.t().hero.timerLabel }}</div>
+          <div class="timer-units">
+            <div class="unit-box">
+              <span class="unit-num">{{ formatTwoDigits(countdown.days) }}</span>
+              <span class="unit-text">{{ langService.t().hero.timerDays }}</span>
+            </div>
+            <div class="unit-box">
+              <span class="unit-num">{{ formatTwoDigits(countdown.hours) }}</span>
+              <span class="unit-text">{{ langService.t().hero.timerHours }}</span>
+            </div>
+            <div class="unit-box">
+              <span class="unit-num">{{ formatTwoDigits(countdown.minutes) }}</span>
+              <span class="unit-text">{{ langService.t().hero.timerMin }}</span>
+            </div>
+            <div class="unit-box">
+              <span class="unit-num">{{ formatTwoDigits(countdown.seconds) }}</span>
+              <span class="unit-text">{{ langService.t().hero.timerSec }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        <a routerLink="/courses" class="btn btn-primary btn-claim-offer">
+          <span>{{ offers[currentOfferIndex].ctaText }}</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Indicators Dots for Auto-Carousel -->
+      <div class="offer-indicators">
+        <span 
+          *ngFor="let offer of offers; let i = index" 
+          class="indicator-dot" 
+          [class.active]="i === currentOfferIndex"
+          (click)="setOfferIndex(i)"
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Floating TV News Ticker Bar -->
+  <div class="hero-ticker-container container">
+    <div class="ticker-floating-bar glass-card">
+      <div class="ticker-track-wrapper">
+        <div class="ticker-track">
+          <!-- First Set -->
+          <ng-container *ngFor="let item of tickerCategories">
+            <div class="ticker-chip">
+              <i class="fa-solid" [ngClass]="item.icon"></i>
+              <span class="chip-title">{{ item.name }}</span>
+              <span class="chip-sub">{{ item.tag }}</span>
+            </div>
+            <span class="ticker-separator">✦</span>
+          </ng-container>
+
+          <!-- Duplicated Set for Seamless Infinite Loop -->
+          <ng-container *ngFor="let item of tickerCategories">
+            <div class="ticker-chip">
+              <i class="fa-solid" [ngClass]="item.icon"></i>
+              <span class="chip-title">{{ item.name }}</span>
+              <span class="chip-sub">{{ item.tag }}</span>
+            </div>
+            <span class="ticker-separator">✦</span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
