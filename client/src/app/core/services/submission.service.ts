@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface SubmissionData {
   id?: string;
@@ -25,7 +26,7 @@ export interface SubmissionApiResponse {
 })
 export class SubmissionService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:5000/api/submissions';
+  private apiUrl = `${environment.apiUrl}/submissions`;
 
   submitForm(data: SubmissionData): Observable<SubmissionApiResponse> {
     return this.http.post<SubmissionApiResponse>(this.apiUrl, data);

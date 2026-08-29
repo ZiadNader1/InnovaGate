@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface AnnouncementItem {
   id?: string;
@@ -31,7 +32,7 @@ export interface AnnouncementApiResponse {
 })
 export class AnnouncementService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:5000/api/announcements';
+  private apiUrl = `${environment.apiUrl}/announcements`;
 
   getAnnouncements(all = false): Observable<{ success: boolean; count: number; data: AnnouncementItem[] }> {
     const url = all ? `${this.apiUrl}?all=true` : this.apiUrl;
