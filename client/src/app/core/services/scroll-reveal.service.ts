@@ -14,53 +14,66 @@ export class ScrollRevealService {
 
     this.setupObserver();
 
-    // Re-observe elements on route navigation
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      setTimeout(() => {
-        this.observeElements();
-      }, 120);
-    });
+    try {
+      this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+      ).subscribe(() => {
+        setTimeout(() => {
+          this.observeElements();
+        }, 120);
+      });
+    } catch {
+      // Router events safeguard
+    }
 
-    // Initial observation after view render
     setTimeout(() => this.observeElements(), 150);
   }
 
   private setupObserver(): void {
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          // Unobserve after reveal to free GPU/CPU observer overhead
-          this.observer?.unobserve(entry.target);
-        }
+    try {
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          try {
+            if (entry && entry.isIntersecting && entry.target) {
+              entry.target.classList.add('revealed');
+              this.observer?.unobserve(entry.target);
+            }
+          } catch {
+            // Absorbed silently
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -20px 0px',
+        threshold: 0.01
       });
-    }, {
-      rootMargin: '0px 0px -50px 0px',
-      threshold: 0.08
-    });
+    } catch (err) {
+      console.warn('ScrollObserver setup skipped:', err);
+    }
   }
 
   public observeElements(): void {
     if (!this.observer) return;
-    const selectors = [
-      '[data-reveal]',
-      '.reveal-on-scroll',
-      '.feature-card',
-      '.course-card',
-      '.diploma-card',
-      '.mentor-card',
-      '.contact-info-card',
-      '.faq-item',
-      '.stat-card'
-    ];
-    
-    const elements = document.querySelectorAll(selectors.join(','));
-    elements.forEach(el => {
-      if (!el.classList.contains('revealed')) {
-        this.observer?.observe(el);
-      }
-    });
+    try {
+      const selectors = [
+        '[data-reveal]',
+        '.reveal-on-scroll',
+        '.feature-card',
+        '.course-card',
+        '.diploma-card',
+        '.mentor-card',
+        '.contact-info-card',
+        '.faq-item',
+        '.stat-card'
+      ];
+      
+      const elements = document.querySelectorAll(selectors.join(','));
+      elements.forEach(el => {
+        if (el && !el.classList.contains('revealed')) {
+          this.observer?.observe(el);
+        }
+      });
+    } catch {
+      // Catch element query exception
+    }
   }
 }
