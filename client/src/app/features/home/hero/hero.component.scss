@@ -486,6 +486,18 @@
   }
 }
 
+@media (max-width: 768px) {
+  .hero-wrapper {
+    .video-container {
+      background: radial-gradient(circle at 50% 35%, #0c2b64 0%, #080e1a 85%) !important;
+
+      .hero-video-bg {
+        display: none !important;
+      }
+    }
+  }
+}
+
 @media (max-width: 992px) {
   .hero-wrapper {
     padding-top: 8rem;

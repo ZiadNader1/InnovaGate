@@ -94,6 +94,32 @@ html, body {
 [data-reveal-delay="400"] { transition-delay: 0.4s; }
 [data-reveal-delay="500"] { transition-delay: 0.5s; }
 
+/* Mobile Touch & Tap Responsiveness Boost */
+button,
+a,
+.btn,
+.card-link,
+.table-row-clickable,
+.filter-tab-btn,
+.main-tab-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /* Ultra-lightweight Mobile Reveal Transitions for 120 FPS Response */
+  [data-reveal],
+  .reveal-on-scroll {
+    transition-duration: 0.35s !important;
+    transform: translate3d(0, 15px, 0) !important;
+    
+    &.revealed {
+      transform: translate3d(0, 0, 0) !important;
+    }
+  }
+}
+
 html[dir="rtl"], [dir="rtl"] {
   font-family: 'Cairo', sans-serif !important;
 

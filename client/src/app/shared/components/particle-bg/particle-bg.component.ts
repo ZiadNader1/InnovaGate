@@ -24,9 +24,9 @@ interface Particle {
       left: 0;
       width: 100vw;
       height: 100vh;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.85;
+      pointer-events: none !important;
+      z-index: 0;
+      opacity: 0.75;
     }
   `]
 })
@@ -36,15 +36,17 @@ export class ParticleBgComponent implements AfterViewInit, OnDestroy {
   private ctx!: CanvasRenderingContext2D | null;
   private particles: Particle[] = [];
   private animId: number | null = null;
+  private isMobile = false;
 
   private mouseX = -1000;
   private mouseY = -1000;
-  private maxDistance = 150;
+  private maxDistance = 140;
 
   ngAfterViewInit(): void {
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext('2d');
 
+    this.checkMobile();
     this.resizeCanvas();
     this.initParticles();
     this.animate();
@@ -56,14 +58,20 @@ export class ParticleBgComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  private checkMobile(): void {
+    this.isMobile = window.innerWidth < 768;
+  }
+
   @HostListener('window:resize')
   onResize(): void {
+    this.checkMobile();
     this.resizeCanvas();
     this.initParticles();
   }
 
   @HostListener('window:mousemove', ['$event'])
   onMouseMove(e: MouseEvent): void {
+    if (this.isMobile) return;
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
   }
@@ -80,18 +88,19 @@ export class ParticleBgComponent implements AfterViewInit, OnDestroy {
     const canvas = this.canvasRef.nativeElement;
     this.particles = [];
 
-    // Particle density calculation
-    const particleCount = Math.floor((canvas.width * canvas.height) / 12000);
+    // Particle density: Max 15 on mobile for 120 FPS performance, max 80 on desktop
+    const maxParticles = this.isMobile ? 15 : 75;
+    const particleCount = Math.min(Math.floor((canvas.width * canvas.height) / 15000), maxParticles);
     const colors = ['#1769FF', '#38BDF8', '#60A5FA', '#93C5FD', '#FFFFFF'];
 
-    for (let i = 0; i < Math.min(particleCount, 110); i++) {
-      const radius = Math.random() * 2.2 + 1.2;
-      const baseAlpha = Math.random() * 0.5 + 0.35;
+    for (let i = 0; i < particleCount; i++) {
+      const radius = Math.random() * 2 + 1;
+      const baseAlpha = Math.random() * 0.4 + 0.3;
       this.particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.7,
-        vy: (Math.random() - 0.5) * 0.7,
+        vx: (Math.random() - 0.5) * (this.isMobile ? 0.4 : 0.6),
+        vy: (Math.random() - 0.5) * (this.isMobile ? 0.4 : 0.6),
         radius,
         baseAlpha,
         alpha: baseAlpha,
@@ -113,51 +122,48 @@ export class ParticleBgComponent implements AfterViewInit, OnDestroy {
       p.x += p.vx;
       p.y += p.vy;
 
-      // Bounce on edges
       if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
       if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
-      // Mouse repulsion physics
-      const dx = this.mouseX - p.x;
-      const dy = this.mouseY - p.y;
-      const distToMouse = Math.sqrt(dx * dx + dy * dy);
+      // Mouse interaction on desktop
+      if (!this.isMobile && this.mouseX > 0) {
+        const dx = p.x - this.mouseX;
+        const dy = p.y - this.mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (distToMouse < 180) {
-        const angle = Math.atan2(dy, dx);
-        const force = (180 - distToMouse) / 180;
-        p.x -= Math.cos(angle) * force * 3;
-        p.y -= Math.sin(angle) * force * 3;
-        p.alpha = Math.min(1, p.baseAlpha + force * 0.6);
-      } else {
-        p.alpha = p.baseAlpha;
+        if (dist < this.maxDistance) {
+          const force = (this.maxDistance - dist) / this.maxDistance;
+          p.x += (dx / dist) * force * 2;
+          p.y += (dy / dist) * force * 2;
+        }
       }
 
-      // Draw glowing particle dot
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       this.ctx.fillStyle = p.color;
       this.ctx.globalAlpha = p.alpha;
-      this.ctx.shadowBlur = 10;
-      this.ctx.shadowColor = p.color;
       this.ctx.fill();
-      this.ctx.shadowBlur = 0;
+    }
 
-      // Connect lines to nearby particles
-      for (let j = i + 1; j < this.particles.length; j++) {
-        const p2 = this.particles[j];
-        const ldx = p.x - p2.x;
-        const ldy = p.y - p2.y;
-        const ldist = Math.sqrt(ldx * ldx + ldy * ldy);
+    // Connect close particles (Desktop only for max mobile performance)
+    if (!this.isMobile) {
+      for (let i = 0; i < this.particles.length; i++) {
+        for (let j = i + 1; j < this.particles.length; j++) {
+          const p1 = this.particles[i];
+          const p2 = this.particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (ldist < this.maxDistance) {
-          const lineAlpha = (1 - ldist / this.maxDistance) * 0.3;
-          this.ctx.beginPath();
-          this.ctx.moveTo(p.x, p.y);
-          this.ctx.lineTo(p2.x, p2.y);
-          this.ctx.strokeStyle = '#38BDF8';
-          this.ctx.globalAlpha = lineAlpha;
-          this.ctx.lineWidth = 0.9;
-          this.ctx.stroke();
+          if (dist < 100) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(p1.x, p1.y);
+            this.ctx.lineTo(p2.x, p2.y);
+            this.ctx.strokeStyle = '#38bdf8';
+            this.ctx.globalAlpha = (1 - dist / 100) * 0.15;
+            this.ctx.lineWidth = 0.6;
+            this.ctx.stroke();
+          }
         }
       }
     }
