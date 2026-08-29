@@ -47,52 +47,26 @@ html, body {
    HIGH-PERFORMANCE GPU SCROLL REVEAL ANIMATIONS SYSTEM & PERFORMANCE BOOSTS
    ========================================================================== */
 
-/* GPU Hardware Acceleration & Rendering Optimizations */
-.gpu-accelerated,
-[data-reveal],
-.reveal-on-scroll,
-.glass-card,
-.btn {
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  perspective: 1000px;
+/* Ensure all buttons and interactive elements receive click events cleanly */
+button,
+a,
+.btn,
+.card-link,
+.table-row-clickable,
+.filter-tab-btn,
+.main-tab-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  pointer-events: auto !important;
 }
 
-/* Scroll Reveal Initial States */
-[data-reveal],
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translate3d(0, 32px, 0);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-
-  &.data-reveal-left {
-    transform: translate3d(-40px, 0, 0);
-  }
-
-  &.data-reveal-right {
-    transform: translate3d(40px, 0, 0);
-  }
-
-  &.data-reveal-scale {
-    transform: scale(0.93) translate3d(0, 20px, 0);
-  }
-
-  /* Triggered Active State */
-  &.revealed {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
+/* Optional Smooth Entrance for revealed elements */
+[data-reveal].revealed,
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
 }
-
-/* Stagger Delays for Cards & Grids */
-[data-reveal-delay="100"] { transition-delay: 0.1s; }
-[data-reveal-delay="150"] { transition-delay: 0.15s; }
-[data-reveal-delay="200"] { transition-delay: 0.2s; }
-[data-reveal-delay="250"] { transition-delay: 0.25s; }
-[data-reveal-delay="300"] { transition-delay: 0.3s; }
-[data-reveal-delay="400"] { transition-delay: 0.4s; }
-[data-reveal-delay="500"] { transition-delay: 0.5s; }
 
 /* Mobile Touch & Tap Responsiveness Boost */
 button,
