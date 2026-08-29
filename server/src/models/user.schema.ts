@@ -59,10 +59,10 @@ UserSchema.methods.validPassword = function(password: string): boolean {
 };
 
 UserSchema.set('toJSON', {
-  transform: (doc, ret) => {
-    delete ret.passwordHash;
-    delete ret.salt;
-    delete ret.__v;
+  transform: (doc, ret: Record<string, any>) => {
+    delete ret['passwordHash'];
+    delete ret['salt'];
+    delete ret['__v'];
   }
 });
 

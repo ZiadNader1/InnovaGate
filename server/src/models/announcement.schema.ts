@@ -43,9 +43,9 @@ AnnouncementSchema.virtual('id').get(function(this: IAnnouncementDoc) {
 
 AnnouncementSchema.set('toJSON', {
   virtuals: true,
-  transform: (doc, ret) => {
-    delete ret._id;
-    delete ret.__v;
+  transform: (doc, ret: Record<string, any>) => {
+    delete ret['_id'];
+    delete ret['__v'];
   }
 });
 
