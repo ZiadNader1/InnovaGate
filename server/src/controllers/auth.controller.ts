@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import { User } from '../models/user.schema';
 
-const DEFAULT_ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@innovagate.io';
+const DEFAULT_ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'innovagatedamanhour@gmail.com';
 const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 
 export const loginAdmin = async (req: Request, res: Response): Promise<void> => {

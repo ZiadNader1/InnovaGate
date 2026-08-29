@@ -5,7 +5,7 @@ import { DiplomaService } from '../services/diploma.service';
 
 const seedDefaultAdmin = async (): Promise<void> => {
   try {
-    const adminEmail = process.env.ADMIN_EMAIL || 'admin@innovagate.io';
+    const adminEmail = process.env.ADMIN_EMAIL || 'innovagatedamanhour@gmail.com';
     const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
     
     const existingAdmin = await User.findOne({ email: adminEmail.toLowerCase() });
