@@ -10,12 +10,27 @@ const app: Application = express();
 // Security & Utility Middlewares
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:4200',
+  origin: '*',
   credentials: true,
 }));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Root Welcome Endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'online',
+    message: '🎓 InnovaGate Academy Backend Engine Ready!',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      announcements: '/api/announcements',
+      submissions: '/api/submissions',
+      diplomas: '/api/diplomas'
+    }
+  });
+});
 
 // API Base Routes
 app.use('/api', routes);
