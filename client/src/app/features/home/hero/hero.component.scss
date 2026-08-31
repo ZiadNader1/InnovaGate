@@ -10,8 +10,8 @@
   background: #080e1a;
   color: var(--white);
 
-  /* Video Background Layer */
-  .video-container {
+  /* Ambient Backdrop Glow & Mesh Background */
+  .hero-bg-backdrop {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -19,29 +19,7 @@
     overflow: hidden;
     z-index: 1;
     pointer-events: none !important;
-
-    .hero-video-bg {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
-      pointer-events: none !important;
-    }
-
-    /* Dark Directional Overlay */
-    .hero-dark-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(
-        circle at center,
-        rgba(8, 14, 26, 0.65) 0%,
-        rgba(8, 14, 26, 0.82) 60%,
-        rgba(8, 14, 26, 0.94) 100%
-      );
-      z-index: 2;
-      pointer-events: none !important;
-    }
+    background: radial-gradient(circle at 50% 35%, #0d2859 0%, #080e1a 80%);
 
     /* Accent Blue Glow Overlay */
     .hero-blue-glow {
@@ -49,10 +27,10 @@
       inset: 0;
       background: radial-gradient(
         circle at 50% 45%, 
-        rgba(23, 105, 255, 0.35) 0%, 
-        transparent 65%
+        rgba(23, 105, 255, 0.4) 0%, 
+        transparent 70%
       );
-      z-index: 3;
+      z-index: 2;
       pointer-events: none !important;
     }
 
@@ -70,7 +48,7 @@
         rgba(8, 14, 26, 0.85) 75%,
         #080e1a 100%
       );
-      z-index: 4;
+      z-index: 3;
       pointer-events: none !important;
     }
   }

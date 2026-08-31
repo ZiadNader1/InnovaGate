@@ -147,13 +147,6 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    if (this.bgVideo && this.bgVideo.nativeElement) {
-      const video = this.bgVideo.nativeElement;
-      video.muted = true;
-      video.play().catch(error => {
-        console.log('Autoplay handled by browser fallback:', error);
-      });
-    }
     this.checkScreenSize();
   }
 
