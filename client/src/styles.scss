@@ -66,6 +66,43 @@ html, body, app-root, main, .main-content {
 }
 
 /* ==========================================================================
+   INNER MOBILE HORIZONTAL SWIPE SCROLLING SYSTEM (-webkit-overflow-scrolling)
+   ========================================================================== */
+
+/* Enable smooth inner touch swipe scrolling on mobile for tables, chips, and wide bars */
+.scrollable-x,
+.horizontal-scroll,
+.table-responsive,
+.table-wrapper,
+.code-window-body,
+.tech-items,
+.ticker-track-wrapper,
+.contact-quick-links,
+.filter-tabs-row,
+.nav-tabs-scroll {
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-x pan-y !important;
+  scrollbar-width: thin;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  /* Custom sleek scrollbar */
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.4);
+    border-radius: 4px;
+  }
+}
+
+/* ==========================================================================
    HIGH-PERFORMANCE GPU SCROLL REVEAL ANIMATIONS SYSTEM & PERFORMANCE BOOSTS
    ========================================================================== */
 
