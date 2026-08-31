@@ -1062,7 +1062,7 @@ html[dir="rtl"] .contact-faq-section .faq-item .faq-question-btn {
 }
 
 /* --------------------------------------------------------------------------
-   7. RESPONSIVE BREAKPOINTS FOR IPHONE & MOBILE VIEWPORTS
+   7. ULTRA-COMPACT RESPONSIVE BREAKPOINTS FOR ALL IPHONE & MOBILE VIEWPORTS
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .contact-cards-section .info-cards-grid {
@@ -1071,79 +1071,94 @@ html[dir="rtl"] .contact-faq-section .faq-item .faq-question-btn {
 
   .main-contact-layout-section .contact-two-col-grid {
     grid-template-columns: 1fr !important;
-    gap: 2.25rem !important;
+    gap: 1.75rem !important;
     width: 100% !important;
   }
 }
 
 @media (max-width: 768px) {
-  .contact-hero-section .hero-title {
-    font-size: 2.25rem;
+  .contact-hero-section {
+    padding: 2.5rem 0 1.5rem;
+
+    .hero-title {
+      font-size: 1.85rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+    }
   }
 
   .contact-cards-section .info-cards-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .main-contact-layout-section {
-    .contact-form-card,
-    .direct-channels-card {
-      padding: 1.6rem 1.15rem !important;
-      border-radius: 20px !important;
-      width: 100% !important;
-      box-sizing: border-box !important;
-    }
-  }
-
-  .find-us-map-section .map-card-wrapper .map-iframe-container {
-    height: 320px;
-  }
-
-  .contact-final-cta-section .final-cta-card .cta-heading {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .contact-hero-section .hero-title {
-    font-size: 1.75rem;
-  }
-
-  .main-contact-layout-section {
-    padding: 1rem 0 2.5rem;
+    padding: 0.75rem 0 2rem;
 
     .contact-form-card,
     .direct-channels-card {
-      padding: 1.25rem 0.85rem !important;
+      padding: 1.25rem 0.9rem !important;
       border-radius: 16px !important;
       width: 100% !important;
       max-width: 100% !important;
       box-sizing: border-box !important;
 
-      .form-header .form-heading,
-      .direct-header .direct-heading {
-        font-size: 1.35rem !important;
-        word-break: break-word !important;
+      .form-header {
+        margin-bottom: 1.15rem !important;
+
+        .form-heading {
+          font-size: 1.35rem !important;
+          line-height: 1.25 !important;
+          word-break: break-word !important;
+        }
+
+        .form-subheading {
+          font-size: 0.85rem !important;
+          line-height: 1.45 !important;
+          word-break: break-word !important;
+        }
       }
 
-      .form-header .form-subheading,
-      .direct-header .direct-subheading {
-        font-size: 0.85rem !important;
-        line-height: 1.5 !important;
-        word-break: break-word !important;
+      .direct-header {
+        margin-bottom: 1.15rem !important;
+
+        .direct-heading {
+          font-size: 1.35rem !important;
+          word-break: break-word !important;
+        }
+
+        .direct-subheading {
+          font-size: 0.85rem !important;
+          word-break: break-word !important;
+        }
       }
 
-      .form-group .form-input,
-      .custom-select-trigger {
-        padding: 0.7rem 0.75rem !important;
-        font-size: 0.88rem !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
+      .form-group {
+        margin-bottom: 0.95rem !important;
+
+        .form-label {
+          font-size: 0.8rem !important;
+          margin-bottom: 0.35rem !important;
+        }
+
+        .form-input,
+        .custom-select-trigger {
+          padding: 0.6rem 0.7rem !important;
+          font-size: 0.825rem !important;
+          border-radius: 10px !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        .form-textarea {
+          min-height: 80px !important;
+        }
       }
 
       .direct-channel-item {
-        padding: 0.75rem 0.65rem !important;
+        padding: 0.7rem 0.65rem !important;
         gap: 0.5rem !important;
         width: 100% !important;
         box-sizing: border-box !important;
@@ -1152,14 +1167,17 @@ html[dir="rtl"] .contact-faq-section .faq-item .faq-question-btn {
           width: 34px !important;
           height: 34px !important;
           font-size: 0.95rem !important;
+          border-radius: 8px !important;
         }
 
-        .channel-info .channel-title {
-          font-size: 0.78rem !important;
-        }
+        .channel-info {
+          .channel-title {
+            font-size: 0.75rem !important;
+          }
 
-        .channel-info .channel-val {
-          font-size: 0.8rem !important;
+          .channel-val {
+            font-size: 0.8rem !important;
+          }
         }
       }
 
@@ -1168,22 +1186,40 @@ html[dir="rtl"] .contact-faq-section .faq-item .faq-question-btn {
       .btn-primary {
         width: 100% !important;
         justify-content: center !important;
-        padding: 0.85rem 1rem !important;
-        font-size: 0.88rem !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.85rem !important;
+        border-radius: 12px !important;
         box-sizing: border-box !important;
       }
     }
   }
 
   .find-us-map-section .map-card-wrapper .map-iframe-container {
-    height: 260px;
+    height: 250px;
   }
+}
 
-  .contact-final-cta-section .final-cta-card {
-    padding: 2rem 1rem;
+@media (max-width: 480px) {
+  .main-contact-layout-section {
+    .contact-form-card,
+    .direct-channels-card {
+      padding: 1rem 0.65rem !important;
 
-    .cta-heading {
-      font-size: 1.5rem;
+      .form-header .form-heading,
+      .direct-header .direct-heading {
+        font-size: 1.2rem !important;
+      }
+
+      .form-header .form-subheading,
+      .direct-header .direct-subheading {
+        font-size: 0.8rem !important;
+      }
+
+      .form-group .form-input,
+      .custom-select-trigger {
+        padding: 0.55rem 0.6rem !important;
+        font-size: 0.8rem !important;
+      }
     }
   }
 }
