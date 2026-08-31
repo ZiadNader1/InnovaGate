@@ -81,10 +81,10 @@
 
               <!-- Active Explore CTA Button (Navigates directly to Diploma Detail Page) -->
               <div class="active-cta-box">
-                <a [routerLink]="['/diplomas', path.id]" class="btn btn-primary btn-explore-path">
+                <button type="button" class="btn btn-primary btn-explore-path" (click)="router.navigateByUrl('/diplomas/' + path.id)">
                   <span>{{ isAr ? 'استكشف تفاصيل الدبلومة' : 'Explore Diploma Details' }}</span>
                   <i class="fa-solid fa-arrow-right icon-arrow"></i>
-                </a>
+                </button>
               </div>
             </div>
 
@@ -195,10 +195,10 @@
         <button type="button" class="btn btn-secondary btn-modal-close" (click)="closeDiplomaModal()">
           <span>{{ isAr ? 'إغلاق' : 'Close' }}</span>
         </button>
-        <a [routerLink]="['/diplomas', selectedDiplomaForModal.id]" class="btn btn-primary btn-modal-enroll" (click)="closeDiplomaModal()">
+        <button type="button" class="btn btn-primary btn-modal-enroll" (click)="closeDiplomaModal(); router.navigateByUrl('/diplomas/' + selectedDiplomaForModal.id)">
           <span>{{ isAr ? 'عرض المنهج الكامل والتسجيل' : 'View Full Diploma & Enroll' }}</span>
           <i class="fa-solid fa-rocket icon-arrow"></i>
-        </a>
+        </button>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
-import { Component, HostListener, ElementRef, ViewChild, AfterViewInit, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, HostListener, AfterViewInit, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LanguageService } from '../../../core/services/language.service';
 import { AnnouncementService, AnnouncementItem } from '../../../core/services/announcement.service';
 
@@ -24,12 +24,11 @@ export interface TickerCategory {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss']
 })
 export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
   langService = inject(LanguageService);
   announcementService = inject(AnnouncementService);
   private router = inject(Router);
@@ -229,11 +228,6 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.mouseX = (event.clientX - windowWidth / 2) / (windowWidth / 2);
     this.mouseY = (event.clientY - windowHeight / 2) / (windowHeight / 2);
-  }
-
-  getVideoTransform(): string {
-    if (!this.isDesktop) return 'none';
-    return `scale(1.05) translate3d(${this.mouseX * 4}px, ${this.mouseY * 4}px, 0)`;
   }
 
   getContentTransform(): string {

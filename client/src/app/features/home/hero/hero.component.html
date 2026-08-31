@@ -15,15 +15,15 @@
 
       <!-- 2 Colored CTA Buttons -->
       <div class="hero-cta-group animate-slide-up-delayed">
-        <a routerLink="/courses" class="btn btn-cta-primary btn-hero">
+        <button type="button" class="btn btn-cta-primary btn-hero" (click)="navigateTo('/courses')">
           <span>{{ langService.t().hero.btnStart }}</span>
           <i class="fa-solid fa-rocket icon-arrow"></i>
-        </a>
+        </button>
 
-        <a routerLink="/diplomas" class="btn btn-cta-secondary btn-hero">
+        <button type="button" class="btn btn-cta-secondary btn-hero" (click)="navigateTo('/diplomas')">
           <span>{{ langService.t().hero.btnPaths }}</span>
           <i class="fa-solid fa-layer-group icon-arrow"></i>
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -77,10 +77,10 @@
         </div>
 
         <!-- CTA Button -->
-        <a routerLink="/courses" class="btn btn-primary btn-claim-offer">
+        <button type="button" class="btn btn-primary btn-claim-offer" (click)="navigateTo(offers[currentOfferIndex].ctaLink || '/courses')">
           <span>{{ offers[currentOfferIndex].ctaText }}</span>
           <i class="fa-solid fa-arrow-right"></i>
-        </a>
+        </button>
       </div>
 
       <!-- Indicators Dots for Auto-Carousel -->
@@ -123,4 +123,5 @@
       </div>
     </div>
   </div>
+
 </section>
