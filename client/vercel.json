@@ -1,13 +1,11 @@
 {
   "version": 2,
   "outputDirectory": "dist/client/browser",
-  "routes": [
-    { "src": "/api/auth/login", "dest": "/api/auth.js" },
-    { "src": "/api/auth/(.*)", "dest": "/api/auth.js" },
-    { "src": "/api/submissions", "dest": "/api/submissions.js" },
-    { "src": "/api/submissions/(.*)", "dest": "/api/submissions.js" },
-    { "src": "/api/(.*)", "dest": "/api/index.js" },
-    { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/api/auth/login", "destination": "/api/auth/login" },
+    { "source": "/api/auth/(.*)", "destination": "/api/auth/login" },
+    { "source": "/api/submissions", "destination": "/api/submissions" },
+    { "source": "/api/submissions/(.*)", "destination": "/api/submissions" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
