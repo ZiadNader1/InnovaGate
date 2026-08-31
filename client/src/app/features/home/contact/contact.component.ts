@@ -116,12 +116,13 @@ export class ContactComponent {
 
     // Send real HTTP POST request to Express Backend
     this.submissionService.submitForm(this.formData).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.isSubmitting = false;
-        if (res && (res.success || res.data)) {
+        if (res && res.success === true && res.data) {
           this.isSubmittedSuccess = true;
         } else {
-          this.formErrors.message = this.isAr ? 'حدث خطأ في الخادم، الرجاء المحاولة مجدداً' : 'Server error, please try again.';
+          console.error('Invalid backend submission response:', res);
+          this.formErrors.message = this.isAr ? 'حدث خطأ أثناء حفظ البيانات، الرجاء المحاولة مجدداً' : 'Error saving submission, please try again.';
         }
       },
       error: (err) => {

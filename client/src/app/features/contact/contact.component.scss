@@ -656,6 +656,8 @@
         flex-direction: column;
         gap: 0.2rem;
         flex: 1;
+        min-width: 0;
+        overflow: hidden;
 
         .channel-title {
           font-size: 0.85rem;
@@ -668,11 +670,17 @@
         }
 
         .channel-val {
-          font-size: 1rem;
+          font-size: 0.95rem;
           font-weight: 800;
           color: #ffffff;
           word-break: break-all;
           overflow-wrap: anywhere;
+          text-align: start;
+          unicode-bidi: isolate;
+
+          html[dir="rtl"] & {
+            text-align: right !important;
+          }
 
           :host-context(body.light-mode) & {
             color: #081B33;
@@ -683,6 +691,11 @@
       .channel-arrow {
         font-size: 0.85rem;
         color: #475569;
+        transition: transform 0.3s ease;
+
+        html[dir="rtl"] & {
+          transform: rotate(180deg);
+        }
 
         :host-context(body.light-mode) & {
           color: #94A3B8;

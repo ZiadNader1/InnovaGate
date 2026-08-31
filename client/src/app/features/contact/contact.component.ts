@@ -144,13 +144,14 @@ export class ContactPageComponent {
     };
 
     this.submissionService.submitForm(payload).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.isSubmitting = false;
-        if (res && (res.success || res.data)) {
+        if (res && res.success === true && res.data) {
           this.isSubmittedSuccess = true;
         } else {
+          console.error('Invalid backend submission response:', res);
           const isAr = this.langService.currentLang() === 'ar';
-          this.formErrors.message = isAr ? 'حدث خطأ في الخادم، الرجاء المحاولة مجدداً' : 'Server error, please try again.';
+          this.formErrors.message = isAr ? 'حدث خطأ أثناء حفظ البيانات، الرجاء المحاولة مجدداً' : 'Error saving submission, please try again.';
         }
       },
       error: (err) => {
