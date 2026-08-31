@@ -146,12 +146,20 @@ export class ContactPageComponent {
     this.submissionService.submitForm(payload).subscribe({
       next: (res) => {
         this.isSubmitting = false;
-        this.isSubmittedSuccess = true;
+        if (res && (res.success || res.data)) {
+          this.isSubmittedSuccess = true;
+        } else {
+          const isAr = this.langService.currentLang() === 'ar';
+          this.formErrors.message = isAr ? 'حدث خطأ في الخادم، الرجاء المحاولة مجدداً' : 'Server error, please try again.';
+        }
       },
       error: (err) => {
-        console.warn('Standalone contact submission response handled:', err);
+        console.error('Contact submission HTTP error:', err);
         this.isSubmitting = false;
-        this.isSubmittedSuccess = true;
+        const isAr = this.langService.currentLang() === 'ar';
+        this.formErrors.message = isAr 
+          ? 'تعذر الاتصال بالخادم، الرجاء التأكد من اتصال الإنترنت والمحاولة مجدداً' 
+          : 'Unable to connect to server. Please check connection and try again.';
       }
     });
   }

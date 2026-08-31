@@ -118,12 +118,18 @@ export class ContactComponent {
     this.submissionService.submitForm(this.formData).subscribe({
       next: (res) => {
         this.isSubmitting = false;
-        this.isSubmittedSuccess = true;
+        if (res && (res.success || res.data)) {
+          this.isSubmittedSuccess = true;
+        } else {
+          this.formErrors.message = this.isAr ? 'حدث خطأ في الخادم، الرجاء المحاولة مجدداً' : 'Server error, please try again.';
+        }
       },
       error: (err) => {
-        console.warn('Backend submission response handled:', err);
+        console.error('Backend submission HTTP error:', err);
         this.isSubmitting = false;
-        this.isSubmittedSuccess = true;
+        this.formErrors.message = this.isAr 
+          ? 'تعذر الاتصال بالخادم، الرجاء التأكد من اتصال الإنترنت والمحاولة مجدداً' 
+          : 'Unable to connect to server. Please check connection and try again.';
       }
     });
   }

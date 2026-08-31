@@ -676,6 +676,15 @@
   .contact-section {
     .contact-header-block .section-headline { font-size: 2.2rem; }
 
+    .location-under-form-box {
+      padding: 1.25rem 1rem !important;
+
+      .info-address {
+        word-break: break-all;
+        font-size: 0.88rem;
+      }
+    }
+
     .innovagate-main-footer .footer-columns-grid {
       grid-template-columns: 1fr;
     }

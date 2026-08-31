@@ -671,6 +671,8 @@
           font-size: 1rem;
           font-weight: 800;
           color: #ffffff;
+          word-break: break-all;
+          overflow-wrap: anywhere;
 
           :host-context(body.light-mode) & {
             color: #081B33;
@@ -1039,8 +1041,8 @@ html[dir="rtl"] .contact-faq-section .faq-item .faq-question-btn {
   }
 
   .main-contact-layout-section .contact-two-col-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    grid-template-columns: 1fr !important;
+    gap: 2.25rem !important;
   }
 }
 
@@ -1051,14 +1053,15 @@ html[dir="rtl"] .contact-faq-section .faq-item .faq-question-btn {
 
   .contact-cards-section .info-cards-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 
-  .main-contact-layout-section .contact-form-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .main-contact-layout-section .direct-channels-card {
-    padding: 2rem 1.5rem;
+  .main-contact-layout-section {
+    .contact-form-card,
+    .direct-channels-card {
+      padding: 1.75rem 1.25rem !important;
+      border-radius: 20px !important;
+    }
   }
 
   .find-us-map-section .map-card-wrapper .map-iframe-container {
@@ -1067,5 +1070,69 @@ html[dir="rtl"] .contact-faq-section .faq-item .faq-question-btn {
 
   .contact-final-cta-section .final-cta-card .cta-heading {
     font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-hero-section .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .main-contact-layout-section {
+    padding: 1.25rem 0 3rem;
+
+    .contact-form-card,
+    .direct-channels-card {
+      padding: 1.35rem 0.95rem !important;
+      border-radius: 18px !important;
+
+      .form-header .form-heading,
+      .direct-header .direct-heading {
+        font-size: 1.45rem !important;
+      }
+
+      .form-group .form-input,
+      .custom-select-trigger {
+        padding: 0.75rem 0.85rem !important;
+        font-size: 0.92rem !important;
+      }
+
+      .direct-channel-item {
+        padding: 0.85rem 0.75rem !important;
+        gap: 0.65rem !important;
+
+        .channel-icon {
+          width: 36px !important;
+          height: 36px !important;
+          font-size: 1rem !important;
+          border-radius: 10px !important;
+        }
+
+        .channel-info .channel-val {
+          font-size: 0.825rem !important;
+          word-break: break-all !important;
+          overflow-wrap: anywhere !important;
+        }
+      }
+
+      .btn-submit-message,
+      .btn-submit {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 0.9rem 1.25rem !important;
+      }
+    }
+  }
+
+  .find-us-map-section .map-card-wrapper .map-iframe-container {
+    height: 270px;
+  }
+
+  .contact-final-cta-section .final-cta-card {
+    padding: 2.5rem 1.25rem;
+
+    .cta-heading {
+      font-size: 1.6rem;
+    }
   }
 }
